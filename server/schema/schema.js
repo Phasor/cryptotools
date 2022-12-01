@@ -1,8 +1,12 @@
+const Project = require("../models/Project");
+const Link = require("../models/Link");
+
 const {
   GraphQLObjectType,
   GraphQLID,
   GraphQLString,
   GraphQLBoolean,
+  GraphQLList,
 } = require("graphql");
 
 const LinkType = new GraphQLObjectType({
@@ -22,5 +26,11 @@ const ProjectType = new GraphQLObjectType({
     name: { type: GraphQLString },
     website: { type: GraphQLString },
     active: { type: GraphQLBoolean },
+    links: {
+      type: new GraphQLList(LinkType),
+      resolve(parent, args) {
+        return Link.find({ project: parent.id });
+      },
+    },
   }),
 });
