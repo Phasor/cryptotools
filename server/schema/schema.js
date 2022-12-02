@@ -82,12 +82,20 @@ const mutation = new GraphQLObjectType({
         project: { type: GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
+        // save new link
         const link = new Link({
-          url: args.URL,
-          name: args.Name,
+          url: args.url,
+          name: args.name,
           active: args.active,
           project: args.project,
         });
+
+        // add link to project
+        Project.findById(args.project).then((project) => {
+          project.links.push(link);
+          project.save();
+        });
+
         return link.save();
       },
     },
