@@ -119,6 +119,62 @@ const mutation = new GraphQLObjectType({
         return link.save();
       },
     },
+    // delete a Link
+    deleteLink: {
+      type: LinkType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        // delete link
+        return Link.findByIdAndDelete(args.id);
+      },
+    },
+
+    // update a Project
+    updateProject: {
+      type: ProjectType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        website: { type: GraphQLString },
+        active: { type: GraphQLBoolean },
+      },
+      resolve(parent, args) {
+        return Project.findByIdAndUpdate(
+          args.id,
+          {
+            name: args.name,
+            website: args.website,
+            active: args.active,
+          },
+          { new: true }
+        );
+      },
+    },
+    // update a Link
+    updateLink: {
+      type: LinkType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        url: { type: GraphQLString },
+        name: { type: GraphQLString },
+        active: { type: GraphQLBoolean },
+        project: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return Link.findByIdAndUpdate(
+          args.id,
+          {
+            url: args.url,
+            name: args.name,
+            active: args.active,
+            project: args.project,
+          },
+          { new: true }
+        );
+      },
+    },
   },
 });
 
