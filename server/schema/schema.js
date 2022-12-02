@@ -72,6 +72,26 @@ const mutation = new GraphQLObjectType({
         return project.save();
       },
     },
+    // delete a Project
+    deleteProject: {
+      type: ProjectType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        // delete all links associated with the project
+        Link.deleteMany({ project: args.id })
+          // .then((deleted) => {
+          //   console.log(`${deleted.deletedCount} links deleted`);
+          // })
+          .then(() => {
+            // delete the project
+            // console.log("deleting project");
+            return Project.findByIdAndDelete(args.id);
+          });
+      },
+    },
+
     // add a Link
     addLink: {
       type: LinkType,
