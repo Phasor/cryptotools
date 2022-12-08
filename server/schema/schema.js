@@ -1,5 +1,7 @@
+// GraphQL Schema
 const Project = require("../models/Project");
 const Link = require("../models/Link");
+const utils = require("../lib/utils");
 
 const {
   GraphQLObjectType,
@@ -63,13 +65,32 @@ const mutation = new GraphQLObjectType({
         website: { type: GraphQLString },
         active: { type: GraphQLNonNull(GraphQLBoolean) },
       },
-      resolve(parent, args) {
-        const project = new Project({
-          name: args.name,
-          website: args.website,
-          active: args.active,
-        });
-        return project.save();
+      resolve(parent, args, request) {
+        // check if JWT is valid
+        // get JWT from request
+        const token = request.headers.authorization.split(" ")[1];
+        // verify JWT
+        try {
+          const verified = utils.verifyJWT(token).then((decoded) => {
+            if (decoded) {
+              // save project
+              const project = new Project({
+                name: args.name,
+                website: args.website,
+                active: args.active,
+              });
+              console.log("You have been verified, saving project");
+              console.log("verified", verified);
+              return project.save();
+            } else {
+              console.log("You are not verified");
+              throw new Error("You are not verified");
+            }
+          });
+        } catch (error) {
+          console.log(error);
+          throw new Error("You are not verified in catch");
+        }
       },
     },
     // delete a Project
