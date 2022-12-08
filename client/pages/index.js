@@ -10,7 +10,7 @@ export default function Home() {
     <div className="w-screen relative">
       <NavBar />
       <Hero />
-      <div className="w-screen h-screen flex justify-center overflow-y-auto">
+      <div className="w-screen h-screen flex justify-center overflow-y-auto overflow-x-hidden">
         <Projects />
       </div>
     </div>

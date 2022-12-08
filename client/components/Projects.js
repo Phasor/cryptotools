@@ -3,6 +3,7 @@ import ProjectRow from "./ProjectRow";
 
 const projects = [
   {
+    id: 1,
     name: "Bitcoin",
     website: "www.bitcoin.com",
     links: [
@@ -14,6 +15,7 @@ const projects = [
     symbol: "BTC",
   },
   {
+    id: 2,
     name: "Solana",
     website: "www.solana.com",
     links: [
@@ -27,7 +29,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <div className="bg-[#F9F8F8]">
+    <div className="bg-[#F9F8F8] w-screen">
       <div className="w-screen flex justify-center bg-[#F9F8F8]">
         <table className="table-auto mt-10">
           <thead className="border-t border-b border-gray-300 rounded">
@@ -42,7 +44,7 @@ export default function Projects() {
           </thead>
           <tbody>
             {projects.map((project) => {
-              return <ProjectRow project={project} />;
+              return <ProjectRow key={project.id} project={project} />;
             })}
           </tbody>
         </table>

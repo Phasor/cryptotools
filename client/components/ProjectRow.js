@@ -31,9 +31,9 @@ export default function ProjectRow({ project }) {
 
       {/* Link Box */}
       {showLinks && (
-        <tr className="bg-[#F9F8F8]">
+        <tr className="">
           <td colSpan={6}>
-            <div className="flex space-x-3 p-2 ">
+            <div className="flex space-x-3 p-2 items-center ">
               <LinkIcon className="h-4 w-4" />
               <p className=" font-medium">Dashboard Links</p>
             </div>
