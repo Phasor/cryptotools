@@ -1,13 +1,22 @@
 import React from "react";
 import ProjectRow from "./ProjectRow";
 
-const project = {
-  name: "Bitcoin",
-  website: "www.bitcoin.com",
-  links: ["www.link1.com", "www.link2.com", "www.link3.com"],
-  logo: "/images/btc.png",
-  symbol: "BTC",
-};
+const projects = [
+  {
+    name: "Bitcoin",
+    website: "www.bitcoin.com",
+    links: ["www.link1.com", "www.link2.com", "www.link3.com"],
+    logo: "/images/btc.png",
+    symbol: "BTC",
+  },
+  {
+    name: "Solana",
+    website: "www.solana.com",
+    links: ["www.link4.com", "www.link5.com"],
+    logo: "/images/sol.png",
+    symbol: "SOL",
+  },
+];
 
 export default function Projects() {
   return (
@@ -15,6 +24,7 @@ export default function Projects() {
       <table>
         <thead className="border-t border-b border-gray-300 rounded">
           <tr className="font-medium text-right">
+            <td className="p-3 text-center text-white">.</td>
             <td className="p-3 text-center">Logo</td>
             <td className="p-3">Symbol</td>
             <td className="p-3">Project Name</td>
@@ -23,7 +33,10 @@ export default function Projects() {
           </tr>
         </thead>
         <tbody>
-          <ProjectRow project={project} />
+          {projects.map((project) => {
+            return <ProjectRow project={project} />;
+          })}
+          {/* <ProjectRow project={project} /> */}
         </tbody>
       </table>
     </div>
