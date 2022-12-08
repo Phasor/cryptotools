@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cryptocurrency-icons": "^0.18.1",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.6",
     "next": "13.0.6",
