@@ -27,24 +27,26 @@ const projects = [
 
 export default function Projects() {
   return (
-    <div className="absolute top-[600px]">
-      <table>
-        <thead className="border-t border-b border-gray-300 rounded">
-          <tr className="font-medium text-right">
-            <td className="p-3 text-center text-white">.</td>
-            <td className="p-3 text-center">Logo</td>
-            <td className="p-3">Symbol</td>
-            <td className="p-3">Project Name</td>
-            <td className="p-3">Website</td>
-            <td className="p-3"># Links</td>
-          </tr>
-        </thead>
-        <tbody>
-          {projects.map((project) => {
-            return <ProjectRow project={project} />;
-          })}
-        </tbody>
-      </table>
+    <div className="bg-[#F9F8F8]">
+      <div className="w-screen flex justify-center bg-[#F9F8F8]">
+        <table className="table-auto mt-10">
+          <thead className="border-t border-b border-gray-300 rounded">
+            <tr className="font-medium text-right">
+              <td className="p-3 text-center text-white">.</td>
+              <td className="p-3 text-center">Logo</td>
+              <td className="p-3">Symbol</td>
+              <td className="p-3">Project Name</td>
+              <td className="p-3">Website</td>
+              <td className="p-3"># Links</td>
+            </tr>
+          </thead>
+          <tbody>
+            {projects.map((project) => {
+              return <ProjectRow project={project} />;
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

@@ -28,24 +28,32 @@ export default function ProjectRow({ project }) {
         <td className="text-right p-3">{project.website}</td>
         <td className="text-right p-3">{project.links.length}</td>
       </tr>
+
+      {/* Link Box */}
       {showLinks && (
-        <div className="flex flex-col">
-          <ol className="list-decimal">
-            {project.links.map((link) => {
-              return (
-                <li>
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    className="text-blue-600 hover:underline active:text-blue-800 visited:text-purple-600 cursor-pointer"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              );
-            })}
-          </ol>
-        </div>
+        <tr className="bg-[#F9F8F8]">
+          <td colSpan={6}>
+            <div className="flex space-x-3 p-2 ">
+              <LinkIcon className="h-4 w-4" />
+              <p className=" font-medium">Dashboard Links</p>
+            </div>
+            <ol className="list-decimal">
+              {project.links.map((link) => {
+                return (
+                  <li className="p-1 ml-10">
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      className="text-blue-600 hover:underline active:text-blue-800 visited:text-purple-600 cursor-pointer"
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                );
+              })}
+            </ol>
+          </td>
+        </tr>
       )}
     </>
   );
