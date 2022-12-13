@@ -195,17 +195,22 @@ const mutation = new GraphQLObjectType({
         active: { type: GraphQLBoolean },
         project: { type: GraphQLID },
       },
-      resolve(parent, args) {
-        return Link.findByIdAndUpdate(
-          args.id,
-          {
-            url: args.url,
-            name: args.name,
-            active: args.active,
-            project: args.project,
-          },
-          { new: true }
-        );
+      resolve(parent, args, request) {
+        // get JWT from request
+        const token = request.headers.authorization.split(" ")[1];
+        // verify JWT
+        return utils.verifyJWT(token).then(() => {
+          return Link.findByIdAndUpdate(
+            args.id,
+            {
+              url: args.url,
+              name: args.name,
+              active: args.active,
+              project: args.project,
+            },
+            { new: true }
+          );
+        });
       },
     },
   },
