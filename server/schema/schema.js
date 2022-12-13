@@ -145,8 +145,13 @@ const mutation = new GraphQLObjectType({
         id: { type: GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
-        // delete link
-        return Link.findByIdAndDelete(args.id);
+        // get JWT from request
+        const token = request.headers.authorization.split(" ")[1];
+        // verify JWT
+        return utils
+          .verifyJWT(token)
+          .then(() => Link.findByIdAndDelete(args.id))
+          .catch((error) => error);
       },
     },
 
@@ -159,18 +164,27 @@ const mutation = new GraphQLObjectType({
         website: { type: GraphQLString },
         active: { type: GraphQLBoolean },
       },
-      resolve(parent, args) {
-        return Project.findByIdAndUpdate(
-          args.id,
-          {
-            name: args.name,
-            website: args.website,
-            active: args.active,
-          },
-          { new: true }
-        );
+      resolve(parent, args, request) {
+        // get JWT from request
+        const token = request.headers.authorization.split(" ")[1];
+        // verify JWT
+        return utils
+          .verifyJWT(token)
+          .then(() => {
+            return Project.findByIdAndUpdate(
+              args.id,
+              {
+                name: args.name,
+                website: args.website,
+                active: args.active,
+              },
+              { new: true }
+            );
+          })
+          .catch((error) => error);
       },
     },
+
     // update a Link
     updateLink: {
       type: LinkType,
