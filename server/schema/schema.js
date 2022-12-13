@@ -111,24 +111,33 @@ const mutation = new GraphQLObjectType({
         active: { type: GraphQLNonNull(GraphQLBoolean) },
         project: { type: GraphQLNonNull(GraphQLID) },
       },
-      resolve(parent, args) {
-        // save new link
-        const link = new Link({
-          url: args.url,
-          name: args.name,
-          active: args.active,
-          project: args.project,
-        });
-
-        // add link to project
-        Project.findById(args.project).then((project) => {
-          project.links.push(link);
-          project.save();
-        });
-
-        return link.save();
+      resolve(parent, args, request) {
+        // get JWT from request
+        const token = request.headers.authorization.split(" ")[1];
+        // verify JWT
+        return utils
+          .verifyJWT(token)
+          .then(() => {
+            // save link
+            const link = new Link({
+              url: args.url,
+              name: args.name,
+              active: args.active,
+              project: args.project,
+            });
+            return link.save();
+          })
+          .then((link) => {
+            return Project.findById(args.project).then((project) => {
+              project.links.push(link);
+              project.save();
+              return link;
+            });
+          })
+          .catch((error) => error);
       },
     },
+
     // delete a Link
     deleteLink: {
       type: LinkType,
