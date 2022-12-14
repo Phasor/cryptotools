@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { ChevronDownIcon, LinkIcon } from "@heroicons/react/24/solid";
+import {
+  ChevronDownIcon,
+  LinkIcon,
+  TrashIcon,
+  PencilIcon,
+} from "@heroicons/react/24/solid";
 
-export default function ProjectRow({ project }) {
+export default function ProjectRow({ project, admin }) {
   const [showLinks, setShowLinks] = useState(false);
   const handleShowLinks = () => {
     setShowLinks(!showLinks);
@@ -27,6 +32,12 @@ export default function ProjectRow({ project }) {
         <td className="text-right p-3">{project.name}</td>
         <td className="text-right p-3">{project.website}</td>
         <td className="text-right p-3">{project.links.length}</td>
+        {admin && (
+          <td className="p-5 flex space-x-4">
+            <TrashIcon className="h-5 w-5 transform hover:scale-110 text-black" />
+            <PencilIcon className="h-5 w-5 transform hover:scale-110 text-blue-500" />
+          </td>
+        )}
       </tr>
 
       {/* Link Box */}
@@ -41,13 +52,21 @@ export default function ProjectRow({ project }) {
               {project.links.map((link) => {
                 return (
                   <li className="p-1 ml-10">
-                    <a
-                      href={link.url}
-                      target="_blank"
-                      className="text-blue-600 hover:underline active:text-blue-800 visited:text-purple-600 cursor-pointer"
-                    >
-                      {link.name}
-                    </a>
+                    <div className="flex space-x-5 items-center">
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        className="text-blue-600 hover:underline active:text-blue-800 visited:text-purple-600 cursor-pointer"
+                      >
+                        {link.name}
+                      </a>
+                      {admin && (
+                        <>
+                          <TrashIcon className="h-4 w-4 transform hover:scale-110 text-black " />
+                          <PencilIcon className="h-4 w-4 transform hover:scale-110 text-black " />
+                        </>
+                      )}
+                    </div>
                   </li>
                 );
               })}
