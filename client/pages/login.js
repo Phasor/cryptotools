@@ -1,11 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 
 export default function login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user._id));
+        window.location.href = "/";
+      } else if (data.error) {
+        setError(data.error);
+      } else {
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-screen h-screen bg-gray-100">
       <div className="flex justify-center items-center">
-        <form className="border p-5 rounded-lg flex flex-col space-y-2 md:top-[300px] shadow-lg md:absolute">
+        <form
+          onSubmit={handleSubmit}
+          className="border p-5 rounded-lg flex flex-col space-y-2 md:top-[300px] shadow-lg md:absolute"
+        >
           <p className="mb-2">Login</p>
           <div className="space-y-3 flex flex-col">
             <input
@@ -13,12 +48,18 @@ export default function login() {
               className="py-2 px-3 outline-none rounded-md border-gray-300"
               placeholder="Username"
               name="username"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <input
               type="password"
               className="py-2 px-3 outline-none rounded-md border-gray-300"
               placeholder="Password"
               name="password"
+              is="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <button
               type="submit"
