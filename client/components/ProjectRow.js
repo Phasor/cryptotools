@@ -5,12 +5,15 @@ import {
   TrashIcon,
   PencilIcon,
 } from "@heroicons/react/24/solid";
+import DeleteProjectButton from "./DeleteProjectButton";
 
 export default function ProjectRow({ project, admin }) {
   const [showLinks, setShowLinks] = useState(false);
   const handleShowLinks = () => {
     setShowLinks(!showLinks);
   };
+
+  const deleteProject = () => {};
 
   return (
     <>
@@ -34,7 +37,7 @@ export default function ProjectRow({ project, admin }) {
         <td className="text-right p-3">{project.links.length}</td>
         {admin && (
           <td className="p-5 flex space-x-4">
-            <TrashIcon className="h-5 w-5 transform hover:scale-110 text-black" />
+            <DeleteProjectButton project={project} />
             <PencilIcon className="h-5 w-5 transform hover:scale-110 text-blue-500" />
           </td>
         )}
