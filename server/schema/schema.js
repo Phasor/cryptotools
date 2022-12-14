@@ -29,6 +29,8 @@ const ProjectType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
+    symbol: { type: GraphQLString },
+    image: { type: GraphQLString },
     website: { type: GraphQLString },
     active: { type: GraphQLBoolean },
     links: { type: new GraphQLList(LinkType) },
@@ -62,10 +64,14 @@ const mutation = new GraphQLObjectType({
       type: ProjectType,
       args: {
         name: { type: GraphQLNonNull(GraphQLString) },
+        symbol: { type: GraphQLString },
+        image: { type: GraphQLNonNull(GraphQLString) },
         website: { type: GraphQLString },
         active: { type: GraphQLNonNull(GraphQLBoolean) },
       },
       resolve(parent, args, request) {
+        if (request.headers.authorization === undefined)
+          return new Error("Please provide a JWT in the Authorization header");
         // check if JWT is valid
         // get JWT from request
         const token = request.headers.authorization.split(" ")[1];
@@ -75,6 +81,8 @@ const mutation = new GraphQLObjectType({
           .then((decoded) => {
             const project = new Project({
               name: args.name,
+              symbol: args.symbol,
+              image: args.image,
               website: args.website,
               active: args.active,
             });
@@ -91,6 +99,8 @@ const mutation = new GraphQLObjectType({
         id: { type: GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args, request) {
+        if (request.headers.authorization === undefined)
+          return new Error("Please provide a JWT in the Authorization header");
         // get JWT from request
         const token = request.headers.authorization.split(" ")[1];
         // verify JWT
@@ -113,6 +123,8 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parent, args, request) {
         // get JWT from request
+        if (request.headers.authorization === undefined)
+          return new Error("Please provide a JWT in the Authorization header");
         const token = request.headers.authorization.split(" ")[1];
         // verify JWT
         return utils
@@ -145,6 +157,8 @@ const mutation = new GraphQLObjectType({
         id: { type: GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
+        if (request.headers.authorization === undefined)
+          return new Error("Please provide a JWT in the Authorization header");
         // get JWT from request
         const token = request.headers.authorization.split(" ")[1];
         // verify JWT
@@ -165,6 +179,8 @@ const mutation = new GraphQLObjectType({
         active: { type: GraphQLBoolean },
       },
       resolve(parent, args, request) {
+        if (request.headers.authorization === undefined)
+          return new Error("Please provide a JWT in the Authorization header");
         // get JWT from request
         const token = request.headers.authorization.split(" ")[1];
         // verify JWT
@@ -196,6 +212,8 @@ const mutation = new GraphQLObjectType({
         project: { type: GraphQLID },
       },
       resolve(parent, args, request) {
+        if (request.headers.authorization === undefined)
+          return new Error("Please provide a JWT in the Authorization header");
         // get JWT from request
         const token = request.headers.authorization.split(" ")[1];
         // verify JWT
