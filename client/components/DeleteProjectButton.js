@@ -10,6 +10,11 @@ export default function DeleteProjectButton({ project }) {
       console.log("Project deleted");
     },
     refetchQueries: [{ query: GET_PROJECTS }],
+    context: {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    },
   });
 
   return (

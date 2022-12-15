@@ -54,7 +54,7 @@ export default function ProjectRow({ project, admin }) {
             <ol className="list-decimal">
               {project.links.map((link) => {
                 return (
-                  <li className="p-1 ml-10">
+                  <li className="p-1 ml-10" key={link.id}>
                     <div className="flex space-x-5 items-center">
                       <a
                         href={link.url}
