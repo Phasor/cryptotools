@@ -52,6 +52,13 @@ const RootQuery = new GraphQLObjectType({
         return Link.find({});
       },
     },
+    project: {
+      type: ProjectType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Project.findById(args.id).populate("links");
+      },
+    },
   },
 });
 
@@ -174,6 +181,8 @@ const mutation = new GraphQLObjectType({
       type: ProjectType,
       args: {
         id: { type: GraphQLNonNull(GraphQLID) },
+        symbol: { type: GraphQLString },
+        image: { type: GraphQLString },
         name: { type: GraphQLString },
         website: { type: GraphQLString },
         active: { type: GraphQLBoolean },
@@ -190,6 +199,8 @@ const mutation = new GraphQLObjectType({
             return Project.findByIdAndUpdate(
               args.id,
               {
+                symbol: args.symbol,
+                image: args.image,
                 name: args.name,
                 website: args.website,
                 active: args.active,

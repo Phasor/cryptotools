@@ -13,7 +13,7 @@ export default function admin() {
   return (
     <>
       {data.projects.length > 0 ? (
-        <div className="bg-[#F9F8F8] w-screen">
+        <div className="bg-[#F9F8F8] w-screen h-screen">
           <div className="w-screen flex justify-center bg-[#F9F8F8]">
             <table className="table-auto mt-10">
               <thead className="border-t border-b border-gray-300 rounded">
