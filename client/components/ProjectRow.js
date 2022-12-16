@@ -8,6 +8,7 @@ import {
 import DeleteProjectButton from "./DeleteProjectButton";
 import EditProjectButton from "./EditProjectButton";
 import DeleteLinkButton from "./DeleteLinkButton";
+import Link from "next/link";
 
 export default function ProjectRow({ project, admin }) {
   const [showLinks, setShowLinks] = useState(false);
@@ -66,7 +67,9 @@ export default function ProjectRow({ project, admin }) {
                       {admin && (
                         <>
                           <DeleteLinkButton link={link} />
-                          <PencilIcon className="h-4 w-4 transform hover:scale-110 text-black " />
+                          <Link href={`/link/${link.id}`}>
+                            <PencilIcon className="h-4 w-4 transform hover:scale-110 text-black " />
+                          </Link>
                         </>
                       )}
                     </div>

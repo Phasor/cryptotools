@@ -52,6 +52,13 @@ const RootQuery = new GraphQLObjectType({
         return Link.find({});
       },
     },
+    link: {
+      type: LinkType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Link.findById(args.id);
+      },
+    },
     project: {
       type: ProjectType,
       args: { id: { type: GraphQLID } },
