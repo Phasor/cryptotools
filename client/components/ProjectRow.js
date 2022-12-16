@@ -25,9 +25,9 @@ export default function ProjectRow({ project, admin }) {
         </td>
         <td className="text-center p-3">
           <img
-            src={project.logo}
+            src={project.image ? project.image : "/images/missing.jpg"}
             alt=""
-            className="transform hover:scale-110"
+            className="transform hover:scale-110 h-10 w-10 rounded-full object-cover"
           />
         </td>
         <td className="text-right p-3">{project.symbol}</td>

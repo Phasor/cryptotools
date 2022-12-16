@@ -7,6 +7,8 @@ const GET_PROJECTS = gql`
       id
       name
       website
+      symbol
+      image
       active
       links {
         id
