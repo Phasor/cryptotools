@@ -40,6 +40,15 @@ export default function ProjectRow({ project, admin }) {
           <td className="p-5 flex space-x-4">
             <DeleteProjectButton project={project} />
             <EditProjectButton project={project} />
+            {project.active ? (
+              <div className="bg-green-700 p-1 rounded-md">
+                <p className="text-white">Active</p>
+              </div>
+            ) : (
+              <div className="bg-red-700 p-1 rounded-md">
+                <p className="text-white">Inactive</p>
+              </div>
+            )}
           </td>
         )}
       </tr>
@@ -70,6 +79,15 @@ export default function ProjectRow({ project, admin }) {
                           <Link href={`/link/${link.id}`}>
                             <PencilIcon className="h-4 w-4 transform hover:scale-110 text-black " />
                           </Link>
+                          {link.active ? (
+                            <div className="bg-green-700 p-1 rounded-md">
+                              <p className="text-white">Active</p>
+                            </div>
+                          ) : (
+                            <div className="bg-red-700 p-1 rounded-md">
+                              <p className="text-white">Inactive</p>
+                            </div>
+                          )}
                         </>
                       )}
                     </div>

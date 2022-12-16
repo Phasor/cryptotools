@@ -5,6 +5,7 @@ import { useMutation } from "@apollo/client";
 import { GET_LINK } from "../../queries/linkQueries";
 import { UPDATE_LINK } from "../../mutations/linkMutations";
 import NavBar from "../../components/NavBar";
+import Link from "next/link";
 
 export default function link() {
   const router = useRouter();
@@ -88,16 +89,19 @@ export default function link() {
               name="active"
               value={active}
               onChange={(e) => setActive(e.target.checked)}
-              className="rounded-md outline-none p-2 h-[15px] w-[15px]"
+              className="rounded-md outline-none p-2 h-[15px] w-[15px] ml-2"
               defaultChecked={data.link.active}
             />
           </div>
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md mt-2 w-full"
+            className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md my-2 w-full"
           >
             Update Link
           </button>
+          <Link href="/admin" className="text-blue-500 font-medium">
+            Back
+          </Link>
         </form>
       )}
     </div>
