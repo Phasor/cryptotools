@@ -7,7 +7,7 @@ import { UPDATE_PROJECT } from "../../mutations/projectMutations";
 export default function project() {
   const router = useRouter();
   const { id } = router.query;
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [name, setName] = useState("");
   const [symbol, setSymbol] = useState("");
   const [website, setWebsite] = useState("");
@@ -90,16 +90,28 @@ export default function project() {
     }
 
     // send mutation to update project
-    updateProject({
-      variables: {
-        id: id,
-        name,
-        symbol,
-        image: imgURL,
-        website,
-        active,
-      },
-    });
+    if (image) {
+      updateProject({
+        variables: {
+          id: id,
+          name,
+          symbol,
+          image: imgURL,
+          website,
+          active,
+        },
+      });
+    } else {
+      updateProject({
+        variables: {
+          id: id,
+          name,
+          symbol,
+          website,
+          active,
+        },
+      });
+    }
   };
 
   if (error) return <p>Something went wrong</p>;
@@ -205,7 +217,7 @@ export default function project() {
                   type="checkbox"
                   name="active"
                   value={active}
-                  onChange={(e) => setActive(e.target.value)}
+                  onChange={(e) => setActive(e.target.checked)}
                   className="rounded-md outline-none p-2 h-[15px] w-[15px]"
                   defaultChecked={data.project.active}
                 />
