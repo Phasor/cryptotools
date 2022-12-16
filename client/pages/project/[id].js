@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_PROJECT } from "../../queries/projectQueries";
 import { UPDATE_PROJECT } from "../../mutations/projectMutations";
-import { CameraIcon } from "@heroicons/react/24/solid";
 
 export default function project() {
   const router = useRouter();
@@ -23,6 +22,7 @@ export default function project() {
     setSymbol(data?.project.symbol);
     setWebsite(data?.project.website);
     setActive(data?.project.active);
+    setImgPreview(data?.project.image);
   }, [data]);
 
   const [updateProject] = useMutation(UPDATE_PROJECT, {
@@ -47,20 +47,20 @@ export default function project() {
   });
 
   const UploadImage = async (image) => {
-    // console.log("uploading image");
+    console.log("trying to upload image");
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "rgydp4v2");
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_CLOUDINARY_ENDPOINT}/duzlvcryq/image/upload`,
+        `${process.env.NEXT_PUBLIC_CLOUDINARY_ENDPOINT}/duzlvcryq/image/upload`,
         {
           method: "POST",
           body: formData,
         }
       );
       const data = await response.json();
-      console.log(data);
+      console.log(data.secure_url);
       return data.secure_url;
     } catch (err) {
       console.log(err);
@@ -90,7 +90,16 @@ export default function project() {
     }
 
     // send mutation to update project
-    updateProject();
+    updateProject({
+      variables: {
+        id: id,
+        name,
+        symbol,
+        image: imgURL,
+        website,
+        active,
+      },
+    });
   };
 
   if (error) return <p>Something went wrong</p>;
@@ -98,14 +107,21 @@ export default function project() {
   return (
     <>
       {!loading && !error && (
-        <div className="h-screen w-screen bg-gray-100 flex justify-center">
+        <div className="h-screen w-screen bg-gray-100 flex justify-center items-center">
           <form
             onSubmit={handleSubmit}
-            className="border shadow mt-10 p-6 rounded-md w-full max-w-[400px] border-yellow-500 h-fit"
+            className="border shadow p-6 rounded-md w-full max-w-[400px] h-fit"
           >
-            <h1 className="font-medium p-1 text-lg mb-3">
-              Edit {data.project.name}
-            </h1>
+            <div className="flex items-center space-x-5">
+              <img
+                src={data.project.image}
+                alt="Project image"
+                className="w-16 h-16 rounded-full"
+              />
+              <h1 className="font-medium p-1 text-lg mb-3">
+                Edit {data.project.name}
+              </h1>
+            </div>
 
             <div className="flex flex-col">
               <div className="my-2">

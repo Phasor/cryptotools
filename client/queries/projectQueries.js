@@ -27,6 +27,7 @@ const GET_PROJECT = gql`
       name
       symbol
       website
+      image
       active
       links {
         id
