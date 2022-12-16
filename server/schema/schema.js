@@ -163,7 +163,7 @@ const mutation = new GraphQLObjectType({
       args: {
         id: { type: GraphQLNonNull(GraphQLID) },
       },
-      resolve(parent, args) {
+      resolve(parent, args, request) {
         if (request.headers.authorization === undefined)
           return new Error("Please provide a JWT in the Authorization header");
         // get JWT from request

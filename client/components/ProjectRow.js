@@ -7,6 +7,7 @@ import {
 } from "@heroicons/react/24/solid";
 import DeleteProjectButton from "./DeleteProjectButton";
 import EditProjectButton from "./EditProjectButton";
+import DeleteLinkButton from "./DeleteLinkButton";
 
 export default function ProjectRow({ project, admin }) {
   const [showLinks, setShowLinks] = useState(false);
@@ -64,7 +65,7 @@ export default function ProjectRow({ project, admin }) {
                       </a>
                       {admin && (
                         <>
-                          <TrashIcon className="h-4 w-4 transform hover:scale-110 text-black " />
+                          <DeleteLinkButton link={link} />
                           <PencilIcon className="h-4 w-4 transform hover:scale-110 text-black " />
                         </>
                       )}
