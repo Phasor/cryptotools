@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_PROJECT } from "../../queries/projectQueries";
 import { UPDATE_PROJECT } from "../../mutations/projectMutations";
+import NavBar from "../../components/NavBar";
 
 export default function project() {
   const router = useRouter();
@@ -91,26 +93,36 @@ export default function project() {
 
     // send mutation to update project
     if (image) {
-      updateProject({
-        variables: {
-          id: id,
-          name,
-          symbol,
-          image: imgURL,
-          website,
-          active,
-        },
-      });
+      try {
+        await updateProject({
+          variables: {
+            id: id,
+            name,
+            symbol,
+            image: imgURL,
+            website,
+            active,
+          },
+        });
+      } catch (err) {
+        console.log(err);
+        setErrors(err);
+      }
     } else {
-      updateProject({
-        variables: {
-          id: id,
-          name,
-          symbol,
-          website,
-          active,
-        },
-      });
+      try {
+        await updateProject({
+          variables: {
+            id: id,
+            name,
+            symbol,
+            website,
+            active,
+          },
+        });
+      } catch (err) {
+        console.log(err);
+        setErrors(err);
+      }
     }
   };
 
@@ -118,6 +130,7 @@ export default function project() {
 
   return (
     <>
+      <NavBar />
       {!loading && !error && (
         <div className="h-screen w-screen bg-gray-100 flex justify-center items-center">
           <form
@@ -224,11 +237,15 @@ export default function project() {
               </div>
               <button
                 onClick={handleSubmit}
-                className="bg-blue-500 hover:bg-blue-600 shadow-md text-white p-2 mt-3 rounded-md"
+                className="bg-blue-500 hover:bg-blue-600 shadow-md text-white p-2 my-3 rounded-md"
               >
                 Update
               </button>
             </div>
+            <div>{errors && errors.map((error) => <p>{error.message}</p>)}</div>
+            <Link href="/admin" className="text-blue-500 font-medium">
+              Back
+            </Link>
           </form>
         </div>
       )}
