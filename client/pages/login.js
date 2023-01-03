@@ -23,11 +23,10 @@ export default function login() {
       if (data.success) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user._id));
-        window.location.href = "/";
-      } else if (data.error) {
-        setError(data.error);
+        window.location.href = "/admin";
       } else {
-        console.log(data);
+        setError(data.message);
+        console.log(data.message);
       }
     } catch (error) {
       console.log(error);
@@ -68,6 +67,7 @@ export default function login() {
               Login
             </button>
           </div>
+          {error && <p className="text-red-500 italic font-medium">{error}</p>}
         </form>
       </div>
     </div>
