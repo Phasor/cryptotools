@@ -14,7 +14,7 @@ export default function Modal({ show, onClose, children }) {
   };
 
   const modalContent = show ? (
-    <div className="absolute top-0 left-0 w-[100%] h-[100%] flex justify-center items-center bg-gray-900 opacity-90">
+    <div className="absolute top-0 left-0 w-[100%] h-[100%] flex justify-center items-center bg-gray-900 opacity-95">
       <div className="bg-white rounded-md p-2 z-[1000] opacity-100">
         <div>
           <a href="#" onClick={handleClose}>
@@ -24,7 +24,9 @@ export default function Modal({ show, onClose, children }) {
         <div>{children}</div>
       </div>
     </div>
-  ) : null;
+  ) : (
+    <></>
+  );
 
   if (isBrowser) {
     return ReactDOM.createPortal(

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { useMutation } from "@apollo/client";
 import { ADD_LINK } from "../mutations/linkMutations";
@@ -7,16 +7,14 @@ import Modal from "./Modal";
 
 export default function AddLinkButton({ project }) {
   const [showModal, setShowModal] = useState(false);
-  const linkNameRef = useRef("");
-  const linkUrlRef = useRef("");
-  const linkActiveRef = useRef(false);
+  const [formData, setFormData] = useState({ active: false });
 
-  const [handleModalSubmit] = useMutation(ADD_LINK, {
+  const [addLink] = useMutation(ADD_LINK, {
     variables: {
       project: project.id,
-      name: linkNameRef.current.value,
-      url: linkUrlRef.current.value,
-      active: linkActiveRef.current.checked,
+      name: formData.name,
+      url: formData.url,
+      active: formData.active,
     },
     onCompleted: () => {
       console.log("link added");
@@ -29,10 +27,42 @@ export default function AddLinkButton({ project }) {
     },
   });
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleCheckbox = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.checked });
+  };
+
+  const handleModalSubmit = (e) => {
+    e.preventDefault();
+    addLink();
+    setShowModal(false);
+  };
+
+  // const [handleModalSubmit] = useMutation(ADD_LINK, {
+  //   variables: {
+  //     project: project.id,
+  //     name: formData.name,
+  //     url: formData.url,
+  //     active: formData.active,
+  //   },
+  //   onCompleted: () => {
+  //     console.log("link added");
+  //   },
+  //   refetchQueries: [{ query: GET_PROJECTS }],
+  //   context: {
+  //     headers: {
+  //       Authorization: localStorage.getItem("token"),
+  //     },
+  //   },
+  // });
+
   return (
     <div>
       <PlusIcon
-        className="h-4 w-4 transform hover:scale-110 text-black"
+        className="h-6 w-6 transform hover:scale-110 text-black"
         onClick={() => setShowModal(true)}
       />
       <Modal
@@ -41,17 +71,20 @@ export default function AddLinkButton({ project }) {
           setShowModal(false);
         }}
       >
-        <div className="flex flex-col">
+        <div className="flex flex-col opacity-100">
           <h1 className="text-2xl font-bold">Add Link</h1>
           <form onSubmit={handleModalSubmit} className="p-2">
             <div className="flex items-center space-x-2 justify-between">
-              <label>Link Name: </label>
-              <input
-                type="text"
-                placeholder="Cool dashboard 1"
-                className="p-1 my-2 outline-none border rounded-md"
-                ref={linkNameRef}
-              />
+              <label>
+                Link Name
+                <input
+                  type="text"
+                  placeholder="Cool dashboard 1"
+                  className="p-1 my-2 outline-none border rounded-md"
+                  name="name"
+                  onChange={handleChange}
+                />
+              </label>
             </div>
             <div className="flex items-center space-x-2">
               <label>URL: </label>
@@ -59,22 +92,21 @@ export default function AddLinkButton({ project }) {
                 type="text"
                 placeholder="http://www.link.com"
                 className="p-1 my-2 outline-none border rounded-md"
-                ref={linkUrlRef}
+                name="url"
+                onChange={handleChange}
               />
             </div>
             <div className="flex items-center space-x-2">
               <label htmlFor="active">Active?</label>
               <input
-                id="active"
                 name="active"
                 type="checkbox"
-                defaultChecked={true}
-                ref={linkActiveRef}
+                checked={formData.active}
+                onChange={handleCheckbox}
               />
             </div>
             <button
               type="submit"
-              onClick={handleModalSubmit}
               className="rounded-md bg-blue-500 text-white py-1 px-2 my-2 hover:bg-blue-600"
             >
               Add Link
