@@ -7,20 +7,28 @@ export default function NavBar() {
   return (
     <nav className="absolute top-0 transparent flex justify-end w-screen p-2">
       <ul className="flex p-2 space-x-5 font-medium mr-5">
-        <li className="text-lg border border-gray-700 cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5">
-          About
-        </li>
-        <li className="text-lg border border-gray-700 cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5">
-          Suggest a Link
-        </li>
-        {router.pathname !== "/" ? (
-          <Link href="/">
+        {router.pathname == "/" ? (
+          <>
             <li className="text-lg border border-gray-700 cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5">
-              Home
+              About
             </li>
-          </Link>
+            <li className="text-lg border border-gray-700 cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5">
+              Suggest a Link
+            </li>
+          </>
         ) : (
-          <></>
+          <>
+            <Link href="/">
+              <li className="text-lg border border-gray-700 cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5">
+                Home
+              </li>
+            </Link>
+            <Link href="/addLink">
+              <li className="text-lg border border-gray-700 cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5">
+                Add Link
+              </li>
+            </Link>
+          </>
         )}
       </ul>
     </nav>
