@@ -8,6 +8,7 @@ import {
 import DeleteProjectButton from "./DeleteProjectButton";
 import EditProjectButton from "./EditProjectButton";
 import DeleteLinkButton from "./DeleteLinkButton";
+import AddLinkButton from "./AddLinkButton";
 import Link from "next/link";
 
 export default function ProjectRow({ project, admin }) {
@@ -37,9 +38,10 @@ export default function ProjectRow({ project, admin }) {
         <td className="text-right p-3">{project.website}</td>
         <td className="text-right p-3">{project.links.length}</td>
         {admin && (
-          <td className="p-5 flex space-x-4">
+          <td className="p-5 flex space-x-4 items-center">
             <DeleteProjectButton project={project} />
             <EditProjectButton project={project} />
+            <AddLinkButton project={project} />
             {project.active ? (
               <div className="bg-green-700 p-1 rounded-md">
                 <p className="text-white">Active</p>
