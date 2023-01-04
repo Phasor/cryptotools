@@ -21,6 +21,26 @@ const GET_PROJECTS = gql`
   }
 `;
 
+const GET_ACTIVE_PROJECTS = gql`
+  query {
+    activeProjects {
+      id
+      name
+      website
+      symbol
+      image
+      active
+      links {
+        id
+        url
+        name
+        active
+        project
+      }
+    }
+  }
+`;
+
 // get project by ID
 const GET_PROJECT = gql`
   query getProject($id: ID!) {
@@ -42,4 +62,4 @@ const GET_PROJECT = gql`
   }
 `;
 
-export { GET_PROJECTS, GET_PROJECT };
+export { GET_PROJECTS, GET_PROJECT, GET_ACTIVE_PROJECTS };

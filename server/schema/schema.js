@@ -43,9 +43,19 @@ const RootQuery = new GraphQLObjectType({
     projects: {
       type: new GraphQLList(ProjectType),
       resolve(parent, args) {
-        return Project.find({}).populate("links");
+        return Project.find({}).populate("links").sort({ name: 1 });
       },
     },
+    activeProjects: {
+      type: new GraphQLList(ProjectType),
+      // return all active projects
+      resolve(parent, args) {
+        return Project.find({ active: true })
+          .populate("links")
+          .sort({ name: 1 });
+      },
+    },
+
     links: {
       type: new GraphQLList(LinkType),
       resolve(parent, args) {

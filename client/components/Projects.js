@@ -1,18 +1,18 @@
 import React from "react";
 import ProjectRow from "./ProjectRow";
 import { useQuery } from "@apollo/client";
-import { GET_PROJECTS } from "../queries/projectQueries";
+import { GET_ACTIVE_PROJECTS } from "../queries/projectQueries";
 import Spinner from "./Spinner";
 
 export default function Projects() {
-  const { loading, error, data } = useQuery(GET_PROJECTS);
+  const { loading, error, data } = useQuery(GET_ACTIVE_PROJECTS);
 
   if (error) return <p>Something went wrong</p>;
   if (loading) return <Spinner />;
 
   return (
     <>
-      {data.projects.length > 0 ? (
+      {data.activeProjects.length > 0 ? (
         <div className="bg-[#F9F8F8] w-screen">
           <div className="w-screen flex justify-center bg-[#F9F8F8]">
             <table className="table-auto mt-10">
@@ -27,7 +27,7 @@ export default function Projects() {
                 </tr>
               </thead>
               <tbody>
-                {data.projects.map((project) => {
+                {data.activeProjects.map((project) => {
                   return <ProjectRow key={project.id} project={project} />;
                 })}
               </tbody>
