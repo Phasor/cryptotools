@@ -23,7 +23,7 @@ export default function admin() {
               <AddProjectButton />
 
               {/* List of existing projects */}
-              <table className="table-auto  max-w-[50%]">
+              <table className="table-auto  max-w-[70%] whitespace-nowrap">
                 <thead className="border-t border-b border-gray-300 rounded">
                   <tr className="font-medium text-right">
                     <td className="p-3 text-center text-white">.</td>

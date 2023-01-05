@@ -48,10 +48,13 @@ const RootQuery = new GraphQLObjectType({
     },
     activeProjects: {
       type: new GraphQLList(ProjectType),
-      // return all active projects
+      // return all active projects, filter out inactive links
       resolve(parent, args) {
         return Project.find({ active: true })
-          .populate("links")
+          .populate({
+            path: "links",
+            match: { active: true },
+          })
           .sort({ name: 1 });
       },
     },

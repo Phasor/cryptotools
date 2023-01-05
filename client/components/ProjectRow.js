@@ -10,6 +10,10 @@ import EditProjectButton from "./EditProjectButton";
 import DeleteLinkButton from "./DeleteLinkButton";
 import AddLinkButton from "./AddLinkButton";
 import Link from "next/link";
+import ActiveButton from "./ActiveButton";
+import InactiveButton from "./InactiveButton";
+import ActiveLinkButton from "./ActiveLinkButton";
+import InactiveLinkButton from "./InactiveLinkButton";
 
 export default function ProjectRow({ project, admin }) {
   const [showLinks, setShowLinks] = useState(false);
@@ -33,23 +37,19 @@ export default function ProjectRow({ project, admin }) {
             className="transform hover:scale-110 h-10 w-10 rounded-full object-cover"
           />
         </td>
-        <td className="text-right p-3">{project.symbol}</td>
+        <td className="text-center p-3">{project.symbol}</td>
         <td className="text-right p-3">{project.name}</td>
         <td className="text-right p-3">{project.website}</td>
-        <td className="text-right p-3">{project.links.length}</td>
+        <td className="text-center p-3">{project.links.length}</td>
         {admin && (
           <td className="p-5 flex space-x-4 items-center">
             <DeleteProjectButton project={project} />
             <EditProjectButton project={project} />
             <AddLinkButton project={project} />
             {project.active ? (
-              <div className="bg-green-700 p-1 rounded-md">
-                <p className="text-white">Active</p>
-              </div>
+              <ActiveButton project={project} />
             ) : (
-              <div className="bg-red-700 p-1 rounded-md">
-                <p className="text-white">Inactive</p>
-              </div>
+              <InactiveButton project={project} />
             )}
           </td>
         )}
@@ -82,13 +82,9 @@ export default function ProjectRow({ project, admin }) {
                             <PencilIcon className="h-4 w-4 transform hover:scale-110 text-black " />
                           </Link>
                           {link.active ? (
-                            <div className="bg-green-700 p-1 rounded-md">
-                              <p className="text-white">Active</p>
-                            </div>
+                            <ActiveLinkButton link={link} />
                           ) : (
-                            <div className="bg-red-700 p-1 rounded-md">
-                              <p className="text-white">Inactive</p>
-                            </div>
+                            <InactiveLinkButton link={link} />
                           )}
                         </>
                       )}

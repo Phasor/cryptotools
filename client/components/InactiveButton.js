@@ -1,0 +1,29 @@
+import React from "react";
+import { UPDATE_PROJECT } from "../mutations/projectMutations";
+import { GET_PROJECTS } from "../queries/projectQueries";
+import { useMutation } from "@apollo/client";
+
+export default function InactiveButton({ project }) {
+  const [updateProject] = useMutation(UPDATE_PROJECT, {
+    variables: {
+      id: project.id,
+      active: !project.active,
+    },
+    refetchQueries: [{ query: GET_PROJECTS }],
+    context: {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    },
+  });
+
+  const handleClick = () => {
+    updateProject();
+  };
+
+  return (
+    <div className="bg-red-700 p-1 rounded-md" onClick={handleClick}>
+      <p className="text-white">Inactive</p>
+    </div>
+  );
+}

@@ -112,59 +112,51 @@ export default function AddProjectButton() {
           <h1 className="text-2xl font-bold">Add Project</h1>
           <form onSubmit={(e) => handleModalSubmit(e)} className="p-2">
             <div className="flex items-center space-x-2 justify-between">
-              <label>
-                Project Name
-                <input
-                  type="text"
-                  placeholder="Cool Project"
-                  className="p-1 my-2 outline-none border rounded-md"
-                  name="name"
-                  onChange={handleChange}
-                />
-              </label>
+              <label>Project Name</label>
+              <input
+                type="text"
+                placeholder="Cool Project"
+                className="p-1 my-2 outline-none border rounded-md ml-2"
+                name="name"
+                onChange={handleChange}
+              />
             </div>
             <div className="flex items-center space-x-2 justify-between">
-              <label>
-                Symbol
-                <input
-                  type="text"
-                  placeholder="BTC"
-                  className="p-1 my-2 outline-none border rounded-md"
-                  name="symbol"
-                  onChange={handleChange}
-                />
-              </label>
+              <label>Symbol</label>
+              <input
+                type="text"
+                placeholder="BTC"
+                className="p-1 my-2 outline-none border rounded-md"
+                name="symbol"
+                onChange={handleChange}
+              />
             </div>
             <div className="flex items-center space-x-2 justify-between">
-              <label>
-                Project Website
-                <input
-                  type="text"
-                  placeholder="www.solana.com"
-                  className="p-1 my-2 outline-none border rounded-md"
-                  name="website"
-                  onChange={handleChange}
-                />
-              </label>
+              <label>Project Website</label>
+              <input
+                type="text"
+                placeholder="www.solana.com"
+                className="p-1 my-2 outline-none border rounded-md"
+                name="website"
+                onChange={handleChange}
+              />
             </div>
             <div className="flex items-center space-x-2 justify-between">
-              <label>
-                Project Image
-                {/* upload image */}
-                <input
-                  type="file"
-                  onChange={(e) => {
-                    addImageToPost(e);
-                    setImage(e.target.files[0]);
-                  }}
-                />
-              </label>
+              <label>Project Image</label>
+              {/* upload image */}
+              <input
+                type="file"
+                onChange={(e) => {
+                  addImageToPost(e);
+                  setImage(e.target.files[0]);
+                }}
+              />
             </div>
 
             {imgPreview && (
               <div
                 onClick={removeImage}
-                className="flex flex-col text-center filter hover:brightness-110 transition duration-150 transform hover:scale-105 cursor-pointer"
+                className="my-2 flex flex-col items-center text-center filter hover:brightness-110 transition duration-150 transform hover:scale-105 cursor-pointer"
               >
                 <img
                   src={imgPreview}
@@ -188,7 +180,7 @@ export default function AddProjectButton() {
             </div>
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-600 text-white rounded-md p-2 shadow-md"
+              className="my-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md p-2 shadow-md"
             >
               Add Project
             </button>
