@@ -23,11 +23,6 @@ export default function NavBar() {
                 Home
               </li>
             </Link>
-            <Link href="/addLink">
-              <li className="text-lg border border-gray-700 cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5">
-                Add Link
-              </li>
-            </Link>
           </>
         )}
       </ul>

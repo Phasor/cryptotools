@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { useMutation } from "@apollo/client";
 import { ADD_LINK } from "../mutations/linkMutations";
@@ -40,24 +40,6 @@ export default function AddLinkButton({ project }) {
     addLink();
     setShowModal(false);
   };
-
-  // const [handleModalSubmit] = useMutation(ADD_LINK, {
-  //   variables: {
-  //     project: project.id,
-  //     name: formData.name,
-  //     url: formData.url,
-  //     active: formData.active,
-  //   },
-  //   onCompleted: () => {
-  //     console.log("link added");
-  //   },
-  //   refetchQueries: [{ query: GET_PROJECTS }],
-  //   context: {
-  //     headers: {
-  //       Authorization: localStorage.getItem("token"),
-  //     },
-  //   },
-  // });
 
   return (
     <div>

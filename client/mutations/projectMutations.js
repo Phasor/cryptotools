@@ -9,6 +9,31 @@ const DELETE_PROJECT = gql`
   }
 `;
 
+const ADD_PROJECT = gql`
+  mutation addProject(
+    $name: String!
+    $symbol: String
+    $image: String!
+    $website: String
+    $active: Boolean!
+  ) {
+    addProject(
+      name: $name
+      symbol: $symbol
+      image: $image
+      website: $website
+      active: $active
+    ) {
+      id
+      name
+      symbol
+      image
+      website
+      active
+    }
+  }
+`;
+
 const UPDATE_PROJECT = gql`
   mutation updateProject(
     $id: ID!
@@ -36,4 +61,4 @@ const UPDATE_PROJECT = gql`
   }
 `;
 
-export { DELETE_PROJECT, UPDATE_PROJECT };
+export { DELETE_PROJECT, UPDATE_PROJECT, ADD_PROJECT };
