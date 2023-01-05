@@ -22,7 +22,10 @@ export default function InactiveButton({ project }) {
   };
 
   return (
-    <div className="bg-red-700 p-1 rounded-md" onClick={handleClick}>
+    <div
+      className="bg-red-700 p-1 rounded-md cursor-pointer"
+      onClick={handleClick}
+    >
       <p className="text-white">Inactive</p>
     </div>
   );

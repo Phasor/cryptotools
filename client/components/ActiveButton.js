@@ -22,7 +22,10 @@ export default function ActiveButton({ project }) {
   };
 
   return (
-    <div className="bg-green-700 p-1 rounded-md" onClick={handleClick}>
+    <div
+      className="bg-green-700 p-1 rounded-md cursor-pointer"
+      onClick={handleClick}
+    >
       <p className="text-white">Active</p>
     </div>
   );

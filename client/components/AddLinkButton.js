@@ -44,7 +44,7 @@ export default function AddLinkButton({ project }) {
   return (
     <div>
       <PlusIcon
-        className="h-6 w-6 transform hover:scale-110 text-black"
+        className="h-6 w-6 transform hover:scale-110 text-black cursor-pointer"
         onClick={() => setShowModal(true)}
       />
       <Modal

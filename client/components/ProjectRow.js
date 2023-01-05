@@ -23,24 +23,38 @@ export default function ProjectRow({ project, admin }) {
 
   return (
     <>
-      <tr
-        className="border-b border-gray-200  hover:bg-blue-100 cursor-pointer"
-        onClick={handleShowLinks}
-      >
-        <td className="p-5">
+      <tr className="border-b border-gray-200  hover:bg-blue-100">
+        <td className="p-5 cursor-pointer" onClick={handleShowLinks}>
           <ChevronDownIcon className="h-6 w-6 transform hover:scale-110 text-gray-500" />
         </td>
-        <td className="text-center p-3">
+        <td
+          className="text-center p-3 cursor-pointer"
+          onClick={handleShowLinks}
+        >
           <img
             src={project.image ? project.image : "/images/missing.jpg"}
             alt=""
             className="transform hover:scale-110 h-10 w-10 rounded-full object-cover"
           />
         </td>
-        <td className="text-center p-3">{project.symbol}</td>
-        <td className="text-right p-3">{project.name}</td>
-        <td className="text-right p-3">{project.website}</td>
-        <td className="text-center p-3">{project.links.length}</td>
+        <td
+          className="text-center p-3 cursor-pointer"
+          onClick={handleShowLinks}
+        >
+          {project.symbol}
+        </td>
+        <td className="text-right p-3 cursor-pointer" onClick={handleShowLinks}>
+          {project.name}
+        </td>
+        <td className="text-right p-3 cursor-pointer" onClick={handleShowLinks}>
+          {project.website}
+        </td>
+        <td
+          className="text-center p-3 cursor-pointer"
+          onClick={handleShowLinks}
+        >
+          {project.links.length}
+        </td>
         {admin && (
           <td className="p-5 flex space-x-4 items-center">
             <DeleteProjectButton project={project} />
