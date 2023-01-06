@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
+import { sendContactForm } from "../utils/api";
 
 export default function about() {
   const [formState, setFormState] = useState({
@@ -19,9 +20,14 @@ export default function about() {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formState);
+    await sendContactForm(formState);
+    setFormState({
+      from: "",
+      project: "",
+      link: "",
+    });
   };
 
   const handleBlur = (e) => {
@@ -104,7 +110,7 @@ export default function about() {
                   onBlur={handleBlur}
                 />
                 {error.from && (
-                  <p className="text-red-500 text-sm">{error.from}</p>
+                  <p className="text-red-500 text-sm p-1">{error.from}</p>
                 )}
               </div>
               <div className="my-2">
@@ -122,7 +128,7 @@ export default function about() {
                   onBlur={handleBlur}
                 />
                 {error.project && (
-                  <p className="text-red-500 text-sm">{error.project}</p>
+                  <p className="text-red-500 text-sm p-1">{error.project}</p>
                 )}
               </div>
               <div className="my-2">
@@ -140,12 +146,17 @@ export default function about() {
                   onBlur={handleBlur}
                 />
                 {error.link && (
-                  <p className="text-red-500 text-sm">{error.link}</p>
+                  <p className="text-red-500 text-sm p-1">{error.link}</p>
                 )}
               </div>
               <button
                 className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 w-full rounded-md my-2"
                 type="submit"
+                disabled={
+                  formState.from === "" ||
+                  formState.project === "" ||
+                  formState.link === ""
+                }
               >
                 Submit
               </button>
