@@ -23,3 +23,23 @@ exports.login = async (req, res) => {
     });
   }
 };
+
+// function below checks if the user is logged in, checks the jwt is valid
+exports.isauth = async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    // console.log(`token: ${token}`);
+    const verified = await verifyJWT(token);
+    // console.log(`verified: ${verified}`);
+    if (verified) {
+      res.json({success: true, user: verified.sub});
+      } else {
+        res.json({success: false, message: "Invalid token"});
+      }
+    } catch(error) {
+      console.log(error);
+      res.json({success: false, message: "Something went wrong"});
+    }
+  };
+
+    

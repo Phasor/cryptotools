@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import Spinner from "../components/Spinner";
 import ProjectRow from "../components/ProjectRow";
 import NavBar from "../components/NavBar";
 import AddProjectButton from "../components/AddProjectButton";
+import useAuth from "../utils/useAuth";
+import { useRouter } from "next/router";
+
 
 export default function admin() {
-  const { loading, error, data } = useQuery(GET_PROJECTS);
+  const[isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const router = useRouter();
 
+  useEffect(()=>{
+    const checkAuth = async () => {
+      const isLoggedIn = await useAuth();
+      console.log(`isLoggedIn: ${isLoggedIn}`)
+      if(!isLoggedIn){
+        router.push('/login');
+      }
+      setIsCheckingAuth(false);
+    }
+    checkAuth();
+  },[])
+
+  const { loading, error, data } = useQuery(GET_PROJECTS);
   if (error) return <p>Something went wrong</p>;
-  if (loading) return <Spinner />;
+  if (loading || isCheckingAuth ) return <p>Loading</p>;
 
   return (
     <>
@@ -55,3 +72,4 @@ export default function admin() {
     </>
   );
 }
+
