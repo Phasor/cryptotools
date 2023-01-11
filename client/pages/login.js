@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import NavBar from "../components/NavBar";
 
 export default function login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +25,7 @@ export default function login() {
       if (data.success) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user._id));
-        window.location.href = "/admin";
+        router.push("/admin");
       } else {
         setError(data.message);
         console.log(data.message);
@@ -64,7 +66,7 @@ export default function login() {
               type="submit"
               className="py-2 px-3 bg-blue-500 text-white hover:bg-blue-600 rounded-md"
             >
-              Login
+              Log In
             </button>
           </div>
           {error && <p className="text-red-500 italic font-medium">{error}</p>}
