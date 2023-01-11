@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import Spinner from "../components/Spinner";
@@ -13,7 +13,7 @@ export default function admin() {
   const[isCheckingAuth, setIsCheckingAuth] = useState(true);
   const router = useRouter();
 
-  useEffect(()=>{
+  useLayoutEffect(()=>{
     const checkAuth = async () => {
       const isLoggedIn = await useAuth();
       console.log(`isLoggedIn: ${isLoggedIn}`)

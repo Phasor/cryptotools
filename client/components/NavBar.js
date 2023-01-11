@@ -10,6 +10,11 @@ export default function NavBar() {
       <ul className="flex p-2 space-x-5 font-medium mr-5">
         {router.pathname !== "/admin" ? (
           <>
+            <Link href="/">
+              <li className="text-lg border border-gray-700 cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5">
+                Home
+              </li>
+            </Link>
             <Link href="/about">
               <li className="text-lg border border-gray-700 cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5">
                 About
