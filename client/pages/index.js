@@ -26,16 +26,16 @@ export async function getServerSideProps(context) {
 
 export default function Home({ activeProjects }) {
   return (
-    <div className="w-screen h-screen relative bg-[#F9F8F8] overflow-y-auto flex flex-col min-h-screen">
+    <div className="w-screen min-h-screen relative bg-[#F9F8F8] overflow-y-auto flex flex-col">
       <NavBar/>
       <Hero />
 
       {/* Table of Projects */}
-      <div className="flex flex-1 justify-center overflow-y-auto md:overflow-y-visible">
+      <div className="flex flex-1 justify-center overflow-y-auto md:overflow-y-visible my-20">
         {activeProjects?.length > 0 ? (
           <div className="bg-[#F9F8F8] w-screen">
             <div className="w-screen flex justify-center bg-[#F9F8F8]">
-              <table className="table-auto my-10">
+              <table className="table-auto">
                 <thead className="border-t border-b border-gray-300 rounded align-top">
                   <tr className="font-medium text-right">
                     <td className="p-3 text-center text-white">.</td>

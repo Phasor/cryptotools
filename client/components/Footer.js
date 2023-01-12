@@ -12,7 +12,7 @@ export default function Footer() {
             <p>by</p>
             <a href="https://twitter.com/phas0r" className='text-blue-500 underline'>@Phas0r</a>
         </div>
-        <p className='p-2 md:mr-5'>Copyright 2023</p>
+        <p className='p-2 md:mr-5 text-sm'>Copyright 2023</p>
     </div>
   )
 }
