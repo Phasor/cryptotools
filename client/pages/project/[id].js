@@ -20,6 +20,7 @@ export default function project() {
   const imgInputRef = useRef(null);
 
   useEffect(() => {
+    setImage(data?.project.image)
     setName(data?.project.name);
     setSymbol(data?.project.symbol);
     setWebsite(data?.project.website);
