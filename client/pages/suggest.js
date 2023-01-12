@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
 import { sendContactForm } from "../utils/api";
+import Footer from "../components/Footer";
 
 export default function about() {
   const [formState, setFormState] = useState({
@@ -78,25 +79,25 @@ export default function about() {
   };
 
   return (
-    <div className="w-screen relative">
+    <div className="w-screen min-h-screen relative">
       <NavBar />
       <Hero />
-      <div className="flex justify-center bg-[#F9F8F8] h-screen w-screen">
-        <div className="flex flex-col items-left md:max-w-[60%]">
-          <h1 className="text-2xl">New Crypto Dashboard Link</h1>
+      <div className="flex justify-center bg-[#F9F8F8] w-screen">
+        <div className="p-5 flex flex-col items-left md:max-w-[60%]">
+          <h1 className="text-xl">New Crypto Dashboard Link</h1>
           <p className="py-2">
             Suggest a link to a dashboard showing stats about a crypto project
             that you find useful and we will add it to the website where
             appropriate.
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-5 mb-16">
             {/* Form */}
             <form
               onSubmit={handleSubmit}
-              className="max-w-[400px] border rounded-md p-3 shadow-lg mt-5"
+              className="max-w-[400px] border rounded-md p-3 shadow-lg"
             >
               <div className="my-2">
-                <label className="p-1" htmlFor="from">
+                <label className="p-1 font-semibold" htmlFor="from">
                   From
                 </label>
                 <input
@@ -114,7 +115,7 @@ export default function about() {
                 )}
               </div>
               <div className="my-2">
-                <label className="p-1" htmlFor="Project">
+                <label className="p-1 font-semibold" htmlFor="Project">
                   Crypto Project
                 </label>
                 <input
@@ -132,7 +133,7 @@ export default function about() {
                 )}
               </div>
               <div className="my-2">
-                <label className="p-1" htmlFor="Link">
+                <label className="p-1 font-semibold" htmlFor="Link">
                   Link
                 </label>
                 <input
@@ -164,6 +165,8 @@ export default function about() {
           </div>
         </div>
       </div>
+      {/* end of form */}
+      <Footer />
     </div>
   );
 }
