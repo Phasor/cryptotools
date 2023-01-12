@@ -7,6 +7,7 @@ import Hero from "../components/Hero";
 import ProjectRow from "../components/ProjectRow";
 import { GET_ACTIVE_PROJECTS } from "../queries/projectQueries";
 import { createApolloClient } from "../utils/apolloClient";
+import Footer from "../components/Footer";
 
 export async function getServerSideProps(context) {
   const client = createApolloClient();
@@ -26,15 +27,15 @@ export async function getServerSideProps(context) {
 export default function Home({ activeProjects }) {
   return (
     <div className="w-screen relative">
-      <NavBar />
+      <NavBar/>
       <Hero />
-      <div className="w-screen h-screen flex justify-center overflow-y-auto overflow-x-hidden">
-        {/* <Projects /> */}
 
+      {/* Table of Projects */}
+      <div className="flex justify-center">
         {activeProjects?.length > 0 ? (
-          <div className="bg-[#F9F8F8] w-screen">
+          <div className="bg-[#F9F8F8] w-screen ">
             <div className="w-screen flex justify-center bg-[#F9F8F8]">
-              <table className="table-auto mt-10">
+              <table className="table-auto my-10 ">
                 <thead className="border-t border-b border-gray-300 rounded">
                   <tr className="font-medium text-right">
                     <td className="p-3 text-center text-white">.</td>
@@ -45,9 +46,9 @@ export default function Home({ activeProjects }) {
                     <td className="p-3"># Links</td>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="">
                   {activeProjects?.map((project) => {
-                    return <ProjectRow key={project.id} project={project} />;
+                    return <ProjectRow className="" key={project.id} project={project} />
                   })}
                 </tbody>
               </table>
@@ -57,6 +58,8 @@ export default function Home({ activeProjects }) {
           <p>No Projects</p>
         )}
       </div>
+
+      <Footer />
     </div>
-  );
+  )
 }

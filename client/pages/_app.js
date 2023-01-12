@@ -22,11 +22,11 @@ const client = new ApolloClient({
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div className="overflow-x-hidden">
       <ApolloProvider client={client}>
-        <Component {...pageProps} className="h-screen w-screen" />;
+        <Component {...pageProps} className="h-screen w-screen overflow-x-hidden" />
       </ApolloProvider>
-    </>
+    </div>
   );
 }
 
