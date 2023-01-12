@@ -23,7 +23,7 @@ export default function ProjectRow({ project, admin }) {
 
   return (
     <>
-      <tr className="border-b border-gray-200  hover:bg-blue-100">
+      <tr className="border-b border-gray-200  hover:bg-blue-100 align-middle">
         <td className="p-1 sm:p-5 cursor-pointer" onClick={handleShowLinks}>
           <ChevronDownIcon className="h-6 w-6 transform hover:scale-110 text-gray-500" />
         </td>
@@ -46,7 +46,7 @@ export default function ProjectRow({ project, admin }) {
         <td className="text-right p-3 cursor-pointer" onClick={handleShowLinks}>
           {project.name}
         </td>
-        <td className="text-right p-3 cursor-pointer hidden md:block" onClick={handleShowLinks}>
+        <td className="text-right p-3 cursor-pointer hidden md:table-cell h-full" onClick={handleShowLinks}>
           {project.website}
         </td>
         <td

@@ -31,7 +31,7 @@ export default function Home({ activeProjects }) {
       <Hero />
 
       {/* Table of Projects */}
-      <div className="flex flex-1 justify-center overflow-y-auto">
+      <div className="flex flex-1 justify-center overflow-y-auto md:overflow-y-visible">
         {activeProjects?.length > 0 ? (
           <div className="bg-[#F9F8F8] w-screen">
             <div className="w-screen flex justify-center bg-[#F9F8F8]">
