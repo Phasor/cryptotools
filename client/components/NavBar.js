@@ -7,7 +7,7 @@ export default function NavBar() {
   const router = useRouter();
   return (
     <nav className="absolute top-0 transparent flex justify-center md:justify-end w-screen p-2 overflow-x-hidden">
-      <ul className="flex p-2 space-x-5 font-medium mr-5">
+      <ul className="flex p-1 sm:p-2 sm:space-x-5 space-x-3 font-medium sm:mr-5">
         {router.pathname !== "/admin" ? (
           <>
             <Link href="/">
@@ -21,8 +21,8 @@ export default function NavBar() {
               </li>
             </Link>
             <Link href="/suggest">
-              <li className="text-lg border border-gray-700 cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5">
-                Suggest a Link
+              <li className="text-lg border border-gray-700 cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5 whitespace-nowrap">
+                Add Link
               </li>
             </Link>
           </>

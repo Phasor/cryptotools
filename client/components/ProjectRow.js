@@ -24,7 +24,7 @@ export default function ProjectRow({ project, admin }) {
   return (
     <>
       <tr className="border-b border-gray-200  hover:bg-blue-100">
-        <td className="p-5 cursor-pointer" onClick={handleShowLinks}>
+        <td className="p-1 sm:p-5 cursor-pointer" onClick={handleShowLinks}>
           <ChevronDownIcon className="h-6 w-6 transform hover:scale-110 text-gray-500" />
         </td>
         <td
