@@ -13,7 +13,7 @@ export default function Hero() {
         </p>
       </div>
       <div className="hidden lg:w-[50%] lg:flex lg:justify-center lg:mr-20 lg:mt-[200px]">
-        <Image src="/data2.png" width={450} height={450} />
+        <Image src="/data2.png" alt="picture of graphs" width={450} height={450} />
       </div>
     </div>
   );
