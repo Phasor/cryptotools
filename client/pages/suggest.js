@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
 import { sendContactForm } from "../utils/api";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
 
 export default function about() {
   const [formState, setFormState] = useState({
@@ -24,6 +25,7 @@ export default function about() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await sendContactForm(formState);
+    toast.success("Mail sent");
     setFormState({
       from: "",
       project: "",
