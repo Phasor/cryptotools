@@ -35,20 +35,20 @@ export default function Home({ activeProjects }) {
         {activeProjects?.length > 0 ? (
           <div className="bg-[#F9F8F8] w-screen ">
             <div className="w-screen flex justify-center bg-[#F9F8F8]">
-              <table className="table-auto my-10 ">
+              <table className="my-10 border-4 border-yellow-500">
                 <thead className="border-t border-b border-gray-300 rounded">
                   <tr className="font-medium text-right">
                     <td className="p-3 text-center text-white">.</td>
                     <td className="p-3 text-center">Logo</td>
                     <td className="p-3">Symbol</td>
                     <td className="p-3">Project Name</td>
-                    <td className="p-3">Website</td>
+                    <td className="p-3 hidden md:block">Website</td>
                     <td className="p-3"># Links</td>
                   </tr>
                 </thead>
                 <tbody className="">
                   {activeProjects?.map((project) => {
-                    return <ProjectRow className="" key={project.id} project={project} />
+                    return <ProjectRow key={project.id} project={project} />
                   })}
                 </tbody>
               </table>

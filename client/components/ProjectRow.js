@@ -46,7 +46,7 @@ export default function ProjectRow({ project, admin }) {
         <td className="text-right p-3 cursor-pointer" onClick={handleShowLinks}>
           {project.name}
         </td>
-        <td className="text-right p-3 cursor-pointer" onClick={handleShowLinks}>
+        <td className="text-right p-3 cursor-pointer hidden md:block" onClick={handleShowLinks}>
           {project.website}
         </td>
         <td
