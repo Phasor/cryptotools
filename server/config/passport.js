@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const User = require("../models/User");
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
+const debug = require("debug")("admin");
 
 const pathToKey = path.join(__dirname, "..", "id_rsa_pub.pem");
 const PUB_KEY = fs.readFileSync(pathToKey, "utf8");
@@ -19,7 +20,8 @@ const strategy = new JwtStrategy(options, (payload, done) => {
   // req payload contains "sub" property which is the id of the user in the db
   User.findOne({ _id: payload.sub })
     .then((user) => {
-      console.log("user", user);
+      // console.log("user", user);
+      debug("user", user)
       // if we reach here our jwt is valid, now just check we have a  user from the db
       if (user) {
         return done(null, user); // no error, but there is a user

@@ -1,6 +1,7 @@
 const { logUserIn } = require("../services/authService");
 const { verifyJWT, getUserIDFromToken } = require("../lib/utils");
 const { body, validationResult } = require("express-validator");
+const debug = require("debug")("admin");
 
 exports.login = [
 
@@ -22,7 +23,7 @@ exports.login = [
   async (req, res) => {
     try {
       const user = await logUserIn(req.body.username, req.body.password);
-      // console.log(`user: ${user}`);
+      debug(`user: ${user}`);
       if (user.success) {
         res.json({
           success: true,
@@ -34,7 +35,7 @@ exports.login = [
         res.status(401).json({ success: false, message: user.message });
       }
     } catch (error) {
-      console.log(error);
+      debug(`error: ${error}`);
       res.json({
         success: false,
         message: `${error.name}, ${error.message}`,
