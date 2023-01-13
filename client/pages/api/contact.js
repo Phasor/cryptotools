@@ -10,7 +10,7 @@ const handler = async (req, res) => {
     }
 
     try {
-      console.log(data);
+      // console.log(data);
       await transporter.sendMail({
         ...mailOptions,
         subject: "New Link Suggestion",
@@ -19,7 +19,7 @@ const handler = async (req, res) => {
       });
       return res.status(200).json({ success: true });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       return res.status(400).json({ message: `Error caught, ${err.message}` });
     }
   }
