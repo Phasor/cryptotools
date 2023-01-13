@@ -7,7 +7,7 @@ export default function DeleteProjectButton({ project }) {
   const [deleteProject] = useMutation(DELETE_PROJECT, {
     variables: { id: project.id },
     onCompleted: () => {
-      console.log("Project deleted");
+      // console.log("Project deleted");
     },
     refetchQueries: [{ query: GET_PROJECTS }],
     context: {

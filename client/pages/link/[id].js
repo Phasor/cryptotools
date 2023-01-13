@@ -48,7 +48,7 @@ export default function link() {
     try {
       await updateLink();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

@@ -3,7 +3,7 @@ import React from "react";
 export default function LogInForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit");
+    // console.log("submit");
   };
 
   return (

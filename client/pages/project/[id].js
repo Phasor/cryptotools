@@ -43,7 +43,7 @@ export default function project() {
       active,
     },
     onCompleted: () => {
-      console.log("Project Updated");
+      // console.log("Project Updated");
       toast.success("Project Updated");
     },
     refetchQueries: [{ query: GET_PROJECT }],
@@ -56,7 +56,7 @@ export default function project() {
   });
 
   const UploadImage = async (image) => {
-    console.log("trying to upload image");
+    // console.log("trying to upload image");
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "rgydp4v2");
@@ -69,10 +69,10 @@ export default function project() {
         }
       );
       const data = await response.json();
-      console.log(data.secure_url);
+      // console.log(data.secure_url);
       return data.secure_url;
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setErrors(err);
     }
   };
@@ -113,7 +113,7 @@ export default function project() {
           },
         });
       } catch (err) {
-        console.log(err);
+        // console.log(err);
         setErrors(err);
       }
     } else { // image was not updated
@@ -129,7 +129,7 @@ export default function project() {
           },
         });
       } catch (err) {
-        console.log(err);
+        // console.log(err);
         setErrors(err);
       }
     }

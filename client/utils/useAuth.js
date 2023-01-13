@@ -16,13 +16,13 @@ const useAuth = async () => {
         })
         const data = await response.json()
         if(data.success) {
-            console.log(`data.user: ${data.user}`)
+            // console.log(`data.user: ${data.user}`)
             return true
         }
-        console.log(data.message)
+        // console.log(data.message)
         return false
     } catch(err){
-        console.log(err)
+        // console.log(err)
         return false
     }
 }

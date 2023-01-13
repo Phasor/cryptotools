@@ -28,7 +28,7 @@ export default function login() {
         router.push("/admin");
       } else {
         setError(data.message);
-        console.log(data.message);
+        // console.log(data.message);
       }
     } catch (error) {
       console.log(error);

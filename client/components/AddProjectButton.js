@@ -42,7 +42,7 @@ export default function AddProjectButton() {
   };
 
   const UploadImage = async (image) => {
-    console.log("uploading image");
+    // console.log("uploading image");
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "rgydp4v2");
@@ -55,10 +55,10 @@ export default function AddProjectButton() {
         }
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       return data.secure_url;
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setErrors(err);
     }
   };
