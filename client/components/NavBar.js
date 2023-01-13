@@ -29,7 +29,7 @@ export default function NavBar() {
         ) : (
           <>
             <Link href="/">
-              <li className="text-lg border border-gray-700 cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5">
+              <li className="text-lg  text-white border border-white cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-800 hover:bg-opacity-5">
                 Home
               </li>
             </Link>
