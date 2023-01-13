@@ -5,11 +5,15 @@ import { useQuery, useMutation } from "@apollo/client";
 import { GET_PROJECT } from "../../queries/projectQueries";
 import { UPDATE_PROJECT } from "../../mutations/projectMutations";
 import NavBar from "../../components/NavBar";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function project() {
   const router = useRouter();
   const { id } = router.query;
   const [image, setImage] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
   const [name, setName] = useState("");
   const [symbol, setSymbol] = useState("");
   const [website, setWebsite] = useState("");
@@ -20,7 +24,8 @@ export default function project() {
   const imgInputRef = useRef(null);
 
   useEffect(() => {
-    setImage(data?.project.image)
+    // set initial data of project
+    setImageURL(data?.project.image)
     setName(data?.project.name);
     setSymbol(data?.project.symbol);
     setWebsite(data?.project.website);
@@ -39,6 +44,7 @@ export default function project() {
     },
     onCompleted: () => {
       console.log("Project Updated");
+      toast.success("Project Updated");
     },
     refetchQueries: [{ query: GET_PROJECT }],
     context: {
@@ -87,9 +93,10 @@ export default function project() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let imgURL = "";
+    let newImgURL = "";
     if (image) {
-      imgURL = await UploadImage(image);
+      // image has been changed, upload new one
+      newImgURL = await UploadImage(image);
     }
 
     // send mutation to update project
@@ -100,7 +107,7 @@ export default function project() {
             id: id,
             name,
             symbol,
-            image: imgURL,
+            image: newImgURL,
             website,
             active,
           },
@@ -109,13 +116,14 @@ export default function project() {
         console.log(err);
         setErrors(err);
       }
-    } else {
+    } else { // image was not updated
       try {
         await updateProject({
           variables: {
             id: id,
             name,
             symbol,
+            image: imageURL,
             website,
             active,
           },

@@ -25,19 +25,19 @@ function MyApp({ Component, pageProps }) {
   return (
     <div className="overflow-x-hidden min-h-screen">
       <ApolloProvider client={client}>
-        <Component {...pageProps} />
         <ToastContainer
-                position="top-center"
-                autoClose={5000}
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+        <Component {...pageProps} />
       </ApolloProvider>
     </div>
   );
