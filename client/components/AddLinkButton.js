@@ -4,6 +4,8 @@ import { useMutation } from "@apollo/client";
 import { ADD_LINK } from "../mutations/linkMutations";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import Modal from "./Modal";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddLinkButton({ project }) {
   const [showModal, setShowModal] = useState(false);
@@ -17,7 +19,8 @@ export default function AddLinkButton({ project }) {
       active: formData.active,
     },
     onCompleted: () => {
-      console.log("link added");
+      // console.log("link added");
+      toast.success("Link added");
     },
     refetchQueries: [{ query: GET_PROJECTS }],
     context: {

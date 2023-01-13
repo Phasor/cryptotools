@@ -93,7 +93,7 @@ export default function ProjectRow({ project, admin }) {
                         <>
                           <DeleteLinkButton link={link} />
                           <Link href={`/link/${link.id}`}>
-                            <PencilIcon className="h-4 w-4 transform hover:scale-110 text-black " />
+                            <PencilIcon className="h-4 w-4 transform hover:scale-110 text-black " title="Edit Link" />
                           </Link>
                           {link.active ? (
                             <ActiveLinkButton link={link} />

@@ -3,6 +3,8 @@ import { useMutation } from "@apollo/client";
 import { ADD_PROJECT } from "../mutations/projectMutations";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import Modal from "./Modal";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddProjectButton() {
   const [showModal, setShowModal] = useState(false);
@@ -20,7 +22,8 @@ export default function AddProjectButton() {
       active: formData.active,
     },
     onCompleted: () => {
-      console.log("Project added");
+      // console.log("Project added");
+      toast.success("Project added");
     },
     refetchQueries: [{ query: GET_PROJECTS }],
     context: {
@@ -79,7 +82,7 @@ export default function AddProjectButton() {
     let imgURL = "";
     if (image) {
       imgURL = await UploadImage(image);
-      console.log(`imgURL: ${imgURL}`);
+      // console.log(`imgURL: ${imgURL}`);
     }
     // send data to back end
     addProject({
@@ -184,6 +187,11 @@ export default function AddProjectButton() {
             >
               Add Project
             </button>
+            {errors && (
+              <div className="bg-red-500 text-white p-2 rounded-md">#
+                {errors}
+              </div>
+            )}
           </form>
         </div>
       </Modal>

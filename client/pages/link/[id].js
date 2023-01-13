@@ -6,6 +6,8 @@ import { GET_LINK } from "../../queries/linkQueries";
 import { UPDATE_LINK } from "../../mutations/linkMutations";
 import NavBar from "../../components/NavBar";
 import Link from "next/link";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function link() {
   const router = useRouter();
@@ -23,7 +25,8 @@ export default function link() {
       active,
     },
     onCompleted: () => {
-      console.log("Link Updated");
+      // console.log("Link Updated");
+      toast.success("Link Updated");
     },
     refetchQueries: [{ query: GET_LINK }],
     context: {
@@ -59,7 +62,7 @@ export default function link() {
         >
           <div className="flex flex-col">
             <h1 className="font-medium p-1 text-lg mb-3">
-              Edit {data?.link.name}
+              Edit Link
             </h1>
             <label htmlFor="name"></label>
             <input
