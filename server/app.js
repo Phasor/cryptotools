@@ -21,6 +21,8 @@ connectDB();
 app.use(cors());
 app.use(express.json()); // Instead of using body-parser middleware
 app.use(express.urlencoded({ extended: true }));
+app.use(compression()); // Compress all routes
+app.use(helmet()); // Secure all routes
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
   "/graphql",
@@ -30,6 +32,7 @@ app.use(
   })
 );
 app.use("/auth", require("./routes/auth"));
+
 
 // app.listen(port, console.log(`Server running on port ${port}`));
 module.exports = app;
