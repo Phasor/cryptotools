@@ -6,6 +6,7 @@ const connectDB = require("./config/db");
 const cors = require("cors");
 const passport = require("passport");
 const path = require("path");
+const compression = require("compression");
 
 const app = express();
 
