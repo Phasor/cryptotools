@@ -7,6 +7,7 @@ const cors = require("cors");
 const passport = require("passport");
 const path = require("path");
 const compression = require("compression");
+const helmet = require("helmet");
 
 const app = express();
 
