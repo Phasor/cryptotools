@@ -27,7 +27,7 @@ export default function DeleteLinkButton({ link }) {
     <div>
       <TrashIcon
         title="Delete link"
-        className="h-4 w-4 transform hover:scale-110 text-black"
+        className="h-4 w-4 transform hover:scale-110 text-white"
         onClick={deleteLink}
       />
       {displayError && <p>{displayError.message}</p>}

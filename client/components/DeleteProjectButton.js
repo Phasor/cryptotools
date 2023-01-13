@@ -20,7 +20,7 @@ export default function DeleteProjectButton({ project }) {
   return (
     <div className="">
       <button className="" onClick={deleteProject}>
-        <TrashIcon title="Delete Project" className="h-5 w-5 transform hover:scale-110 text-black" />
+        <TrashIcon title="Delete Project" className="h-5 w-5 transform hover:scale-110 text-white" />
       </button>
     </div>
   );

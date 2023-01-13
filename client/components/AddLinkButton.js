@@ -48,7 +48,7 @@ export default function AddLinkButton({ project }) {
     <div>
       <PlusIcon
         title="Add link to Project"
-        className="h-6 w-6 transform hover:scale-110 text-black cursor-pointer"
+        className="h-6 w-6 transform hover:scale-110 text-white cursor-pointer"
         onClick={() => setShowModal(true)}
       />
       <Modal

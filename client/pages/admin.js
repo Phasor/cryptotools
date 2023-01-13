@@ -36,9 +36,9 @@ export default function admin() {
   return (
     <>
       {data.projects.length > 0 ? (
-        <div className="bg-[#F9F8F8] w-screen h-screen">
+        <div className="bg-[#232323] w-screen min-h-screen">
           <NavBar />
-          <div className="w-screen flex justify-center bg-[#F9F8F8]">
+          <div className="w-screen flex justify-center">
             <div className="flex flex-col">
               {/* Add new project button */}
               <AddProjectButton />
@@ -47,12 +47,12 @@ export default function admin() {
               <table className="table-auto  max-w-[70%] whitespace-nowrap">
                 <thead className="border-t border-b border-gray-300 rounded">
                   <tr className="font-medium text-right">
-                    <td className="p-3 text-center text-white">.</td>
-                    <td className="p-3 text-center">Logo</td>
-                    <td className="p-3">Symbol</td>
-                    <td className="p-3">Project Name</td>
-                    <td className="p-3">Website</td>
-                    <td className="p-3"># Links</td>
+                    <td className="p-3 text-center text-[#232323]">.</td>
+                    <td className=" text-white p-3 text-center">Logo</td>
+                    <td className=" text-white p-3">Symbol</td>
+                    <td className=" text-white p-3">Project Name</td>
+                    <td className=" text-white p-3">Website</td>
+                    <td className=" text-white p-3"># Links</td>
                   </tr>
                 </thead>
                 <tbody>
