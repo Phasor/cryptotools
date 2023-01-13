@@ -10,28 +10,32 @@ import { useRouter } from "next/router";
 
 
 export default function admin() {
-  const[isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const[isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
   useEffect(()=>{
     const checkAuth = async () => {
       const isLoggedIn = await useAuth();
-      console.log(`isLoggedIn: ${isLoggedIn}`)
+      setIsLoggedIn(isLoggedIn);
+      // console.log(`isLoggedIn: ${isLoggedIn}`)
       if(!isLoggedIn){
         router.push('/login');
       }
-      setIsCheckingAuth(false);
     }
     checkAuth();
   },[])
 
   const { loading, error, data } = useQuery(GET_PROJECTS);
   if (error) return <p>Something went wrong</p>;
-  if (loading || isCheckingAuth ) return <p>Loading</p>;
+  if (!isLoggedIn || loading) return (
+    <div className="flex justify-center items-center min-h-screen w-screen">
+      <p>Loading...</p>;
+    </div>
+  )
 
   return (
     <>
-      {data.projects.length > 0 && !isCheckingAuth ? (
+      {data.projects.length > 0 ? (
         <div className="bg-[#F9F8F8] w-screen h-screen">
           <NavBar />
           <div className="w-screen flex justify-center bg-[#F9F8F8]">
