@@ -20,7 +20,9 @@ app.use(passport.initialize());
 // connect to db
 connectDB();
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', process.env.FRONTEND_URL]
+}));
 app.use(express.json()); // Instead of using body-parser middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(compression()); // Compress all routes
