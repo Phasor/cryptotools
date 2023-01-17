@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import NavBar from "../components/NavBar";
 
-export default function login() {
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -23,9 +23,14 @@ export default function login() {
         }),
       });
       const data = await response.json();
+      console.log(`data: ${JSON.stringify(data)}`);
       if (data.success) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user._id));
+        // test if localstorage is available
+        if (typeof window !== "undefined") {
+          console.log("localstorage is available")
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user._id));
+        }
         router.push("/admin");
       } else {
         setError(data.message);

@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function about() {
+export default function Suggest() {
   const [formState, setFormState] = useState({
     from: "",
     project: "",

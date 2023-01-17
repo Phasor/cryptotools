@@ -9,7 +9,7 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function link() {
+export default function DashboardLink() {
   const router = useRouter();
   const { id } = router.query;
   const { loading, error, data } = useQuery(GET_LINK, { variables: { id } });

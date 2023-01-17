@@ -2,7 +2,7 @@ import React from "react";
 import LogInForm from "../components/LogInForm";
 import NavBar from "../components/NavBar";
 
-export default function signin() {
+export default function SignIn() {
   return (
     <div className="h-screen w-screen relative bg-gray-100">
       <NavBar className="absolute top-0" />

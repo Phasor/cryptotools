@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function project() {
+export default function Project() {
   const router = useRouter();
   const { id } = router.query;
   const [image, setImage] = useState(null);
@@ -251,7 +251,7 @@ export default function project() {
                 Update
               </button>
             </div>
-            <div>{errors && errors.map((error) => <p>{error.message}</p>)}</div>
+            <div>{errors && errors.map((error) => <p key={error.id}>{error.message}</p>)}</div>
             <Link href="/admin" className="text-blue-500 font-medium">
               Back
             </Link>

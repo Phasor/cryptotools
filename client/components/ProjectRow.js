@@ -128,6 +128,7 @@ export default function ProjectRow({ project, admin }) {
                       <a
                         href={link.url}
                         target="_blank"
+                        rel="noreferrer"
                         className="text-blue-600 hover:underline active:text-blue-800 visited:text-purple-600 cursor-pointer"
                       >
                         {link.name}

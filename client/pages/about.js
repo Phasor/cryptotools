@@ -4,7 +4,7 @@ import Hero from "../components/Hero";
 import Link from "next/link";
 import Footer from "../components/Footer"
 
-export default function about() {
+export default function About() {
   return (
     <div className="w-screen min-h-screen relative bg-[#F9F8F8]">
       <NavBar />
@@ -13,7 +13,7 @@ export default function about() {
         <div className="flex flex-col p-5 md:max-w-[60%] ">
           <h1 className="text-xl">About</h1>
           <p className="mt-2">
-            I've been into crypto for a while. I got tired of getting my information from "crypto influencers" on twitter. I got burned. I want to do my own research
+            I&apos;ve been into crypto for a while. I got tired of getting my information from &quot;crypto influencers&quot; on twitter. I got burned. I want to do my own research
             using dashboards that the comminut has put together. From time to time I would find a cool new dashboard about a project I liked. The problem was that they 
             were totally disparate and all over the internet. 
           </p>
