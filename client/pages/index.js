@@ -9,6 +9,7 @@ import { GET_ACTIVE_PROJECTS } from "../queries/projectQueries";
 import { createApolloClient } from "../utils/apolloClient";
 import Footer from "../components/Footer";
 
+//
 export async function getServerSideProps(context) {
   const client = createApolloClient();
   context.client = client;
