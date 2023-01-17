@@ -7,7 +7,7 @@ const useAuth = async () => {
             return false
         }
         const token = localStorage.getItem('token')
-        const response = await fetch(`${process.env.API_BASE_URL}/auth/authcheck`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_AUTH_URL}/auth/authcheck`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

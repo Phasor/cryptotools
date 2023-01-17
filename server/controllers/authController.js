@@ -62,9 +62,9 @@ exports.isauth = [
       const verified = await verifyJWT(token);
       // console.log(`verified: ${verified}`);
       if (verified) {
-        res.json({success: true, user: verified.sub});
+        res.status(200).json({success: true, user: verified.sub});
         } else {
-          res.json({success: false, message: "Invalid token"});
+          res.status(401).json({success: false, message: "Invalid token"});
         }
       } catch(error) {
         console.log(error);

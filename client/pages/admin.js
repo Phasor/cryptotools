@@ -17,7 +17,7 @@ export default function admin() {
     const checkAuth = async () => {
       const isLoggedIn = await useAuth();
       setIsLoggedIn(isLoggedIn);
-      // console.log(`isLoggedIn: ${isLoggedIn}`)
+      console.log(`isLoggedIn: ${isLoggedIn}`)
       if(!isLoggedIn){
         router.push('/login');
       }
