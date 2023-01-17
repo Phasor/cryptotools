@@ -12,9 +12,6 @@ const connectDB = async () => {
     });
 
     mongoose.connection.on("connected", () => {
-      // console.log(
-      //   `Production database connected to ${mongoose.connection.host}`
-      // );
       debug(`Production database connected to ${mongoose.connection.host}`);
     });
   } else if (process.env.NODE_ENV === "development") {

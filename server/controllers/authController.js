@@ -25,7 +25,7 @@ exports.login = [
       const user = await logUserIn(req.body.username, req.body.password);
       debug(`user: ${user}`);
       if (user.success) {
-        res.json({
+        res.status(200).json({
           success: true,
           token: user.tokenObject.token,
           expiresIn: user.tokenObject.expires,
