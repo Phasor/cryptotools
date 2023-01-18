@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import NavBar from "../components/NavBar";
@@ -8,7 +8,6 @@ import ProjectRow from "../components/ProjectRow";
 import { GET_ACTIVE_PROJECTS } from "../queries/projectQueries";
 import { createApolloClient } from "../utils/apolloClient";
 import Footer from "../components/Footer";
-
 
 export async function getServerSideProps(context) {
   const client = createApolloClient();
@@ -30,11 +29,17 @@ export default function Home({ activeProjects }) {
     <div className="w-screen min-h-screen relative bg-[#F9F8F8] overflow-y-auto flex flex-col">
       <Head>
         <title>Crypto Project Statistics - crypto dashboards</title>
-        <meta name="description" content="A list of curated data dashboards about each major crypto project so that you can do your own investment research for free." />
-        <meta name="keywords" content="crypto, cryptocurrency, dashboards, projects, data, blockchain, bitcoin, ethereum"/>
+        <meta
+          name="description"
+          content="A list of curated data dashboards about each major crypto project so that you can do your own investment research for free."
+        />
+        <meta
+          name="keywords"
+          content="crypto, cryptocurrency, dashboards, projects, data, blockchain, bitcoin, ethereum"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar/>
+      <NavBar />
       <Hero />
 
       {/* Table of Projects */}
@@ -56,7 +61,7 @@ export default function Home({ activeProjects }) {
                   </thead>
                   <tbody className="">
                     {activeProjects?.map((project) => {
-                      return <ProjectRow key={project.id} project={project} />
+                      return <ProjectRow key={project.id} project={project} />;
                     })}
                   </tbody>
                 </table>
@@ -70,5 +75,5 @@ export default function Home({ activeProjects }) {
 
       <Footer />
     </div>
-  )
+  );
 }

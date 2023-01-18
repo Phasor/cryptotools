@@ -17,11 +17,13 @@ require("./config/passport")(passport);
 // connect to db
 connectDB();
 
-app.use(cors({
-  origin: "*",
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    credentials: true,
+  })
+);
 
 // This will initialize the passport object on every request
 app.use(passport.initialize());
@@ -39,7 +41,6 @@ app.use(
   })
 );
 app.use("/auth", require("./routes/auth"));
-
 
 // app.listen(port, console.log(`Server running on port ${port}`));
 module.exports = app;

@@ -4,7 +4,6 @@ const { body, validationResult } = require("express-validator");
 const debug = require("debug")("admin");
 
 exports.login = [
-
   // Validate and sanitize fields.
   body("username", "Username must be specified.")
     .trim()
@@ -18,7 +17,7 @@ exports.login = [
     .withMessage("Password must be at least 4 characters long.")
     .escape(),
 
-    // process request after validation and sanitization
+  // process request after validation and sanitization
 
   async (req, res) => {
     try {
@@ -41,7 +40,7 @@ exports.login = [
         message: `${error.name}, ${error.message}`,
       });
     }
-  }
+  },
 ];
 
 // function below checks if the user is logged in, checks the jwt is valid
@@ -54,7 +53,7 @@ exports.isauth = [
     .withMessage("Token is not valid.")
     .escape(),
 
-    // process request after validation and sanitization
+  // process request after validation and sanitization
   async (req, res) => {
     try {
       const token = req.headers.authorization.split(" ")[1];
@@ -62,15 +61,13 @@ exports.isauth = [
       const verified = await verifyJWT(token);
       // console.log(`verified: ${verified}`);
       if (verified) {
-        res.status(200).json({success: true, user: verified.sub});
-        } else {
-          res.status(401).json({success: false, message: "Invalid token"});
-        }
-      } catch(error) {
-        console.log(error);
-        res.json({success: false, message: "Something went wrong"});
+        res.status(200).json({ success: true, user: verified.sub });
+      } else {
+        res.status(401).json({ success: false, message: "Invalid token" });
       }
+    } catch (error) {
+      console.log(error);
+      res.json({ success: false, message: "Something went wrong" });
     }
-  ];
-
-    
+  },
+];

@@ -61,9 +61,7 @@ export default function DashboardLink() {
           className="border shadow p-6 rounded-md w-full max-w-[400px] h-fit md:mt-[150px]"
         >
           <div className="flex flex-col">
-            <h1 className="font-medium p-1 text-lg mb-3">
-              Edit Link
-            </h1>
+            <h1 className="font-medium p-1 text-lg mb-3">Edit Link</h1>
             <label htmlFor="name"></label>
             <input
               type="text"

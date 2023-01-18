@@ -33,8 +33,7 @@ export default function NavBar() {
                 Home
               </li>
             </Link>
-            <LogOutButton/>
-            
+            <LogOutButton />
           </>
         )}
       </ul>

@@ -5,7 +5,7 @@ import { ADD_LINK } from "../mutations/linkMutations";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import Modal from "./Modal";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AddLinkButton({ project }) {
   const [showModal, setShowModal] = useState(false);

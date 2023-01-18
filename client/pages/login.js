@@ -11,23 +11,26 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_AUTH_URL}/auth/login/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Origin": `${process.env.NEXT_PUBLIC_API_BASE_AUTH_URL}`
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_AUTH_URL}/auth/login/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Origin: `${process.env.NEXT_PUBLIC_API_BASE_AUTH_URL}`,
+          },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+          }),
+        }
+      );
       const data = await response.json();
       console.log(`data: ${JSON.stringify(data)}`);
       if (data.success) {
         // test if localstorage is available
         if (typeof window !== "undefined") {
-          console.log("localstorage is available")
+          console.log("localstorage is available");
           localStorage.setItem("token", data.token);
           localStorage.setItem("user", JSON.stringify(data.user._id));
         }

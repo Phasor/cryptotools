@@ -6,8 +6,7 @@ import { GET_PROJECT } from "../../queries/projectQueries";
 import { UPDATE_PROJECT } from "../../mutations/projectMutations";
 import NavBar from "../../components/NavBar";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Project() {
   const router = useRouter();
@@ -25,7 +24,7 @@ export default function Project() {
 
   useEffect(() => {
     // set initial data of project
-    setImageURL(data?.project.image)
+    setImageURL(data?.project.image);
     setName(data?.project.name);
     setSymbol(data?.project.symbol);
     setWebsite(data?.project.website);
@@ -116,7 +115,8 @@ export default function Project() {
         // console.log(err);
         setErrors(err);
       }
-    } else { // image was not updated
+    } else {
+      // image was not updated
       try {
         await updateProject({
           variables: {
@@ -251,7 +251,10 @@ export default function Project() {
                 Update
               </button>
             </div>
-            <div>{errors && errors.map((error) => <p key={error.id}>{error.message}</p>)}</div>
+            <div>
+              {errors &&
+                errors.map((error) => <p key={error.id}>{error.message}</p>)}
+            </div>
             <Link href="/admin" className="text-blue-500 font-medium">
               Back
             </Link>

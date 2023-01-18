@@ -8,26 +8,27 @@ import useAuth from "../utils/useAuth";
 import { useRouter } from "next/router";
 
 export default function Admin() {
-  const[isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
-  useEffect(()=>{
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const isLoggedIn = useAuth();
-      setIsLoggedIn(isLoggedIn);
-      console.log(`isLoggedIn: ${isLoggedIn}`)
-      if(!isLoggedIn){
-        router.push('/login');
-      }
-  },[])
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const isLoggedIn = useAuth();
+    setIsLoggedIn(isLoggedIn);
+    console.log(`isLoggedIn: ${isLoggedIn}`);
+    if (!isLoggedIn) {
+      router.push("/login");
+    }
+  }, []);
 
   const { loading, error, data } = useQuery(GET_PROJECTS);
   if (error) return <p>Something went wrong</p>;
-  if (!isLoggedIn || loading) return (
-    <div className="flex justify-center items-center min-h-screen w-screen">
-      <p>Loading...</p>;
-    </div>
-  )
+  if (!isLoggedIn || loading)
+    return (
+      <div className="flex justify-center items-center min-h-screen w-screen">
+        <p>Loading...</p>;
+      </div>
+    );
 
   return (
     <>
@@ -72,4 +73,3 @@ export default function Admin() {
     </>
   );
 }
-

@@ -4,7 +4,7 @@ import { ADD_PROJECT } from "../mutations/projectMutations";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import Modal from "./Modal";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AddProjectButton() {
   const [showModal, setShowModal] = useState(false);
@@ -188,8 +188,8 @@ export default function AddProjectButton() {
               Add Project
             </button>
             {errors && (
-              <div className="bg-red-500 text-white p-2 rounded-md">#
-                {errors}
+              <div className="bg-red-500 text-white p-2 rounded-md">
+                #{errors}
               </div>
             )}
           </form>

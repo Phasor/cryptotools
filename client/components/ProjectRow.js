@@ -22,13 +22,19 @@ export default function ProjectRow({ project, admin }) {
 
   return (
     <>
-      <tr className={admin ? "border-b border-gray-200  hover:bg-gray-800 align-middle" : 
-      "border-b border-gray-200  hover:bg-blue-100 align-middle"}>
+      <tr
+        className={
+          admin
+            ? "border-b border-gray-200  hover:bg-gray-800 align-middle"
+            : "border-b border-gray-200  hover:bg-blue-100 align-middle"
+        }
+      >
         <td className="p-1 sm:p-5 cursor-pointer" onClick={handleShowLinks}>
-          { admin ? 
-            <ChevronDownIcon className="h-6 w-6 transform hover:scale-110 text-white" /> :
-            <ChevronDownIcon className="h-6 w-6 transform hover:scale-110 text-gray-500" /> 
-          }
+          {admin ? (
+            <ChevronDownIcon className="h-6 w-6 transform hover:scale-110 text-white" />
+          ) : (
+            <ChevronDownIcon className="h-6 w-6 transform hover:scale-110 text-gray-500" />
+          )}
         </td>
         <td
           className="text-center p-3 cursor-pointer"
@@ -41,61 +47,69 @@ export default function ProjectRow({ project, admin }) {
           />
         </td>
         {/* symbol */}
-        {admin ?
-            (<td
+        {admin ? (
+          <td
             className="text-center p-3 cursor-pointer text-white"
             onClick={handleShowLinks}
           >
             {project.symbol}
-          </td>) :
-
-          (<td
-          className="text-center p-3 cursor-pointer"
-          onClick={handleShowLinks}
+          </td>
+        ) : (
+          <td
+            className="text-center p-3 cursor-pointer"
+            onClick={handleShowLinks}
           >
-          {project.symbol}
-          </td>)
-        }
+            {project.symbol}
+          </td>
+        )}
         {/* name */}
-        {admin  ? 
-          (<td
+        {admin ? (
+          <td
             className="text-right p-3 cursor-pointer text-white"
             onClick={handleShowLinks}
           >
             {project.name}
-          </td>) :
-          (<td
+          </td>
+        ) : (
+          <td
             className="text-right p-3 cursor-pointer"
             onClick={handleShowLinks}
           >
             {project.name}
-          </td>) 
-        }
+          </td>
+        )}
         {/* website */}
-        {admin ?
-          (<td className="text-right p-3 cursor-pointer hidden md:table-cell h-full text-white" onClick={handleShowLinks}>
-          {project.website}
-        </td>) :
-         
-          (<td className="text-right p-3 cursor-pointer hidden md:table-cell h-full" onClick={handleShowLinks}>
+        {admin ? (
+          <td
+            className="text-right p-3 cursor-pointer hidden md:table-cell h-full text-white"
+            onClick={handleShowLinks}
+          >
             {project.website}
-          </td>)
-        }
+          </td>
+        ) : (
+          <td
+            className="text-right p-3 cursor-pointer hidden md:table-cell h-full"
+            onClick={handleShowLinks}
+          >
+            {project.website}
+          </td>
+        )}
         {/* # of links */}
-        {admin ? 
-          (<td
-              className="text-center p-3 cursor-pointer text-white"
-              onClick={handleShowLinks}
-            >
-              {project.links.length}
-            </td>) :
-          (<td
-              className="text-center p-3 cursor-pointer"
-              onClick={handleShowLinks}
-            >
-              {project.links.length}
-            </td>) 
-        }
+        {admin ? (
+          <td
+            className="text-center p-3 cursor-pointer text-white"
+            onClick={handleShowLinks}
+          >
+            {project.links.length}
+          </td>
+        ) : (
+          <td
+            className="text-center p-3 cursor-pointer"
+            onClick={handleShowLinks}
+          >
+            {project.links.length}
+          </td>
+        )}
 
         {/* admin buttons */}
         {admin && (
@@ -117,13 +131,18 @@ export default function ProjectRow({ project, admin }) {
         <tr className="">
           <td colSpan={6}>
             <div className="flex space-x-3 p-2 items-center ">
-              <LinkIcon className={admin ? "h-4 w-4 text-white" : "h-4 w-4"}  />
-              <p className={admin ? "font-medium text-white" : "font-medium"}>Dashboard Links</p>
+              <LinkIcon className={admin ? "h-4 w-4 text-white" : "h-4 w-4"} />
+              <p className={admin ? "font-medium text-white" : "font-medium"}>
+                Dashboard Links
+              </p>
             </div>
             <ol className="list-decimal">
               {project.links.map((link) => {
                 return (
-                  <li className={admin? "p-1 ml-10 text-white" : "p-1 ml-10" } key={link.id}>
+                  <li
+                    className={admin ? "p-1 ml-10 text-white" : "p-1 ml-10"}
+                    key={link.id}
+                  >
                     <div className="flex space-x-5 items-center">
                       <a
                         href={link.url}
@@ -137,7 +156,10 @@ export default function ProjectRow({ project, admin }) {
                         <>
                           <DeleteLinkButton link={link} />
                           <Link href={`/link/${link.id}`}>
-                            <PencilIcon className="h-4 w-4 transform hover:scale-110 text-white " title="Edit Link" />
+                            <PencilIcon
+                              className="h-4 w-4 transform hover:scale-110 text-white "
+                              title="Edit Link"
+                            />
                           </Link>
                           {link.active ? (
                             <ActiveLinkButton link={link} />
