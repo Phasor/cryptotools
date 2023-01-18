@@ -22,7 +22,7 @@ connectDB();
 // const origin = process.env.FRONTEND_URL ||  /^https:\/\/cryptostatslist-front\.onrender\.com\/.*$/;
 
 app.use(cors({
-  origin: /^https:\/\/cryptostatslist-front\.onrender\.com\/.*$/ || http://localhost:3000,
+  origin: /^https:\/\/cryptostatslist-front\.onrender\.com\/.*$/ || "http://localhost:3000",
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 }));
