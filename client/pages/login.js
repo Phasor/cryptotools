@@ -15,7 +15,7 @@ export default function Login() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Origin": "http://localhost:3000"
+          "Origin": `${process.env.NEXT_PUBLIC_API_BASE_AUTH_URL}`
         },
         body: JSON.stringify({
           username: username,
