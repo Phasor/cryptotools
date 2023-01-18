@@ -3,10 +3,17 @@ import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
 import Link from "next/link";
 import Footer from "../components/Footer"
+import Head from "next/head";
 
 export default function About() {
   return (
     <div className="w-screen min-h-screen relative bg-[#F9F8F8]">
+      <Head>
+          <title>Crypto Project Statistics | About</title>
+          <meta name="description" content="This project is a way to help crypto investors find data on crypto projects so that they can do their own research." />
+          <meta name="keywords" content="crypto, cryptocurrency, dashboards, projects, data, blockchain, bitcoin, ethereum"/>
+          <link rel="icon" href="/favicon.ico" />
+      </Head>
       <NavBar />
       <Hero />
       <div className="flex justify-center w-screen">

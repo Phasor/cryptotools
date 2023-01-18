@@ -5,6 +5,7 @@ import { sendContactForm } from "../utils/api";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Head from "next/head";
 
 export default function Suggest() {
   const [formState, setFormState] = useState({
@@ -83,6 +84,12 @@ export default function Suggest() {
 
   return (
     <div className="w-screen min-h-screen relative">
+      <Head>
+        <title>Crypto Project Statistics | Suggest a link</title>
+        <meta name="description" content="If you have links to crypto dashboards you find useul, please let us know and we will add them to the website where appropriate." />
+        <meta name="keywords" content="crypto, cryptocurrency, dashboards, projects, data, blockchain, bitcoin, ethereum"/>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <NavBar />
       <Hero />
       <div className="flex justify-center bg-[#F9F8F8] w-screen">
