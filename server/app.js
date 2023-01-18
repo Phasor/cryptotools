@@ -21,10 +21,10 @@ app.use(passport.initialize());
 connectDB();
 
 // match any route on the front end domain
-const origin = process.env.FRONTEND_URL ||  /^https:\/\/cryptostatslist-front\.onrender\.com\/.*$/;
+// const origin = process.env.FRONTEND_URL ||  /^https:\/\/cryptostatslist-front\.onrender\.com\/.*$/;
 
 app.use(cors({
-  origin,
+  origin: /^https:\/\/cryptostatslist-front\.onrender\.com\/.*$/,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 }));
