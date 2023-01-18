@@ -14,12 +14,8 @@ const app = express();
 // Pass the global passport object into the configuration function
 require("./config/passport")(passport);
 
-
 // connect to db
 connectDB();
-
-// match any route on the front end domain
-// const origin = process.env.FRONTEND_URL ||  /^https:\/\/cryptostatslist-front\.onrender\.com\/.*$/;
 
 app.use(cors({
   origin: "*",
@@ -29,6 +25,7 @@ app.use(cors({
 
 // This will initialize the passport object on every request
 app.use(passport.initialize());
+
 app.use(express.json()); // Instead of using body-parser middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(compression()); // Compress all routes
