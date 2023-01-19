@@ -42,18 +42,18 @@ function MyApp({ Component, pageProps }) {
         {/* Google Analytics Script */}
         <Script
           id="google-analytics1"
-          strategy="afterInteractive" // wait until entire page is loaded
+          strategy="afterInteractive" 
           src="https://www.googletagmanager.com/gtag/js?id=G-BFYE8M0LZL"
         />
         <Script
           id="google-analytics2"
-          strategy="afterInteractive" // wait until entire page is loaded
-          src="https://www.googletagmanager.com/gtag/js?id=G-BFYE8M0LZL"
+          strategy="afterInteractive" 
         >
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+          
             gtag('config', 'G-BFYE8M0LZL');
           `}
         </Script>
