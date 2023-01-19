@@ -23,6 +23,7 @@ export default function Hero() {
           alt="picture of graphs"
           width={450}
           height={450}
+          priority={true}
         />
       </div>
     </div>

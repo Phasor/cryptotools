@@ -1,18 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
 import { sendContactForm } from "../utils/api";
 import Footer from "../components/Footer";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Head from "next/head";
+import ReCaptcha from "react-google-recaptcha";
 
 export default function Suggest() {
+  const reRef = useRef();
   const [formState, setFormState] = useState({
     from: "",
     project: "",
     link: "",
+    token: "",
   });
+  
+  // below effect ensure the formData is updated with the token before the sendContactForm function is called. 
+  // Solves the issue caused by async useState call for setFormData in handleSubmit
+  useEffect(() => {
+    if (formState.token !== "") {
+        // console.log(`formState in useeffect: ${JSON.stringify(formState)}`)
+        sendContactForm(formState);
+        setFormState({
+            from: "",
+            project: "",
+            link: "",
+            token: "",
+        });
+    }
+  },[formState.token])
 
   const [error, setError] = useState({
     from: "",
@@ -26,13 +43,15 @@ export default function Suggest() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await sendContactForm(formState);
-    toast.success("Mail sent");
-    setFormState({
-      from: "",
-      project: "",
-      link: "",
-    });
+    // get recaptcha token
+    const token = await reRef.current.executeAsync();
+    // console.log(`token: ${token}`)
+    
+    // add token to formState
+    setFormState((prev) => ({ ...prev, token}));
+
+    // reset the recaptcha
+    reRef.current.reset();
   };
 
   const handleBlur = (e) => {
@@ -178,6 +197,11 @@ export default function Suggest() {
                 Submit
               </button>
             </form>
+            <ReCaptcha
+              sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+              size="invisible"
+              ref={reRef}
+            />
           </div>
         </div>
       </div>
