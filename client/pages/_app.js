@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { ToastContainer } from "react-toastify";
+import Script from "next/script";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -37,6 +38,24 @@ function MyApp({ Component, pageProps }) {
           pauseOnHover
           theme="light"
         />
+
+        {/* Google Analytics Script */}
+        <Script
+          strategy="afterInteractive" // wait until entire page is loaded
+          src="https://www.googletagmanager.com/gtag/js?id=G-BFYE8M0LZL"
+        />
+        <Script
+          strategy="afterInteractive" // wait until entire page is loaded
+          src="https://www.googletagmanager.com/gtag/js?id=G-BFYE8M0LZL"
+        >
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BFYE8M0LZL');
+          `}
+        </Script>
+
         <Component {...pageProps} />
       </ApolloProvider>
     </div>
