@@ -15,21 +15,21 @@ export default function Suggest() {
     link: "",
     token: "",
   });
-  
-  // below effect ensure the formData is updated with the token before the sendContactForm function is called. 
+
+  // below effect ensure the formData is updated with the token before the sendContactForm function is called.
   // Solves the issue caused by async useState call for setFormData in handleSubmit
   useEffect(() => {
     if (formState.token !== "") {
-        // console.log(`formState in useeffect: ${JSON.stringify(formState)}`)
-        sendContactForm(formState);
-        setFormState({
-            from: "",
-            project: "",
-            link: "",
-            token: "",
-        });
+      // console.log(`formState in useeffect: ${JSON.stringify(formState)}`)
+      sendContactForm(formState);
+      setFormState({
+        from: "",
+        project: "",
+        link: "",
+        token: "",
+      });
     }
-  },[formState.token])
+  }, [formState.token]);
 
   const [error, setError] = useState({
     from: "",
@@ -46,9 +46,9 @@ export default function Suggest() {
     // get recaptcha token
     const token = await reRef.current.executeAsync();
     // console.log(`token: ${token}`)
-    
+
     // add token to formState
-    setFormState((prev) => ({ ...prev, token}));
+    setFormState((prev) => ({ ...prev, token }));
 
     // reset the recaptcha
     reRef.current.reset();

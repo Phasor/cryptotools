@@ -33,13 +33,16 @@ const handler = async (req, res) => {
   return res.status(400).json({ message: "Bad request" });
 };
 
-async function validateHuman(token){
+async function validateHuman(token) {
   const secret = process.env.RECAPTCHA_SECRET_KEY;
-  const response = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`, {
-    method: 'POST'
-  });
+  const response = await fetch(
+    `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`,
+    {
+      method: "POST",
+    }
+  );
   const data = await response.json();
-  console.log(`data: ${JSON.stringify(data)}`)
+  console.log(`data: ${JSON.stringify(data)}`);
   return data.success;
 }
 
