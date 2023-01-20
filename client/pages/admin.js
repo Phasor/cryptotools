@@ -15,7 +15,7 @@ export default function Admin() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const isLoggedIn = useAuth();
     setIsLoggedIn(isLoggedIn);
-    console.log(`isLoggedIn: ${isLoggedIn}`);
+    // console.log(`isLoggedIn: ${isLoggedIn}`);
     if (!isLoggedIn) {
       router.push("/login");
     }
@@ -26,7 +26,7 @@ export default function Admin() {
   if (!isLoggedIn || loading)
     return (
       <div className="flex justify-center items-center min-h-screen w-screen">
-        <p>Loading...</p>;
+        <p>Loading...</p>
       </div>
     );
 
@@ -35,8 +35,8 @@ export default function Admin() {
       {data.projects.length > 0 ? (
         <div className="bg-[#232323] w-screen min-h-screen">
           <NavBar />
-          <div className="w-screen flex justify-center">
-            <div className="flex flex-col">
+          <div className="w-screen flex flex-1 justify-center">
+            <div className="flex flex-col mt-20 ml-5">
               {/* Add new project button */}
               <AddProjectButton />
 
@@ -46,10 +46,10 @@ export default function Admin() {
                   <tr className="font-medium text-right">
                     <td className="p-3 text-center text-[#232323]">.</td>
                     <td className=" text-white p-3 text-center">Logo</td>
-                    <td className=" text-white p-3">Symbol</td>
+                    <td className=" text-white p-3 hidden md:block">Symbol</td>
                     <td className=" text-white p-3">Project Name</td>
-                    <td className=" text-white p-3">Website</td>
-                    <td className=" text-white p-3"># Links</td>
+                    <td className=" text-white p-3 hidden md:block">Website</td>
+                    <td className=" text-white p-3 hidden md:block"># Links</td>
                   </tr>
                 </thead>
                 <tbody>

@@ -59,7 +59,7 @@ export default function ProjectRow({ project, admin }) {
         {/* symbol */}
         {admin ? (
           <td
-            className="text-center p-3 cursor-pointer text-white"
+            className="text-center p-3 cursor-pointer hidden md:table-cell h-full text-white"
             onClick={handleShowLinks}
           >
             {project.symbol}
@@ -75,7 +75,7 @@ export default function ProjectRow({ project, admin }) {
         {/* name */}
         {admin ? (
           <td
-            className="text-right p-3 cursor-pointer text-white"
+            className="text-right p-1 md:p-3 cursor-pointer text-white"
             onClick={handleShowLinks}
           >
             {project.name}
@@ -107,7 +107,7 @@ export default function ProjectRow({ project, admin }) {
         {/* # of links */}
         {admin ? (
           <td
-            className="text-center p-3 cursor-pointer text-white"
+            className="text-center p-3 cursor-pointer hidden md:table-cell h-full text-white"
             onClick={handleShowLinks}
           >
             {project.links.length}
@@ -172,7 +172,9 @@ export default function ProjectRow({ project, admin }) {
                             />
                           </Link>
                           {link.active ? (
-                            <ActiveLinkButton link={link} />
+                            <div className="">
+                              <ActiveLinkButton link={link} />
+                            </div>
                           ) : (
                             <InactiveLinkButton link={link} />
                           )}
