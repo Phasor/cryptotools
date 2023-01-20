@@ -4,6 +4,7 @@ import {
   LinkIcon,
   PencilIcon,
 } from "@heroicons/react/24/solid";
+import Image from "next/image";
 import DeleteProjectButton from "./DeleteProjectButton";
 import EditProjectButton from "./EditProjectButton";
 import DeleteLinkButton from "./DeleteLinkButton";
@@ -40,10 +41,19 @@ export default function ProjectRow({ project, admin }) {
           className="text-center p-3 cursor-pointer"
           onClick={handleShowLinks}
         >
-          <img
+          {/* <img
             src={project.image ? project.image : "/images/missing.jpg"}
             alt={project.name ? `${project.name} icon` : ""}
             className="transform hover:scale-110 h-10 w-10 rounded-full object-cover"
+          /> */}
+
+          <Image
+            src={project.image ? project.image : "/images/missing.jpg"}
+            alt={project.name ? `${project.name} icon` : ""}
+            className="transform hover:scale-110 h-10 w-10 rounded-full object-cover"
+            width={20}
+            height={20}
+            sizes={`(max-width: 20px) 20px, 20px`}
           />
         </td>
         {/* symbol */}
