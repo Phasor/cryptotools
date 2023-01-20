@@ -42,7 +42,7 @@ export default function ProjectRow({ project, admin }) {
         >
           <img
             src={project.image ? project.image : "/images/missing.jpg"}
-            alt=""
+            alt={project.name ? `${project.name} icon` : ""}
             className="transform hover:scale-110 h-10 w-10 rounded-full object-cover"
           />
         </td>

@@ -42,13 +42,10 @@ function MyApp({ Component, pageProps }) {
         {/* Google Analytics Script */}
         <Script
           id="google-analytics1"
-          strategy="afterInteractive" 
+          strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-BFYE8M0LZL"
         />
-        <Script
-          id="google-analytics2"
-          strategy="afterInteractive" 
-        >
+        <Script id="google-analytics2" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
