@@ -102,7 +102,7 @@ export default function Suggest() {
   };
 
   return (
-    <div className="w-screen min-h-screen relative">
+    <div className="w-screen min-h-screen relative bg-[#F9F8F8]">
       <Head>
         <title>Crypto Project Statistics | Suggest a link</title>
         <meta
@@ -117,7 +117,7 @@ export default function Suggest() {
       </Head>
       <NavBar />
       <Hero />
-      <div className="flex justify-center bg-[#F9F8F8] w-screen">
+      <div className="flex justify-center bg-[#F9F8F8] min-h-sreen w-screen">
         <div className="p-5 flex flex-col items-left md:max-w-[60%]">
           <h1 className="text-xl">New Crypto Dashboard Link</h1>
           <p className="py-2">
@@ -125,7 +125,7 @@ export default function Suggest() {
             that you find useful and we will add it to the website where
             appropriate.
           </p>
-          <div className="flex justify-center mt-5 mb-16">
+          <div className="flex justify-center mt-5 mb-16 ">
             {/* Form */}
             <form
               onSubmit={handleSubmit}

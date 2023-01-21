@@ -41,18 +41,18 @@ export default function Admin() {
               <AddProjectButton />
 
               {/* List of existing projects */}
-              <table className="table-auto  max-w-[70%] whitespace-nowrap">
+              <table className="table-auto max-w-[70%] whitespace-nowrap ">
                 <thead className="border-t border-b border-gray-300 rounded">
                   <tr className="font-medium text-right">
-                    <td className="p-3 text-center text-[#232323]">.</td>
+                    <td className="md:p-3 text-center text-[#232323]">.</td>
                     <td className=" text-white p-3 text-center">Logo</td>
                     <td className=" text-white p-3 hidden md:block">Symbol</td>
-                    <td className=" text-white p-3">Project Name</td>
+                    <td className=" text-white md:p-3">Project Name</td>
                     <td className=" text-white p-3 hidden md:block">Website</td>
                     <td className=" text-white p-3 hidden md:block"># Links</td>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="">
                   {data.projects.map((project) => {
                     return (
                       <ProjectRow

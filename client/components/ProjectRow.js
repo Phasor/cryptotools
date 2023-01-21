@@ -123,7 +123,7 @@ export default function ProjectRow({ project, admin }) {
 
         {/* admin buttons */}
         {admin && (
-          <td className="p-5 flex space-x-4 items-center">
+          <td className="p-5 flex space-x-3 items-center">
             <DeleteProjectButton project={project} />
             <EditProjectButton project={project} />
             <AddLinkButton project={project} />
@@ -138,9 +138,9 @@ export default function ProjectRow({ project, admin }) {
 
       {/* Link Box */}
       {showLinks && (
-        <tr className="">
+        <tr className="max-w-full">
           <td colSpan={6}>
-            <div className="flex space-x-3 p-2 items-center ">
+            <div className="flex space-x-3 p-2 items-center">
               <LinkIcon className={admin ? "h-4 w-4 text-white" : "h-4 w-4"} />
               <p className={admin ? "font-medium text-white" : "font-medium"}>
                 Dashboard Links
@@ -150,20 +150,20 @@ export default function ProjectRow({ project, admin }) {
               {project.links.map((link) => {
                 return (
                   <li
-                    className={admin ? "p-1 ml-10 text-white" : "p-1 ml-10"}
+                    className={admin ? "p-1 ml-10 text-white" : "p-1"}
                     key={link.id}
                   >
-                    <div className="flex space-x-5 items-center">
+                    <div className="flex justify-between items-center overflow-auto">
                       <a
                         href={link.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-blue-600 hover:underline active:text-blue-800 visited:text-purple-600 cursor-pointer"
+                        className=" text-blue-600 hover:underline active:text-blue-800 visited:text-purple-600 cursor-pointer"
                       >
                         {link.name}
                       </a>
                       {admin && (
-                        <>
+                        <div className="flex space-x-4 mr-4">
                           <DeleteLinkButton link={link} />
                           <Link href={`/link/${link.id}`}>
                             <PencilIcon
@@ -178,7 +178,7 @@ export default function ProjectRow({ project, admin }) {
                           ) : (
                             <InactiveLinkButton link={link} />
                           )}
-                        </>
+                        </div>
                       )}
                     </div>
                   </li>

@@ -58,7 +58,7 @@ export default function DashboardLink() {
       {!loading && !error && (
         <form
           onSubmit={handleSubmit}
-          className="border shadow p-6 rounded-md w-full max-w-[400px] h-fit md:mt-[150px]"
+          className="border shadow p-6 rounded-md w-full max-w-[400px] h-fit mt-20 md:mt-[150px]"
         >
           <div className="flex flex-col">
             <h1 className="font-medium p-1 text-lg mb-3">Edit Link</h1>
