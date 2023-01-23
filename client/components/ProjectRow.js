@@ -138,8 +138,8 @@ export default function ProjectRow({ project, admin }) {
 
       {/* Link Box */}
       {showLinks && (
-        <tr className="max-w-full">
-          <td colSpan={6}>
+        <tr className="w-full">
+          <td colSpan={10}>
             <div className="flex space-x-3 p-2 items-center">
               <LinkIcon className={admin ? "h-4 w-4 text-white" : "h-4 w-4"} />
               <p className={admin ? "font-medium text-white" : "font-medium"}>
@@ -163,11 +163,11 @@ export default function ProjectRow({ project, admin }) {
                         {link.name}
                       </a>
                       {admin && (
-                        <div className="flex space-x-4 mr-4">
+                        <div className="flex space-x-4 md:space-x-8 mr-6">
                           <DeleteLinkButton link={link} />
                           <Link href={`/link/${link.id}`}>
                             <PencilIcon
-                              className="h-4 w-4 transform hover:scale-110 text-white "
+                              className="h-4 w-4 md:h-5 md:w-5 transform hover:scale-110 text-white "
                               title="Edit Link"
                             />
                           </Link>

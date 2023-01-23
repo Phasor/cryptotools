@@ -41,15 +41,15 @@ export default function Admin() {
               <AddProjectButton />
 
               {/* List of existing projects */}
-              <table className="table-auto max-w-[70%] whitespace-nowrap ">
-                <thead className="border-t border-b border-gray-300 rounded">
+              <table className="table-auto max-w-[70%] whitespace-nowrap">
+                <thead className="border-t border-b border-gray-300 text-center">
                   <tr className="font-medium text-right">
-                    <td className="md:p-3 text-center text-[#232323]">.</td>
-                    <td className=" text-white p-3 text-center">Logo</td>
-                    <td className=" text-white p-3 hidden md:block">Symbol</td>
-                    <td className=" text-white md:p-3">Project Name</td>
-                    <td className=" text-white p-3 hidden md:block">Website</td>
-                    <td className=" text-white p-3 hidden md:block"># Links</td>
+                    <th className="md:p-3 text-center text-[#232323] align-middle">.</th>
+                    <th className=" text-white p-3 text-center align-middle">Logo</th>
+                    <th className=" text-white p-3 hidden md:table-cell h-full align-middle">Symbol</th>
+                    <th className=" text-white md:p-3 align-middle">Project Name</th>
+                    <th className=" text-white p-3 hidden md:table-cell h-full align-middle">Website</th>
+                    <th className=" text-white p-3 hidden md:table-cell h-full align-middle"># Links</th>
                   </tr>
                 </thead>
                 <tbody className="">
