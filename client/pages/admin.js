@@ -13,13 +13,16 @@ export default function Admin() {
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const isLoggedIn = useAuth();
-    setIsLoggedIn(isLoggedIn);
-    // console.log(`isLoggedIn: ${isLoggedIn}`);
-    if (!isLoggedIn) {
-      router.push("/login");
-    }
-  }, []);
+    const isLoggedIn = useAuth()
+    .then(loggedIn => {
+      setIsLoggedIn(loggedIn);
+      if (loggedIn === false) {
+        router.push("/login");
+      }
+    })
+
+    console.log(`isLoggedIn: ${isLoggedIn}`); 
+    }, []);
 
   const { loading, error, data } = useQuery(GET_PROJECTS);
   if (error) return <p>Something went wrong</p>;

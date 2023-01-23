@@ -4,6 +4,7 @@
 const useAuth = async () => {
   try {
     if (!localStorage.getItem("token")) {
+      console.log("no token")
       return false;
     }
     const token = localStorage.getItem("token");
