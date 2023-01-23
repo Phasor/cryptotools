@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { UPDATE_PROJECT } from "../mutations/projectMutations";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import { useMutation } from "@apollo/client";
+import Router from 'next/router';
 
 export default function ActiveButton({ project }) {
-  const [updateProject] = useMutation(UPDATE_PROJECT, {
+  const [updateProject, { error }] = useMutation(UPDATE_PROJECT, {
     variables: {
       id: project.id,
       active: !project.active,
@@ -15,7 +16,16 @@ export default function ActiveButton({ project }) {
         Authorization: localStorage.getItem("token"),
       },
     },
+    onError(error) {
+      console.log(error);
+    }  
   });
+
+  useEffect(() => {
+    if (error) {
+      Router.push('/error?message=' + error.message);
+    }
+  }, [error]);
 
   const handleClick = () => {
     updateProject();

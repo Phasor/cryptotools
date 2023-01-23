@@ -53,7 +53,7 @@ export default function Home({ activeProjects }) {
                       <td className="p-3 text-center">Logo</td>
                       <td className="p-3">Symbol</td>
                       <td className="p-3">Project Name</td>
-                      <td className="p-3 hidden md:block">Website</td>
+                      <td className="p-3 hidden md:table-cell h-full">Website</td>
                       <td className="p-3"># Links</td>
                     </tr>
                   </thead>

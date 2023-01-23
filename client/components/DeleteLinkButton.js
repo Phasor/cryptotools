@@ -1,15 +1,17 @@
 import React, { useState } from "react";
+import {useEffect} from "react";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import { useMutation } from "@apollo/client";
 import { DELETE_LINK } from "../mutations/linkMutations";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Router from 'next/router';
 
 export default function DeleteLinkButton({ link }) {
   const [displayError, setDisplayError] = useState(null);
 
-  const [deleteLink] = useMutation(DELETE_LINK, {
+  const [deleteLink, { error }] = useMutation(DELETE_LINK, {
     variables: { id: link.id },
     onCompleted: () => {
       // console.log("link deleted");
@@ -21,7 +23,16 @@ export default function DeleteLinkButton({ link }) {
         Authorization: localStorage.getItem("token"),
       },
     },
+    onError(error) {
+      console.log(error);
+    } 
   });
+
+  useEffect(() => {
+    if (error) {
+      Router.push('/error?message=' + error.message);
+    }
+  }, [error]);
 
   return (
     <div>

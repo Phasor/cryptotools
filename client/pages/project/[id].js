@@ -7,6 +7,7 @@ import { UPDATE_PROJECT } from "../../mutations/projectMutations";
 import NavBar from "../../components/NavBar";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Router from 'next/router';
 
 export default function Project() {
   const router = useRouter();
@@ -32,7 +33,7 @@ export default function Project() {
     setImgPreview(data?.project.image);
   }, [data]);
 
-  const [updateProject] = useMutation(UPDATE_PROJECT, {
+  const [updateProject, { error: apiError = null }] = useMutation(UPDATE_PROJECT, {
     variables: {
       id: id,
       name,
@@ -52,7 +53,16 @@ export default function Project() {
           typeof window !== "undefined" ? localStorage.getItem("token") : "",
       },
     },
+    onError(error) {
+      console.log(error);
+    }
   });
+
+  useEffect(() => {
+    if (apiError) {
+      Router.push('/error?message=' + apiError?.message);
+    }
+  }, [apiError]);
 
   const UploadImage = async (image) => {
     // console.log("trying to upload image");

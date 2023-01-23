@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { useMutation } from "@apollo/client";
 import { ADD_LINK } from "../mutations/linkMutations";
@@ -6,12 +6,13 @@ import { GET_PROJECTS } from "../queries/projectQueries";
 import Modal from "./Modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Router from 'next/router';
 
 export default function AddLinkButton({ project }) {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({ active: false });
 
-  const [addLink] = useMutation(ADD_LINK, {
+  const [addLink, { error }] = useMutation(ADD_LINK, {
     variables: {
       project: project.id,
       name: formData.name,
@@ -28,7 +29,16 @@ export default function AddLinkButton({ project }) {
         Authorization: localStorage.getItem("token"),
       },
     },
+    onError(error) {
+      console.log(error);
+    } 
   });
+
+  useEffect(() => {
+    if (error) {
+      Router.push('/error?message=' + error.message);
+    }
+  }, [error]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

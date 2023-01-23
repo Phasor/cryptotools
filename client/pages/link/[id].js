@@ -8,6 +8,7 @@ import NavBar from "../../components/NavBar";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Router from 'next/router';
 
 export default function DashboardLink() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function DashboardLink() {
   const [url, setUrl] = useState("");
   const [active, setActive] = useState(false);
 
-  const [updateLink] = useMutation(UPDATE_LINK, {
+  const [updateLink, { error:apiError = null }] = useMutation(UPDATE_LINK, {
     variables: {
       id: id,
       name,
@@ -35,6 +36,9 @@ export default function DashboardLink() {
           typeof window !== "undefined" ? localStorage.getItem("token") : "",
       },
     },
+    onError(error) {
+      console.log(error);
+    } 
   });
 
   useEffect(() => {
@@ -42,6 +46,12 @@ export default function DashboardLink() {
     setUrl(data?.link.url);
     setActive(data?.link.active);
   }, [data]);
+
+  useEffect(() => {
+    if (apiError) {
+      Router.push('/error?message=' + apiError.message);
+    }
+  }, [apiError]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
