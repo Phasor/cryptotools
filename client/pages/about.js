@@ -9,10 +9,10 @@ export default function About() {
   return (
     <div className="w-screen min-h-screen relative bg-[#F9F8F8]">
       <Head>
-        <title>Crypto Project Statistics | About</title>
+        <title>Crypto Dashboards | About</title>
         <meta
           name="description"
-          content="This project is a way to help crypto investors find data on crypto projects so that they can do their own research."
+          content="Free crypto dashboards to help you find what crypto will boom this year. Cryptocurrency research made easy."
         />
         <meta
           name="keywords"

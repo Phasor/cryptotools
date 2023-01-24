@@ -26,14 +26,14 @@ export default function Home({ activeProjects }) {
   return (
     <div className="w-screen min-h-screen relative bg-[#F9F8F8] overflow-y-auto flex flex-col">
       <Head>
-        <title>Crypto Project Statistics - crypto dashboards</title>
+        <title>Top Crypto Dashboards | What cryptocurrency to buy today?</title>
         <meta
           name="description"
-          content="A list of curated data dashboards about each major crypto project so that you can do your own investment research for free."
+          content="Free crypto dashboards about each major coin so that you can do your own research and decide the best crypto to buy today."
         />
         <meta
           name="keywords"
-          content="crypto, cryptocurrency, dashboards, projects, data, blockchain, bitcoin, ethereum"
+          content="crypto dashboard, dashboard crypto, crypto data analytics, cryptocurrency research, blockchain, bitcoin, ethereum"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
