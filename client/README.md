@@ -1,34 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CryptoStatList Web App - Front End
 
-## Getting Started
+This is the Next.js front end for the CryptoStatList web app. It interacts with the Express.js GraphQL api found in [/server](../server/).
 
-First, run the development server:
+The application uses [Cloudinary](https://cloudinary.com/) for image hosting. Sign up for a free API account and preset.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+[Tailwind CSS](https://tailwindcss.com/) is used for styling.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[Google ReCaptcha](https://www.google.com/recaptcha/about/) is used for bot detection. You will need to sign up and get some api keys. 
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Environment Variables
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Populate the environment variables in `.env.example` and rename the file `.env`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Installing and Starting
 
-## Learn More
+Install dependencies:
+`npm install'
 
-To learn more about Next.js, take a look at the following resources:
+Run the front end locally:
+`npm run dev`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
