@@ -8,7 +8,7 @@ This is the back end GraphQL api for the CryptoStatList web application. It is b
 
 ### Authentication
 
-The app uses Passport.js with JWTs that use public and private keys. Run the script [generateKeyPair](/generateKeyPair.js) to generate your keys locally.
+The app uses Passport.js with JWTs that use public and private keys. Run the script [generateKeyPair](generateKeyPair.js) to generate your keys locally.
 
 ### Environment Variables
 
