@@ -29,11 +29,15 @@ The website uses:
 ![](/demo/CryptoStatsDemo.gif)
 
 ### Mobile Design
-![](/demo/mobile.JPG)&nbsp;&nbsp;
-![](/demo/adminmobile.JPG)&nbsp;&nbsp;
+##### Home Page
+![](/demo/mobile.JPG)&nbsp;
+##### Admin Page
+![](/demo/adminmobile.JPG)&nbsp;
 
 ### Desktop Design
-![](/demo/desktop.JPG)&nbsp;&nbsp;
+##### Home Page
+![](/demo/desktop.JPG)&nbsp;
+##### Admin Page
 ![](/demo/admindesktop.JPG)
 
 
