@@ -39,6 +39,7 @@ function MyApp({ Component, pageProps }) {
             gtag('config', 'G-BFYE8M0LZL');
           `}
         </Script>
+        
 
         <Component {...pageProps} />
         </QueryClientProvider>

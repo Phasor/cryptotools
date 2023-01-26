@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import { getActiveProjects } from '../queries/projectQueries';
 import ProjectCard from "../components/ProjectCard";
+import Script from "next/script";
 
 export default function Home() {
 
@@ -25,6 +26,7 @@ export default function Home() {
   if (status ==="success") {
     return (
     <div className="w-screen min-h-screen relative bg-[#F9F8F8] overflow-y-auto flex flex-col">
+      <Script src="https://kit.fontawesome.com/b24cab7e32.js" crossorigin="anonymous"></Script>
       <Head>
         <title>Crypto Tools List</title>
         <meta
@@ -40,8 +42,8 @@ export default function Home() {
       <NavBar />
       <Hero />
 
-      <main>
-        <div className="grid grid-cols-1 md:grid-cols-4 md: gap-4">
+      <main className="flex justify-center mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-4 md: gap-20 m-6">
           {data.data.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
