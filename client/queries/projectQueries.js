@@ -1,65 +1,15 @@
-import React from "react";
-import { gql } from "@apollo/client";
+import { useQuery } from "react-query";
 
-const GET_PROJECTS = gql`
-  query {
-    projects {
-      id
-      name
-      website
-      symbol
-      image
-      active
-      links {
-        id
-        url
-        name
-        active
-        project
-      }
+function getActiveProjects() {
+  return useQuery("activeProjects", async () => {
+    try{
+      const res = await fetch("/api/get-active-projects");
+      const data = await res.json();
+      return data;
+    }catch(err){
+      console.log(err);
     }
-  }
-`;
+  })
+}
 
-const GET_ACTIVE_PROJECTS = gql`
-  query {
-    activeProjects {
-      id
-      name
-      website
-      symbol
-      image
-      active
-      links {
-        id
-        url
-        name
-        active
-        project
-      }
-    }
-  }
-`;
-
-// get project by ID
-const GET_PROJECT = gql`
-  query getProject($id: ID!) {
-    project(id: $id) {
-      id
-      name
-      symbol
-      website
-      image
-      active
-      links {
-        id
-        name
-        url
-        active
-        project
-      }
-    }
-  }
-`;
-
-export { GET_PROJECTS, GET_PROJECT, GET_ACTIVE_PROJECTS };
+export { getActiveProjects };

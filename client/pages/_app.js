@@ -1,31 +1,16 @@
 import "../styles/globals.css";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { ToastContainer } from "react-toastify";
 import Script from "next/script";
+import { QueryClient, QueryClientProvider } from 'react-query'
 
-const cache = new InMemoryCache({
-  typePolicies: {
-    Query: {
-      fields: {
-        projects: {
-          merge(existing, incoming) {
-            return incoming;
-          },
-        },
-      },
-    },
-  },
-});
+ // Create a react-query client
+ const queryClient = new QueryClient()
 
-const client = new ApolloClient({
-  uri: `${process.env.NEXT_PUBLIC_API_BASE_URL}`,
-  cache,
-});
 
 function MyApp({ Component, pageProps }) {
   return (
     <div className="overflow-x-hidden min-h-screen">
-      <ApolloProvider client={client}>
+      <QueryClientProvider client={queryClient}>
         <ToastContainer
           position="top-center"
           autoClose={2000}
@@ -56,7 +41,7 @@ function MyApp({ Component, pageProps }) {
         </Script>
 
         <Component {...pageProps} />
-      </ApolloProvider>
+        </QueryClientProvider>
     </div>
   );
 }
