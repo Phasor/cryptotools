@@ -11,7 +11,5 @@ const ProjectSchema = new mongoose.Schema({
   rating: { type: String, required: true, enum: ["1", "2", "3", "4", "5"] }
 });
 
-const Project = models.Project || mongoose.model("Project", ProjectSchema);
-export default Project;
 
-// module.exports = mongoose.model("Project", ProjectSchema);
+module.exports = mongoose.model("Project", ProjectSchema);
