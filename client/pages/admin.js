@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { GET_PROJECTS } from "../queries/projectQueries";
-import ProjectRow from "../components/ProjectRow";
+// import { useQuery } from "@apollo/client";
+// import { GET_PROJECTS } from "../queries/projectQueries";
+// import ProjectRow from "../components/ProjectRow";
 import NavBar from "../components/NavBar";
-import AddProjectButton from "../components/AddProjectButton";
+// import AddProjectButton from "../components/AddProjectButton";
 import useAuth from "../utils/useAuth";
 import { useRouter } from "next/router";
 
@@ -24,26 +24,26 @@ export default function Admin() {
     console.log(`isLoggedIn: ${isLoggedIn}`); 
     }, []);
 
-  const { loading, error, data } = useQuery(GET_PROJECTS);
-  if (error) return <p>Something went wrong</p>;
-  if (!isLoggedIn || loading)
-    return (
-      <div className="flex justify-center items-center min-h-screen w-screen">
-        <p>Loading...</p>
-      </div>
-    );
+  // const { loading, error, data } = useQuery(GET_PROJECTS);
+  // if (error) return <p>Something went wrong</p>;
+  // if (!isLoggedIn || loading)
+  //   return (
+  //     <div className="flex justify-center items-center min-h-screen w-screen">
+  //       <p>Loading...</p>
+  //     </div>
+  //   );
 
   return (
     <>
-      {data.projects.length > 0 ? (
+      <NavBar />
+      {/* {data.projects.length > 0 ? (
         <div className="bg-[#232323] w-screen min-h-screen">
-          <NavBar />
           <div className="w-screen flex flex-1 justify-center">
             <div className="flex flex-col mt-20 ml-5">
-              {/* Add new project button */}
+             
               <AddProjectButton />
 
-              {/* List of existing projects */}
+            
               <table className="table-auto max-w-[70%] whitespace-nowrap">
                 <thead className="border-t border-b border-gray-300 text-center">
                   <tr className="font-medium text-right">
@@ -72,7 +72,8 @@ export default function Admin() {
         </div>
       ) : (
         <p>No Projects</p>
-      )}
+      )} 
+    */}
     </>
   );
 }
