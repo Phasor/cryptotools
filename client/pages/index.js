@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import { getActiveProjects } from '../queries/projectQueries';
 import ProjectCard from "../components/ProjectCard";
 import Script from "next/script";
+import SearchBox from "../components/SearchBox";
 
 export default function Home() {
 
@@ -42,8 +43,11 @@ export default function Home() {
       <NavBar />
       <Hero />
 
-      <main className="flex justify-center mb-20">
-        <div className="grid grid-cols-1 md:grid-cols-4 md: gap-20 m-6">
+      <main className="flex flex-col items-center mb-20">
+        <div className="w-[75%]">
+          <SearchBox/>
+        </div>
+        <div className="max-w-[80%] grid grid-cols-1 md:grid-cols-4 md: gap-20 m-6">
           {data.data.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
