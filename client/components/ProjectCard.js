@@ -8,15 +8,17 @@ export default function ProjectCard({ project }) {
   let capitalizedProjectCategory = projectCategory[0].toUpperCase() + projectCategory.slice(1);
 
   return (
-    <div className='flex flex-col items-center justify-center max-w-[200px] shadow-lg rounded-lg bg-white hover:bg-blue-100 cursor-pointer'>
+    <div className='flex flex-col items-center justify-center sm:max-w-[200px] shadow-lg rounded-lg bg-white hover:bg-blue-100 cursor-pointer transform hover:scale-105'>
         <div className='flex justify-center p-4'>
             <Image
                 src={project.image}
                 alt={project.name}
                 width={200}
                 height={200}
-                className='rounded-lg transform hover:scale-105 object-cover'
+                className='object-cover w-[150px] md:w-[175px] lg:w-[200px] '
             />
+         
+         {/* sm:w-64 md:w-96 lg:w-128 sm:h-64 md:h-96 lg:h-128 */}
         </div>
         <div className='flex flex-col items-start w-full p-4'>
             <h1 className='text-lg font-bold'>{project.name}</h1>

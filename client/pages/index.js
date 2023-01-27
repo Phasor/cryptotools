@@ -26,7 +26,7 @@ export default function Home() {
 
   if (status ==="success") {
     return (
-    <div className="w-screen min-h-screen relative bg-[#F9F8F8] overflow-y-auto flex flex-col">
+    <div className="w-screen min-h-screen relative bg-[#F9F8F8] overflow-y-auto">
       <Script src="https://kit.fontawesome.com/b24cab7e32.js" crossorigin="anonymous"></Script>
       <Head>
         <title>Crypto Tools List</title>
@@ -42,17 +42,15 @@ export default function Home() {
       </Head>
       <NavBar />
       <Hero />
+      <SearchBox/>
 
-      <main className="flex flex-col items-center mb-20">
-        <div className="w-[75%]">
-          <SearchBox/>
-        </div>
-        <div className="max-w-[80%] grid grid-cols-1 md:grid-cols-4 md: gap-20 m-6">
-          {data.data.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
-      </main>
+      {/* Project List */}
+      <div className="max-w-6xl p-4 md:p-0 items-center mx-auto mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
+        {data.data.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </div>
+   
 
       <Footer />
     </div>
