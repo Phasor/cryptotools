@@ -13,7 +13,8 @@ function getActiveProjects() {
 }
 
 function getProjectById(id) {
-  return useQuery("projectById", async () => {
+  // the id parameter runs the function when the id changes
+  return useQuery(["projectById", id], async () => {
     try{
       const res = await fetch(`/api/get-project-by-id?id=${id}`);
       const data = await res.json();
@@ -21,6 +22,10 @@ function getProjectById(id) {
     }catch(err){
       console.log(err);
     }
+  },  
+  {
+    // this will prevent the query from running if there is no id
+    enabled: id !== undefined,
   })
 }
 

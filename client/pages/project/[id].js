@@ -7,15 +7,16 @@ import { getProjectById } from '../../queries/projectQueries'
 import Rating from 'react-rating';
 import Image from 'next/image'
 import Script from 'next/script'
+import { useEffect, useState } from 'react'
 
 export default function Project() {
-  const router = useRouter();
+  const router = useRouter()
   const { id } = router.query;
 
   // fetch the data
   const { status, data, error } = getProjectById(id);
 
-  if (status === "loading") {
+  if (status === "loading" || data === undefined) {
     return <div className="text-center">Loading...</div>;
   }
 
@@ -24,6 +25,7 @@ export default function Project() {
   }
 
   if (status ==="success") {
+    console.log(data);
     return (
       <div className='w-full min-h-screen bg-[#F9F8F8] overflow-y-auto'>
         <Script src="https://kit.fontawesome.com/b24cab7e32.js" crossorigin="anonymous"></Script>

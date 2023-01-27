@@ -1,5 +1,4 @@
 const Tool = require('../../models/Tool');
-const mongoose = require('mongoose');
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
