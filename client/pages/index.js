@@ -50,8 +50,6 @@ export default function Home() {
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
-   
-
       <Footer />
     </div>
   )}

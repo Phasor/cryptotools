@@ -7,7 +7,8 @@ const tools = [
         name: "CryptoTax",
         image: "https://res.cloudinary.com/duzlvcryq/image/upload/v1671222547/cryptofrens/mogxhvgge5z2izqbz1km.png",
         website: "https://cryptotax.io/",
-        description: "CryptoTax is a tax software that helps you calculate your crypto taxes. It is a web-based application that allows you to import your trades from exchanges and wallets and calculate your taxes. It also supports multiple currencies and tax years.",
+        shortDescription: "A short little description of this tool.",
+        longDescription: "CryptoTax is a tax software that helps you calculate your crypto taxes. It is a web-based application that allows you to import your trades from exchanges and wallets and calculate your taxes. It also supports multiple currencies and tax years.",
         active: true,
         category: "tax",
         rating: "4"
@@ -16,7 +17,8 @@ const tools = [
         name: "Glassnode",
         image: "https://res.cloudinary.com/duzlvcryq/image/upload/v1671227113/cryptofrens/pou6jyu9mkitfxwwmkbw.png",
         website: "https://www.glassnode.com",
-        description: "Glassnode provides first class on chain analytics",
+        shortDescription: "A short little description of this tool.",
+        longDescription: "Glassnode provides first class on chain analytics.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         active: true,
         category: "onchain-data",
         rating: "5"
@@ -25,7 +27,8 @@ const tools = [
         name: "Messari",
         image: "https://res.cloudinary.com/duzlvcryq/image/upload/v1671227113/cryptofrens/pou6jyu9mkitfxwwmkbw.png",
         website: "https://www.messari.com",
-        description: "Messari provides first class on chain analytics",
+        shortDescription: "A short little description of this tool.",
+        longDescription: "Messari provides first class on chain analytics. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         active: true,
         category: "research",
         rating: "5"
@@ -34,7 +37,8 @@ const tools = [
         name: "Token Terminal",
         image: "https://res.cloudinary.com/duzlvcryq/image/upload/v1671227113/cryptofrens/pou6jyu9mkitfxwwmkbw.png",
         website: "https://www.Token.com",
-        description: "Token Terminal provides first class on chain analytics",
+        shortDescription: "A short little description of this tool.",
+        longDescription: "Token Terminal provides first class on chain analytics. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         active: true,
         category: "research",
         rating: "5"
@@ -43,7 +47,8 @@ const tools = [
         name: "Dune Analytics",
         image: "https://res.cloudinary.com/duzlvcryq/image/upload/v1671227113/cryptofrens/pou6jyu9mkitfxwwmkbw.png",
         website: "https://www.dune.com",
-        description: "Dune provides first class on chain analytics",
+        shortDescription: "A short little description of this tool.",
+        longDescription: "Dune provides first class on chain analytics. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         active: true,
         category: "research",
         rating: "5"
@@ -52,7 +57,8 @@ const tools = [
         name: "CoinGecko",
         image: "https://res.cloudinary.com/duzlvcryq/image/upload/v1671227113/cryptofrens/pou6jyu9mkitfxwwmkbw.png",
         website: "https://www.coingecko.com",
-        description: "Coin Gecko provides first class on chain analytics",
+        shortDescription: "A short little description of this tool.",
+        longDescription: "Coin Gecko provides first class on chain analytics. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         active: true,
         category: "research",
         rating: "5"
@@ -61,7 +67,8 @@ const tools = [
         name: "CoinMarketCap",
         image: "https://res.cloudinary.com/duzlvcryq/image/upload/v1671227113/cryptofrens/pou6jyu9mkitfxwwmkbw.png",
         website: "https://www.coinmarketcap.com",
-        description: "Coinmarketcap provides first class on chain analytics",
+        shortDescription: "A short little description of this tool.",
+        longDescription: "Coinmarketcap provides first class on chain analytics. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         active: true,
         category: "research",
         rating: "5"
