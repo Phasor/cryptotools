@@ -41,17 +41,17 @@ export default function Project() {
         </Head>
         <NavBar />
         <Hero />
-        <div className='max-w-6xl mx-auto flex space-x-8'>
+        <div className='max-w-6xl mx-auto flex flex-col items-center justify-center sm:flex-row sm:space-x-8 p-4'>
           <Image
             src={data.data.image}
             alt={data.data.name}
-            width={200}
-            height={200}
-            className='object-cover my-2 w-[150px] md:w-[175px] lg:w-[200px]'
+            width={300}
+            height={300}
+            className='object-cover my-2 w-[150px] md:w-[300px]'
           />
           <div className='flex flex-col'>
             <h1 className='font-bold text-3xl'>{data.data.name}</h1>
-            <p className='my-2'><span className='text-small px-1 bg-blue-500 text-white rounded-2xl'>{data.data.category}</span></p>
+            <p className='my-2'><span className='text-small px-2 bg-blue-500 text-white rounded-full'>{data.data.category}</span></p>
             <p className='my-2'><span className='font-semibold'>TLDR: </span>{data.data.shortDescription}</p>
             <h2 className='font-semibold mt-4'>Full Description</h2>
             <p className='my-2'>{data.data.longDescription}</p>
