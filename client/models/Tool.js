@@ -5,8 +5,8 @@ const ToolSchema = new mongoose.Schema({
   name: { type: String, required: true },
   image: { type: String, required: true },
   website: { type: String, required: true },
-  longDescription: { type: String, required: true },
   shortDescription: { type: String, required: true },
+  longDescription: { type: String, required: true },
   active: { type: Boolean, required: true, default: false },
   category: { type: String, required: true, enum: ["tax", "research", "onchain-data", "wallet", "exchange", "other"] },
   rating: { type: String, required: true, enum: ["1", "2", "3", "4", "5"] }
