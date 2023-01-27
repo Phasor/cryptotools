@@ -6,13 +6,9 @@ import { getActiveProjects } from '../queries/projectQueries';
 import ProjectCard from "../components/ProjectCard";
 import Script from "next/script";
 import SearchBox from "../components/SearchBox";
+import Link from "next/link";
 
-export default function Home() {
-
-  function logDataType() {
-    console.log(typeof data);
-}
-  
+export default function Home() {  
   // fetch the data
   const { status, data, error } = getActiveProjects();
 
@@ -47,7 +43,7 @@ export default function Home() {
       {/* Project List */}
       <div className="max-w-6xl p-4 md:p-0 items-center mx-auto mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
         {data.data.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+          <Link href={`/project/${project._id}`}><ProjectCard key={project._id} project={project} /></Link>
         ))}
       </div>
       <Footer />

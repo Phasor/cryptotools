@@ -15,7 +15,7 @@ function getActiveProjects() {
 function getProjectById(id) {
   return useQuery("projectById", async () => {
     try{
-      const res = await fetch(`/api/get-project-by-id/${id}`);
+      const res = await fetch(`/api/get-project-by-id?id=${id}`);
       const data = await res.json();
       return data;
     }catch(err){
