@@ -25,7 +25,6 @@ export default function Project() {
   }
 
   if (status ==="success") {
-    console.log(data);
     return (
       <div className='w-full min-h-screen bg-[#F9F8F8] overflow-y-auto'>
         <Script src="https://kit.fontawesome.com/b24cab7e32.js" crossorigin="anonymous"></Script>

@@ -45,7 +45,7 @@ export default function Suggest() {
     e.preventDefault();
     // get recaptcha token
     const token = await reRef.current.executeAsync();
-    // console.log(`token: ${token}`)
+    console.log(`token: ${token}`)
 
     // add token to formState
     setFormState((prev) => ({ ...prev, token }));
@@ -104,10 +104,10 @@ export default function Suggest() {
   return (
     <div className="w-screen min-h-screen relative bg-[#F9F8F8]">
       <Head>
-        <title>Crypto Project Statistics | Suggest a link</title>
+        <title>Crypto Tools | Suggest a link</title>
         <meta
           name="description"
-          content="If you have links to crypto dashboards you find useul, please let us know and we will add them to the website where appropriate."
+          content="If you have links to crypto tools that you find useful, please let us know and we will add them to the website where appropriate."
         />
         <meta
           name="keywords"
@@ -119,9 +119,9 @@ export default function Suggest() {
       <Hero />
       <div className="flex justify-center bg-[#F9F8F8] min-h-sreen w-screen">
         <div className="p-5 flex flex-col items-left md:max-w-[60%]">
-          <h1 className="text-xl">New Crypto Dashboard Link</h1>
+          <h1 className="text-xl">New Crypto Tool Link</h1>
           <p className="py-2">
-            Suggest a link to a dashboard showing stats about a crypto project
+            Suggest a link to a crypto tool/website
             that you find useful and we will add it to the website where
             appropriate.
           </p>
@@ -151,14 +151,14 @@ export default function Suggest() {
               </div>
               <div className="my-2">
                 <label className="p-1 font-semibold" htmlFor="Project">
-                  Crypto Project
+                  Crypto Tool Name
                 </label>
                 <input
                   className="border rounded-md outline-none p-2 w-full my-1"
                   type="text"
                   name="project"
                   required
-                  placeholder="Cosmos Hub"
+                  placeholder="Glassnode"
                   value={formState.project}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -176,7 +176,7 @@ export default function Suggest() {
                   type="text"
                   name="link"
                   required
-                  placeholder="http://www.cosmosdashboard.com"
+                  placeholder="www.glassnode.com"
                   value={formState.link}
                   onChange={handleChange}
                   onBlur={handleBlur}

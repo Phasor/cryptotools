@@ -21,8 +21,8 @@ export default function ProjectCard({ project }) {
          {/* sm:w-64 md:w-96 lg:w-128 sm:h-64 md:h-96 lg:h-128 */}
         </div>
         <div className='flex flex-col items-start w-full p-4'>
-            <h1 className='text-lg font-bold'>{project.name}</h1>
-            <p className='text-sm'>{capitalizedProjectCategory}</p>
+            <h1 className='text-xl font-bold'>{project.name}</h1>
+            <p className='text-xs my-1'><span className='bg-blue-500 text-white px-1 rounded-full'>{capitalizedProjectCategory}</span></p>
             <p className='my-2'>{project.shortDescription}</p>
             <Rating 
               className='text-yellow-500'
