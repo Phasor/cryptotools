@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import Head from "next/head";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
@@ -49,11 +48,11 @@ return (
 
       {/* Project List */}
       { status === "success" && (
-      <div className="max-w-6xl p-4 md:p-0 items-center mx-auto mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
+      <main className="max-w-6xl p-4 md:p-0 items-center mx-auto mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
         {filteredProducts?.map((project) => (
           <Link href={`/project/${project._id}`}><ProjectCard key={project._id} project={project} /></Link>
         ))}
-      </div>
+      </main>
       )}
 
       {/* loading spinner */}
