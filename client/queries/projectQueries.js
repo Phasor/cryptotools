@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 
-function getActiveProjects() {
+function useProjects() {
   return useQuery("activeProjects", async () => {
     try{
       const res = await fetch("/api/get-active-projects");
@@ -29,4 +29,4 @@ function getProjectById(id) {
   })
 }
 
-export { getActiveProjects, getProjectById };
+export { useProjects, getProjectById };
