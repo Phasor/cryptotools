@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 
 function useProjects() {
-  return useQuery("activeProjects", async () => {
+  return useQuery(["activeProjects"], async () => {
     try{
       const res = await fetch("/api/get-active-projects");
       const data = await res.json();
@@ -13,7 +13,7 @@ function useProjects() {
 }
 
 function useAllProjects() {
-  return useQuery("activeProjects", async () => {
+  return useQuery(["allProjects"], async () => {
     try{
       const res = await fetch("/api/get-all-projects");
       const data = await res.json();

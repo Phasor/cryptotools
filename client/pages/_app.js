@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import { ToastContainer } from "react-toastify";
 import Script from "next/script";
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 
  // Create a react-query client
  const queryClient = new QueryClient()
@@ -42,6 +43,7 @@ function MyApp({ Component, pageProps }) {
         
 
         <Component {...pageProps} />
+        <ReactQueryDevtools/>
         </QueryClientProvider>
     </div>
   );

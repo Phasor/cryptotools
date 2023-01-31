@@ -9,7 +9,7 @@ import ProjectCard from "../components/ProjectCard";
 import { useAllProjects } from "../queries/projectQueries"; 
 import Script from "next/script";
 import SearchBox from "../components/SearchBox";
-import Link from "next/link";
+
 
 export default function Home() { 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -42,15 +42,6 @@ export default function Home() {
     );
   }, [searchValue, data]);
 
-  // if (!isLoggedIn || loading)
-  //   return (
-  //     <div className="flex justify-center items-center min-h-screen w-screen">
-  //       <p>Loading...</p>
-  //     </div>
-  //   );
-
-
-
 return (
     <div className="w-screen min-h-screen relative bg-[#232323] overflow-y-auto">
       <Script src="https://kit.fontawesome.com/b24cab7e32.js" crossorigin="anonymous"></Script>
@@ -73,7 +64,7 @@ return (
       { status === "success" && (
       <main className="max-w-6xl p-4 md:p-0 items-center mx-auto mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
         {filteredProducts?.map((project) => (
-          <Link href={`/project/${project._id}`}><ProjectCard key={project._id} project={project} /></Link>
+          <ProjectCard key={project._id} project={project} isAdmin={true}/>
         ))}
       </main>
       )}
