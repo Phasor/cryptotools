@@ -5,7 +5,7 @@ export default async function(req, res){
       const token = req.headers.authorization.split(" ")[1];
       // console.log(`token: ${token}`);
       const verified = await verifyJWT(token);
-      console.log(`verified: ${JSON.stringify(verified)}`);
+      // console.log(`verified: ${JSON.stringify(verified)}`);
       if (verified) {
         res.status(200).json({ success: true, user: verified.sub });
       } else {

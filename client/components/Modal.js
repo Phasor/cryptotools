@@ -14,14 +14,16 @@ export default function Modal({ show, onClose, children }) {
   };
 
   const modalContent = show ? (
-    <div className="absolute top-0 left-0 w-[100%] h-[100%] flex justify-center items-center bg-gray-900 opacity-95">
-      <div className="bg-white rounded-md p-2 z-[1000] opacity-100">
+    <div className="absolute top-0 left-0 w-full h-screen min-h-full flex justify-center items-center bg-gray-900 opacity-100">
+      
+      <div className="bg-white rounded-md p-2 z-[1000]">
         <div>
           <a href="#" onClick={handleClose}>
             <button className="text-blue-600 font-medium">Close</button>
           </a>
         </div>
-        <div>{children}</div>
+        <div className="">{children}</div>
+      
       </div>
     </div>
   ) : (

@@ -50,7 +50,7 @@ export default function Project() {
                 <p className='my-2'><span className='text-small px-2 bg-blue-500 text-white rounded-full'>{data.data.category}</span></p>
                 <p className='my-2'><span className='font-semibold'>TLDR: </span>{data.data.shortDescription}</p>
                 <h2 className='font-semibold mt-4'>Full Description</h2>
-                <p className='my-2'>{data.data.longDescription}</p>
+                <p className='my-2 whitespace-pre'>{data.data.longDescription}</p>
                 <span className='font-semibold'>Our Rating: 
                   <Rating 
                     className='text-yellow-500 ml-2'

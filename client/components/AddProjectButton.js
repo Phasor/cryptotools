@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query';
 import Modal from "./Modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,26 +10,39 @@ export default function AddProjectButton() {
   const [image, setImage] = useState(null);
   const [imgPreview, setImgPreview] = useState(null);
   const [errors, setErrors] = useState(null);
+  const client = useQueryClient();
 
-  // const [addProject] = useMutation(ADD_PROJECT, {
-  //   variables: {
-  //     name: formData.name,
-  //     symbol: formData.symbol,
-  //     image: formData.image,
-  //     website: formData.website,
-  //     active: formData.active,
-  //   },
-  //   onCompleted: () => {
-  //     // console.log("Project added");
-  //     toast.success("Project added");
-  //   },
-  //   refetchQueries: [{ query: GET_PROJECTS }],
-  //   context: {
-  //     headers: {
-  //       Authorization: localStorage.getItem("token"),
-  //     },
-  //   },
-  // });
+  const addProject = async(data) => {
+    // console.log(`Form data: ${JSON.stringify(formData)}`)
+    if(localStorage.getItem("token")){
+      try{
+        const token = localStorage.getItem("token");
+        const response = await fetch('/api/add-project', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+          body: JSON.stringify(formData),
+        });
+        const dataResponse = await response.json();
+        return dataResponse;
+      } catch(err){
+        console.log(err);
+      }
+    } else {
+      console.log("No token found");
+    }
+  }
+
+  const addProjectMutation = useMutation(addProject, {
+    onSuccess: () => {
+      // refetch the projects query after a successful mutation
+      client.invalidateQueries(["allProjects"]);
+      toast.success("Project added");
+    }
+  });
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -80,19 +93,20 @@ export default function AddProjectButton() {
     let imgURL = "";
     if (image) {
       imgURL = await UploadImage(image);
-      // console.log(`imgURL: ${imgURL}`);
+      console.log(`imgURL: ${imgURL}`);
     }
     // send data to back end
 
-    // addProject({
-    //   variables: {
-    //     name: formData.name,
-    //     symbol: formData.symbol,
-    //     image: imgURL,
-    //     website: formData.website,
-    //     active: formData.active,
-    //   },
-    // });
+    addProjectMutation.mutate({
+      name: formData.name,
+      image: imgURL,
+      website: formData.website,
+      shortDescription: formData.shortDescription,
+      longDescription: formData.longDescription,
+      active: formData.active,
+      category: formData.category,
+      rating: formData.rating,
+    });
     setShowModal(false);
   };
 
@@ -110,7 +124,7 @@ export default function AddProjectButton() {
           setShowModal(false);
         }}
       >
-        <div className="flex flex-col opacity-100">
+        <div className="flex flex-col">
           <h1 className="text-2xl font-bold">Add Project</h1>
           <form onSubmit={(e) => handleModalSubmit(e)} className="p-2">
             <div className="flex items-center space-x-2 justify-between">
@@ -124,12 +138,23 @@ export default function AddProjectButton() {
               />
             </div>
             <div className="flex items-center space-x-2 justify-between">
-              <label>Symbol</label>
+              <label>Short Desc.</label>
               <input
                 type="text"
-                placeholder="BTC"
+                placeholder="A great on chain analytics tool!"
                 className="p-1 my-2 outline-none border rounded-md"
-                name="symbol"
+                name="shortDescription"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex items-center space-x-2 justify-between">
+              <label>Long Desc.</label>
+              <textarea
+                rows="5"
+                
+                placeholder="Enter long description"
+                className="w-full p-1 my-2 outline-none border rounded-md"
+                name="longDescription"
                 onChange={handleChange}
               />
             </div>
@@ -137,13 +162,42 @@ export default function AddProjectButton() {
               <label>Project Website</label>
               <input
                 type="text"
-                placeholder="www.solana.com"
+                placeholder="www.glassnode.com"
                 className="p-1 my-2 outline-none border rounded-md"
                 name="website"
                 onChange={handleChange}
               />
             </div>
             <div className="flex items-center space-x-2 justify-between">
+              <label>Rating</label>
+              <select
+                name="rating"
+                onChange={handleChange}
+                className="p-1 my-2 outline-none border rounded-md"
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            <div className="flex items-center space-x-2 justify-between">
+              <label>Category</label>
+              <select
+                name="category"
+                onChange={handleChange}
+                className="p-1 my-2 outline-none border rounded-md"
+              >
+                <option value="tax">Tax</option>
+                <option value="research">Research</option>
+                <option value="onchain-data">On-chain Data</option>
+                <option value="wallet">Wallet</option>
+                <option value="exchange">Exchange</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div className="flex items-center space-x-2 justify-between my-3">
               <label>Project Image</label>
               {/* upload image */}
               <input
@@ -171,7 +225,7 @@ export default function AddProjectButton() {
               </div>
             )}
 
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 my-3">
               <label htmlFor="active">Active?</label>
               <input
                 name="active"
