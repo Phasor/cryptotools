@@ -1,14 +1,22 @@
-import React, { useState, useEffect } from "react";
-// import { useQuery } from "@apollo/client";
-// import { GET_PROJECTS } from "../queries/projectQueries";
-// import ProjectRow from "../components/ProjectRow";
-import NavBar from "../components/NavBar";
-// import AddProjectButton from "../components/AddProjectButton";
 import useAuth from "../utils/useAuth";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import Head from "next/head";
+import NavBar from "../components/NavBar";
+import Hero from "../components/Hero";
+import Footer from "../components/Footer";
+import ProjectCard from "../components/ProjectCard";
+import { useAllProjects } from "../queries/projectQueries"; 
+import Script from "next/script";
+import SearchBox from "../components/SearchBox";
+import Link from "next/link";
+import EmailList from "../components/EmailList";
 
-export default function Admin() {
+export default function Home() { 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const { data, status, error } = useAllProjects();
   const router = useRouter();
 
   useEffect(() => {
@@ -20,12 +28,21 @@ export default function Admin() {
         router.push("/login");
       }
     })
-
     console.log(`isLoggedIn: ${isLoggedIn}`); 
     }, []);
 
-  // const { loading, error, data } = useQuery(GET_PROJECTS);
-  // if (error) return <p>Something went wrong</p>;
+   // Filter the products based on the search value
+   useEffect(() => {
+    setFilteredProducts(
+      data?.data.filter((product) =>
+        product.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+        product.longDescription.toLowerCase().includes(searchValue.toLowerCase()) ||
+        product.shortDescription.toLowerCase().includes(searchValue.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    );
+  }, [searchValue, data]);
+
   // if (!isLoggedIn || loading)
   //   return (
   //     <div className="flex justify-center items-center min-h-screen w-screen">
@@ -33,47 +50,54 @@ export default function Admin() {
   //     </div>
   //   );
 
-  return (
-    <>
-      <NavBar />
-      {/* {data.projects.length > 0 ? (
-        <div className="bg-[#232323] w-screen min-h-screen">
-          <div className="w-screen flex flex-1 justify-center">
-            <div className="flex flex-col mt-20 ml-5">
-             
-              <AddProjectButton />
 
-            
-              <table className="table-auto max-w-[70%] whitespace-nowrap">
-                <thead className="border-t border-b border-gray-300 text-center">
-                  <tr className="font-medium text-right">
-                    <th className="md:p-3 text-center text-[#232323] align-middle">.</th>
-                    <th className=" text-white p-3 text-center align-middle">Logo</th>
-                    <th className=" text-white p-3 hidden md:table-cell h-full align-middle">Symbol</th>
-                    <th className=" text-white md:p-3 align-middle">Project Name</th>
-                    <th className=" text-white p-3 hidden md:table-cell h-full align-middle">Website</th>
-                    <th className=" text-white p-3 hidden md:table-cell h-full align-middle"># Links</th>
-                  </tr>
-                </thead>
-                <tbody className="">
-                  {data.projects.map((project) => {
-                    return (
-                      <ProjectRow
-                        key={project.id}
-                        project={project}
-                        admin={true}
-                      />
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
+
+return (
+    <div className="w-screen min-h-screen relative bg-[#F9F8F8] overflow-y-auto">
+      <Script src="https://kit.fontawesome.com/b24cab7e32.js" crossorigin="anonymous"></Script>
+      <Head>
+        <title>Crypto Tools List</title>
+        <meta
+          name="description"
+          content="Free crypto dashboards about each major coin so that you can do your own research and decide the best crypto to buy today."
+        />
+        <meta
+          name="keywords"
+          content="crypto dashboard, dashboard crypto, crypto data analytics, cryptocurrency research, blockchain, bitcoin, ethereum"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <NavBar />
+      <Hero />
+      <EmailList />
+      <SearchBox value={searchValue} setSearchValue={setSearchValue}/>
+
+      {/* Project List */}
+      { status === "success" && (
+      <main className="max-w-6xl p-4 md:p-0 items-center mx-auto mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
+        {filteredProducts?.map((project) => (
+          <Link href={`/project/${project._id}`}><ProjectCard key={project._id} project={project} /></Link>
+        ))}
+      </main>
+      )}
+
+      {/* loading spinner */}
+      { status === "loading" || !isLoggedIn && (
+        <div className="text-center mt-10 flex justify-center mx-auto">
+          <div className="animate-spin rounded-full h-15 w-15 border-b-2 border-gray-900"></div>
         </div>
-      ) : (
-        <p>No Projects</p>
-      )} 
-    */}
-    </>
-  );
+      )}
+
+      {/* error message */}
+      { status === "error" && (
+        <div className="text-center mt-10">
+          <h1 className="text-2xl font-bold">Error: {error.message}</h1>
+        </div>
+      )}
+        
+      <Footer />
+    </div>
+    )
+  
 }
+

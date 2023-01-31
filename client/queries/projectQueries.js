@@ -12,6 +12,18 @@ function useProjects() {
   })
 }
 
+function useAllProjects() {
+  return useQuery("activeProjects", async () => {
+    try{
+      const res = await fetch("/api/get-all-projects");
+      const data = await res.json();
+      return data;
+    }catch(err){
+      console.log(err);
+    }
+  })
+}
+
 function getProjectById(id) {
   // the id parameter runs the function when the id changes
   return useQuery(["projectById", id], async () => {
@@ -29,4 +41,4 @@ function getProjectById(id) {
   })
 }
 
-export { useProjects, getProjectById };
+export { useProjects, getProjectById, useAllProjects };

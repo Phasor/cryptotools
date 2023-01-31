@@ -38,3 +38,6 @@ next-env.d.ts
 
 .env
 .env.local
+
+# private key for jwt
+id_rsa_priv.pem

@@ -32,15 +32,15 @@ export default function EmailList() {
     
 return (
     <form onSubmit={handleSubmit}
-        className='max-w-6xl mx-4 md:mx-auto mb-10 p-4  rounded bg-yellow-500'>
-        <p className='p-1 font-semi-bold text-md font-semibold'>Yes, I want an edge and to be kept up to date with the latst crypto tools:</p>   
-        <div className='space-x-4 flex items-center justify-center'>
-            <FontAwesomeIcon icon={faEnvelope} className="h-10 w-10" style={{color:'white'}} />
+        className='max-w-6xl mx-4 md:mx-auto mb-10 p-4  rounded-lg shadow-lg bg-yellow-500'>
+        <p className='px-1 py-2 font-semi-bold text-md font-semibold'>Yes, I want an edge and to be kept up to date with the latst crypto tools:</p>   
+        <div className='space-x-4 mb-2 flex items-center justify-center'>
+            <FontAwesomeIcon icon={faEnvelope} className="h-10 w-10 text-black"  />
             <input 
                 type="text" 
                 name='email'
                 placeholder='example@gmail.com'
-                className='rounded py-1 px-2 w-full'
+                className='rounded p-2 w-full outline-none'
                 value={email}
                 onChange={(e) => (setEmail(e.target.value)) }
             />

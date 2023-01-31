@@ -9,7 +9,7 @@ const useAuth = async () => {
     }
     const token = localStorage.getItem("token");
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_AUTH_URL}/auth/authcheck`,
+      '/api/authcheck',
       {
         method: "POST",
         headers: {

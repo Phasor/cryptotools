@@ -10,13 +10,11 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_AUTH_URL}/auth/login/`,
+      const response = await fetch('/api/login/',
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Origin: `${process.env.NEXT_PUBLIC_API_BASE_AUTH_URL}`,
           },
           body: JSON.stringify({
             username: username,
