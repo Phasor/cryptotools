@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function EmailList() {
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,6 +21,8 @@ export default function EmailList() {
             if (data.success) {
                 toast.success("You're on the list!");
                 setEmail('');
+            } else {
+                toast.error("Something went wrong!");
             }
         } catch (err) {
         console.error(err);
@@ -30,17 +32,20 @@ export default function EmailList() {
     
 return (
     <form onSubmit={handleSubmit}
-        className='max-w-6xl mx-4 md:mx-auto mb-10 p-4 space-x-4 flex items-center justify-center rounded bg-yellow-500'>   
+        className='max-w-6xl mx-4 md:mx-auto mb-10 p-4  rounded bg-yellow-500'>
+        <p className='p-1 font-semi-bold text-md font-semibold'>Yes, I want an edge and to be kept up to date with the latst crypto tools:</p>   
+        <div className='space-x-4 flex items-center justify-center'>
             <FontAwesomeIcon icon={faEnvelope} className="h-10 w-10" style={{color:'white'}} />
             <input 
                 type="text" 
                 name='email'
-                placeholder='Email me the latest crypto tools!'
+                placeholder='example@gmail.com'
                 className='rounded py-1 px-2 w-full'
                 value={email}
                 onChange={(e) => (setEmail(e.target.value)) }
             />
-            <button type="submit" disabled={email==""} className='bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-md shadow'>Submit</button>    
+            <button type="submit" disabled={email==""} className={email !="" ? "bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-md shadow" :"bg-blue-400  text-white py-1 px-2 rounded-md shadow"}>Submit</button>    
+        </div>
     </form>
   )
 }
