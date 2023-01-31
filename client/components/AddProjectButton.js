@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { ADD_PROJECT } from "../mutations/projectMutations";
-import { GET_PROJECTS } from "../queries/projectQueries";
+import { useMutation } from 'react-query'
 import Modal from "./Modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,25 +11,25 @@ export default function AddProjectButton() {
   const [imgPreview, setImgPreview] = useState(null);
   const [errors, setErrors] = useState(null);
 
-  const [addProject] = useMutation(ADD_PROJECT, {
-    variables: {
-      name: formData.name,
-      symbol: formData.symbol,
-      image: formData.image,
-      website: formData.website,
-      active: formData.active,
-    },
-    onCompleted: () => {
-      // console.log("Project added");
-      toast.success("Project added");
-    },
-    refetchQueries: [{ query: GET_PROJECTS }],
-    context: {
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
-    },
-  });
+  // const [addProject] = useMutation(ADD_PROJECT, {
+  //   variables: {
+  //     name: formData.name,
+  //     symbol: formData.symbol,
+  //     image: formData.image,
+  //     website: formData.website,
+  //     active: formData.active,
+  //   },
+  //   onCompleted: () => {
+  //     // console.log("Project added");
+  //     toast.success("Project added");
+  //   },
+  //   refetchQueries: [{ query: GET_PROJECTS }],
+  //   context: {
+  //     headers: {
+  //       Authorization: localStorage.getItem("token"),
+  //     },
+  //   },
+  // });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -85,23 +83,24 @@ export default function AddProjectButton() {
       // console.log(`imgURL: ${imgURL}`);
     }
     // send data to back end
-    addProject({
-      variables: {
-        name: formData.name,
-        symbol: formData.symbol,
-        image: imgURL,
-        website: formData.website,
-        active: formData.active,
-      },
-    });
+
+    // addProject({
+    //   variables: {
+    //     name: formData.name,
+    //     symbol: formData.symbol,
+    //     image: imgURL,
+    //     website: formData.website,
+    //     active: formData.active,
+    //   },
+    // });
     setShowModal(false);
   };
 
   return (
-    <div>
+    <div className="max-w-6xl mx-auto">
       <button
         onClick={() => setShowModal(true)}
-        className="bg-blue-500 hover:bg-blue-600 text-white rounded-md p-2 shadow-md md:mt-[150px] mb-10"
+        className="bg-blue-500 hover:bg-blue-600 text-white rounded-md p-2 shadow-md md:mt-[150px]"
       >
         Add Project
       </button>

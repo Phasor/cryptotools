@@ -33,7 +33,7 @@ export default function DeleteProjectButton({ project }) {
   });
 
   const handleDelete = async() => {
-    await deleteProjectMutation.mutate(project._id)
+     deleteProjectMutation.mutate(project._id)
   }
 
   return (

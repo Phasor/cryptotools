@@ -6,7 +6,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 export default function SearchBox({ value, setSearchValue, isAdmin }) {
   return (
     <div className={`max-w-6xl mx-4 md:mx-auto mb-5 flex items-center p-3 rounded-full bg-zinc-100 hover:bg-zinc-200 
-    border-2 border-b-gray-200 ${isAdmin ? 'mt-20' : 'mt-0'}`}>
+    border-2 border-b-gray-200 ${isAdmin ? 'mt-10' : 'mt-0'}`}>
       
         <FontAwesomeIcon icon={faMagnifyingGlass} className="h-4 w-4" style={{color:'gray'}} />
         <input

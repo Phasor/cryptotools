@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import NavBar from "../components/NavBar";
-import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import ProjectCard from "../components/ProjectCard";
 import { useAllProjects } from "../queries/projectQueries"; 
 import Script from "next/script";
 import SearchBox from "../components/SearchBox";
+import AddProjectButton from "../components/AddProjectButton";
 
 
 export default function Home() { 
@@ -58,6 +58,7 @@ return (
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />   
+      <AddProjectButton />
       <SearchBox value={searchValue} setSearchValue={setSearchValue} isAdmin={true}/>
 
       {/* Project List */}
