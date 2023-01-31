@@ -10,7 +10,7 @@ export default function SearchBox({ value, setSearchValue }) {
         <FontAwesomeIcon icon={faMagnifyingGlass} className="h-4 w-4" style={{color:'gray'}} />
         <input
             type="text"
-            placeholder="Search Crypto Tools"
+            placeholder="Search For Crypto Tools"
             value={value}
             onChange={(e) => setSearchValue(e.target.value)}
             className="w-full ml-2 items-center bg-transparent outline-none placeholder-gray-500"

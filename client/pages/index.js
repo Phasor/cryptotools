@@ -8,6 +8,7 @@ import { useProjects } from "../queries/projectQueries";
 import Script from "next/script";
 import SearchBox from "../components/SearchBox";
 import Link from "next/link";
+import EmailList from "../components/EmailList";
 
 export default function Home() { 
   const [searchValue, setSearchValue] = useState("");
@@ -44,6 +45,7 @@ return (
       </Head>
       <NavBar />
       <Hero />
+      <EmailList />
       <SearchBox value={searchValue} setSearchValue={setSearchValue}/>
 
       {/* Project List */}
@@ -57,8 +59,8 @@ return (
 
       {/* loading spinner */}
       { status === "loading" && (
-        <div className="text-center mt-10">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+        <div className="text-center mt-10 flex justify-center mx-auto">
+          <div className="animate-spin rounded-full h-15 w-15 border-b-2 border-gray-900"></div>
         </div>
       )}
 
