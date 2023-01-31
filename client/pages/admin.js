@@ -10,7 +10,6 @@ import { useAllProjects } from "../queries/projectQueries";
 import Script from "next/script";
 import SearchBox from "../components/SearchBox";
 import Link from "next/link";
-import EmailList from "../components/EmailList";
 
 export default function Home() { 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -53,7 +52,7 @@ export default function Home() {
 
 
 return (
-    <div className="w-screen min-h-screen relative bg-[#F9F8F8] overflow-y-auto">
+    <div className="w-screen min-h-screen relative bg-[#232323] overflow-y-auto">
       <Script src="https://kit.fontawesome.com/b24cab7e32.js" crossorigin="anonymous"></Script>
       <Head>
         <title>Crypto Tools List</title>
@@ -67,10 +66,8 @@ return (
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar />
-      <Hero />
-      <EmailList />
-      <SearchBox value={searchValue} setSearchValue={setSearchValue}/>
+      <NavBar />   
+      <SearchBox value={searchValue} setSearchValue={setSearchValue} isAdmin={true}/>
 
       {/* Project List */}
       { status === "success" && (
