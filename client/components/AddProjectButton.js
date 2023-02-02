@@ -13,7 +13,7 @@ export default function AddProjectButton() {
   const client = useQueryClient();
 
   const addProject = async(data) => {
-    // console.log(`Form data: ${JSON.stringify(formData)}`)
+    // console.log(`Form data: ${JSON.stringify(data)}`)
     if(localStorage.getItem("token")){
       try{
         const token = localStorage.getItem("token");
@@ -23,7 +23,7 @@ export default function AddProjectButton() {
             "Content-Type": "application/json",
             Authorization: token,
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(data),
         });
         const dataResponse = await response.json();
         return dataResponse;
@@ -36,10 +36,16 @@ export default function AddProjectButton() {
   }
 
   const addProjectMutation = useMutation(addProject, {
-    onSuccess: () => {
+    onSuccess: (response) => {
       // refetch the projects query after a successful mutation
-      client.invalidateQueries(["allProjects"]);
-      toast.success("Project added");
+      if (response.success) {
+        client.invalidateQueries(["allProjects"]);
+        toast.success("Project added, yes.");
+      }
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error("Error adding project");
     }
   });
 
@@ -92,11 +98,9 @@ export default function AddProjectButton() {
     e.preventDefault();
     let imgURL = "";
     if (image) {
-      imgURL = await UploadImage(image);
+      imgURL = await UploadImage(image)
       console.log(`imgURL: ${imgURL}`);
     }
-    // send data to back end
-
     addProjectMutation.mutate({
       name: formData.name,
       image: imgURL,
@@ -107,7 +111,7 @@ export default function AddProjectButton() {
       category: formData.category,
       rating: formData.rating,
     });
-    setShowModal(false);
+    setShowModal(false); 
   };
 
   return (
@@ -198,8 +202,9 @@ export default function AddProjectButton() {
               </select>
             </div>
             <div className="flex items-center space-x-2 justify-between my-3">
-              <label>Project Image</label>
+
               {/* upload image */}
+              <label>Project Image</label>
               <input
                 type="file"
                 onChange={(e) => {

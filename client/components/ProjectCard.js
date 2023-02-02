@@ -9,6 +9,15 @@ export default function ProjectCard({ project, isAdmin }) {
   let projectCategory = project.category;
   let capitalizedProjectCategory = projectCategory[0].toUpperCase() + projectCategory.slice(1);
 
+  function changeDescriptionLength(description){
+    if(description.length > 60){
+      return description.slice(0, 60) + '...'
+    } else {
+      // pad with spaces to make all cards the same height
+      return description + ' '.repeat(60 - description.length)
+    }
+  }
+
   return (
     <div className='relative'>
       <Link href={`/project/${project._id}`}>
@@ -19,13 +28,13 @@ export default function ProjectCard({ project, isAdmin }) {
                     alt={project.name}
                     width={200}
                     height={200}
-                    className='object-cover w-[150px] md:w-[175px] lg:w-[200px] '
+                    className='object-cover w-[150px] h-[150px] rounded-full '
                 />
             </div>
-            <div className='flex flex-col items-start w-full p-4'>
+            <div className='flex flex-col items-start w-full p-4 overflow-hidden'>
                 <h1 className='text-xl font-bold'>{project.name}</h1>
                 <p className='text-xs my-1'><span className='bg-blue-500 text-white px-1 rounded-full'>{capitalizedProjectCategory}</span></p>
-                <p className='my-2'>{project.shortDescription}</p>
+                <p className='my-2' style={{ minHeight: "50px", textOverflow: "ellipsis" }}  >{project.shortDescription}</p>
                 <Rating 
                   className='text-yellow-500'
                   initialRating={parseInt(project.rating)}
