@@ -6,6 +6,8 @@ import Footer from "../components/Footer";
 import "react-toastify/dist/ReactToastify.css";
 import Head from "next/head";
 import ReCaptcha from "react-google-recaptcha";
+import DOMPurify from 'dompurify';
+
 
 export default function Suggest() {
   const reRef = useRef();
@@ -16,11 +18,25 @@ export default function Suggest() {
     token: "",
   });
 
-  // below effect ensure the formData is updated with the token before the sendContactForm function is called.
+  // below effect ensures the formData is updated with the token before the sendContactForm function is called.
   // Solves the issue caused by async useState call for setFormData in handleSubmit
   useEffect(() => {
     if (formState.token !== "") {
       // console.log(`formState in useeffect: ${JSON.stringify(formState)}`)
+
+     // sanitize the input fields on the client-side
+      const sanitizedEmail = DOMPurify.sanitize(formState.from);
+      const sanitizedText1 = DOMPurify.sanitize(formState.project);
+      const sanitizedText2 = DOMPurify.sanitize(formState.link);
+
+      //update the formState with the sanitized values
+      setFormState((prev) => ({
+        ...prev,
+        from: sanitizedEmail,
+        project: sanitizedText1,
+        link: sanitizedText2,
+      }));
+
       sendContactForm(formState);
       setFormState({
         from: "",
