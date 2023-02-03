@@ -3,12 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import validator from 'validator';
 
 export default function EmailList() {
     const [email, setEmail] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // check to see if the input is an email address
+        if (!validator.isEmail(email)) {
+            toast.error("Please enter a valid email address.");
+            return;
+          }
         try {
         const res = await fetch("/api/subscribe", {
             method: 'POST',

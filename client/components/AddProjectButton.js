@@ -40,7 +40,7 @@ export default function AddProjectButton() {
       // refetch the projects query after a successful mutation
       if (response.success) {
         client.invalidateQueries(["allProjects"]);
-        toast.success("Project added, yes.");
+        toast.success("Project added!");
       }
     },
     onError: (error) => {
