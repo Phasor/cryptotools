@@ -37,7 +37,7 @@ export default function DeleteProjectButton({ project }) {
   }
 
   return (
-    <div onClick={handleDelete} className='flex justify-center items-center bg-blue-800 absolute top-0 right-0 rounded-md h-10 w-10 transform hover:scale-105 cursor-pointer'>
+    <div onClick={handleDelete} className='absolute top-0 right-0 bg-blue-800 flex justify-center items-center rounded-md h-10 w-10'>
       <p className='text-white'>X</p>
     </div>
   );

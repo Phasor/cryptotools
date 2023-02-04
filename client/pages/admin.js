@@ -10,7 +10,6 @@ import Script from "next/script";
 import SearchBox from "../components/SearchBox";
 import AddProjectButton from "../components/AddProjectButton";
 
-
 export default function Home() { 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchValue, setSearchValue] = useState("");

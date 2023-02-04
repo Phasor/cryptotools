@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Rating from 'react-rating';
 import Link from "next/link";
 import DeleteProjectButton from './DeleteProjectButton';
+import EditProjectButton from "./EditProjectButton";
 
 export default function ProjectCard({ project, isAdmin }) {
 
@@ -19,9 +20,10 @@ export default function ProjectCard({ project, isAdmin }) {
   }
 
   return (
-    <div className='relative'>
+    <div className='relative max-h-[400px]'>
+      
       <Link href={`/project/${project._id}`}>
-        <div className='flex flex-col items-center justify-center sm:max-w-[300px] shadow-lg rounded-lg bg-white hover:bg-blue-100 cursor-pointer transform hover:scale-105'>
+        <div className=' flex flex-col items-center justify-center sm:max-w-[300px] shadow-lg rounded-lg bg-white hover:bg-blue-100 cursor-pointer transform hover:scale-105'>
             <div className='flex justify-center p-4'>
                 <Image
                     src={project.image}
@@ -44,13 +46,19 @@ export default function ProjectCard({ project, isAdmin }) {
                   fractions={2}
                   />
             </div>
+        {
+          isAdmin && (
+            <>
+              <EditProjectButton project={project}/>
+              <DeleteProjectButton project={project}/>
+            </>
+          )
+        }
+        
         </div>
       </Link>
-      {
-        isAdmin && (
-          <DeleteProjectButton project={project}/>
-        )
-      }
-      </div>
+
+
+    </div>
   )
 }
