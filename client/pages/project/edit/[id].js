@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useQuery, useMutation } from 'react-query';
-import { useAllProjects } from "../../../queries/projectQueries";
+import { getProjectById } from "../../../queries/projectQueries";
 import { useRouter } from 'next/router';
 import useAuth from '../../../utils/useAuth';
 import Footer from '../../../components/Footer';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from 'next/link';
 
 export default function EditProject() {
+    const router = useRouter();
+    // get id from url
+    const { id } = router.query;
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [errors, setErrors] = useState("");
     const [formData, setFormData] = useState({ active: false });
-    const { data, status, error } = useAllProjects();
-    const router = useRouter();
+    const { data, status, error } = getProjectById(id);
+    console.log(`data: ${JSON.stringify(data)}`);
     const [image, setImage] = useState(null);
     const [imageURL, setImageURL] = useState(null);
     const [imgPreview, setImgPreview] = useState("");
@@ -38,13 +42,13 @@ export default function EditProject() {
     useEffect(() => {
         // set form data once query resolves
         setFormData({ ...formData, 
-            name: data?.data[0].name,
-            shortDescription: data?.data[0].shortDescription,
-            longDescription: data?.data[0].longDescription,
-            category: data?.data[0].category,
-            active: data?.data[0].active,
-            image: data?.data[0].image,
-            website: data?.data[0].website,
+            name: data?.data.name,
+            shortDescription: data?.data.shortDescription,
+            longDescription: data?.data.longDescription,
+            category: data?.data.category,
+            active: data?.data.active,
+            image: data?.data.image,
+            website: data?.data.website,
          });
 
     },[data])
@@ -81,8 +85,8 @@ export default function EditProject() {
     
       const addImageToPost = (e) => {
         const reader = new FileReader();
-        if (e.target.files[0]) {
-          reader.readAsDataURL(e.target.files[0]);
+        if (e.target.files) {
+          reader.readAsDataURL(e.target.files);
         }
         reader.onload = (readerEvent) => {
           setImgPreview(readerEvent.target.result);
@@ -93,12 +97,66 @@ export default function EditProject() {
         setImgPreview(null);
       };
 
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        let newImgURL = "";
+        if (image) {
+          // image has been changed, upload new one
+          newImgURL = await UploadImage(image);
+          setFormData({ ...formData, image: newImgURL });
+        }
+    
+        // send mutation to update project
+        try {
+            EditProjectMutation.mutate(id);
+        }  catch (err) {
+            // console.log(err);
+            setErrors(err);
+          }
+        }
+
+
+      const editProject = async (formData) => {
+        if(localStorage.getItem("token")){
+          try{
+            const token = localStorage.getItem("token");
+            const response = await fetch('/api/delete-project-by-id', {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: token,
+              },
+              body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+            return data;
+          } catch(err){
+            console.log(err);
+          }
+        } else {
+          console.log("No token found");
+        }
+      }
+    
+      const EditProjectMutation = useMutation(editProject, {
+        onSuccess: (response) => {
+          // refetch the projects query after a successful mutation
+          client.invalidateQueries(["allProjects"]);
+          if(response.success == true) toast.success("Project updated successfully");
+        }
+      });
+
+ 
+
 
 
   return (
-    <div className='w-screen min-h-screen bg-gray-100 overflow-y-auto'>
+    <div className='w-screen min-h-screen bg-gray-200 overflow-y-auto flex flex-col justify-center items-center'>
+        <div className='flex w-full md:max-w-4xl justify-start'>
+            <Link href="/admin"><button className='my-4 bg-blue-500 hover:bg-blue-600 rounded-md text-white py-2 px-3'>Back</button></Link>
+        </div>
     { status === "success" && (
-       <form onSubmit={(e) => handleModalSubmit(e)} className="p-2">
+       <form onSubmit={handleSubmit} className="p-4 m-1 bg-gray-100 w-full md:max-w-4xl shadow-md rounded-md">
             <div className="flex items-center space-x-2 justify-between">
               <label>Project Name</label>
               <input
@@ -178,7 +236,7 @@ export default function EditProject() {
                 type="file"
                 onChange={(e) => {
                   addImageToPost(e);
-                  setImage(e.target.files[0]);
+                  setImage(e.target.files);
                 }}
               />
             </div>
