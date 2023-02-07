@@ -5,17 +5,22 @@ import Head from "next/head";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import ProjectCard from "../components/ProjectCard";
-import { useAllProjects } from "../queries/projectQueries"; 
+import { getAllProjects } from "../queries/projectQueries"; 
 import Script from "next/script";
 import SearchBox from "../components/SearchBox";
 import AddProjectButton from "../components/AddProjectButton";
+import { useQuery } from "react-query";
 
 export default function Home() { 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const { data, status, error } = useAllProjects();
   const router = useRouter();
+
+  const projectQuery = useQuery({
+    queryKey: "allProjects",
+    queryFn: getAllProjects,
+  })
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -32,14 +37,14 @@ export default function Home() {
    // Filter the products based on the search value
    useEffect(() => {
     setFilteredProducts(
-      data?.data.filter((product) =>
+      projectQuery.data?.data.filter((product) =>
         product.name.toLowerCase().includes(searchValue.toLowerCase()) ||
         product.longDescription.toLowerCase().includes(searchValue.toLowerCase()) ||
         product.shortDescription.toLowerCase().includes(searchValue.toLowerCase()) ||
         product.category.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
-  }, [searchValue, data]);
+  }, [searchValue, projectQuery.data]);
 
 return (
     <div className="w-screen min-h-screen relative bg-[#232323] overflow-y-auto">
@@ -61,7 +66,7 @@ return (
       <SearchBox value={searchValue} setSearchValue={setSearchValue} isAdmin={true}/>
 
       {/* Project List */}
-      { status === "success" && (
+      { projectQuery.status === "success" && (
       <main className="max-w-6xl p-4 md:p-0 items-center mx-auto mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
         {filteredProducts?.map((project) => (
           <ProjectCard key={project._id} project={project} isAdmin={true}/>
@@ -70,14 +75,14 @@ return (
       )}
 
       {/* loading spinner */}
-      { status === "loading" || !isLoggedIn && (
+      { projectQuery.status === "loading" || !isLoggedIn && (
         <div className="text-center mt-10 flex justify-center mx-auto">
           <div className="animate-spin rounded-full h-15 w-15 border-b-2 border-gray-900"></div>
         </div>
       )}
 
       {/* error message */}
-      { status === "error" && (
+      { projectQuery.status === "error" && (
         <div className="text-center mt-10">
           <h1 className="text-2xl font-bold">Error: {error.message}</h1>
         </div>

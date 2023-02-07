@@ -99,7 +99,7 @@ export default function AddProjectButton() {
     let imgURL = "";
     if (image) {
       imgURL = await UploadImage(image)
-      console.log(`imgURL: ${imgURL}`);
+      // console.log(`imgURL: ${imgURL}`);
     }
     addProjectMutation.mutate({
       name: formData.name,
