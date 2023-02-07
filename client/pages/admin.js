@@ -26,7 +26,7 @@ export default function Home() {
         router.push("/login");
       }
     })
-    console.log(`isLoggedIn: ${isLoggedIn}`); 
+    // console.log(`isLoggedIn: ${isLoggedIn}`); 
     }, []);
 
    // Filter the products based on the search value

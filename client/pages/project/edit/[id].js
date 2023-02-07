@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useQuery, useMutation } from 'react-query';
-import { getProjectById } from "../../../queries/projectQueries";
+import { useProjects, getProjectById, useAllProjects, editProject } from "../../../queries/projectQueries";
 import { useRouter } from 'next/router';
 import useAuth from '../../../utils/useAuth';
 import Footer from '../../../components/Footer';
@@ -16,7 +16,7 @@ export default function EditProject() {
     const [errors, setErrors] = useState("");
     const [formData, setFormData] = useState({ active: false });
     const { data, status, error } = getProjectById(id);
-    console.log(`data: ${JSON.stringify(data)}`);
+    // console.log(`data: ${JSON.stringify(data)}`);
     const [image, setImage] = useState(null);
     const [imageURL, setImageURL] = useState(null);
     const [imgPreview, setImgPreview] = useState("");
@@ -32,7 +32,7 @@ export default function EditProject() {
             router.push("/login");
             }
         })
-        console.log(`isLoggedIn: ${isLoggedIn}`); 
+        // console.log(`isLoggedIn: ${isLoggedIn}`); 
         }, []);
 
         const handleModalSubmit = (e) => {
@@ -107,38 +107,11 @@ export default function EditProject() {
         }
     
         // send mutation to update project
-        try {
-            EditProjectMutation.mutate(id);
-        }  catch (err) {
-            // console.log(err);
-            setErrors(err);
-          }
-        }
-
-
-      const editProject = async (formData) => {
-        if(localStorage.getItem("token")){
-          try{
-            const token = localStorage.getItem("token");
-            const response = await fetch('/api/delete-project-by-id', {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: token,
-              },
-              body: JSON.stringify(formData),
-            });
-            const data = await response.json();
-            return data;
-          } catch(err){
-            console.log(err);
-          }
-        } else {
-          console.log("No token found");
-        }
+          EditProjectMutation.mutate({formData, id});
       }
     
-      const EditProjectMutation = useMutation(editProject, {
+      const EditProjectMutation = useMutation({
+        mutationFn: editProject, 
         onSuccess: (response) => {
           // refetch the projects query after a successful mutation
           client.invalidateQueries(["allProjects"]);

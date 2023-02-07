@@ -10,15 +10,6 @@ export default function ProjectCard({ project, isAdmin }) {
   let projectCategory = project.category;
   let capitalizedProjectCategory = projectCategory[0].toUpperCase() + projectCategory.slice(1);
 
-  function changeDescriptionLength(description){
-    if(description.length > 60){
-      return description.slice(0, 60) + '...'
-    } else {
-      // pad with spaces to make all cards the same height
-      return description + ' '.repeat(60 - description.length)
-    }
-  }
-
   return (
     <div className='relative max-h-[400px]'>
       

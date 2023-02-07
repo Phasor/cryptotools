@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     if (req.method === 'POST'){
         const toolId = req.body.id;
         try{
-            Tool.findByIdAndUpdate(toolId, req.body, { new: true }, (err, tool) => {
+            Tool.findByIdAndUpdate(toolId, req.body.formData, { new: true }, (err, tool) => {
                 if (err) {
                     res.status(500).json({ success: false, message: 'Server error' })
                 } else {
