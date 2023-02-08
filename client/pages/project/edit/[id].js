@@ -133,10 +133,6 @@ export default function EditProject() {
         }
       });
 
- 
-
-
-
   return (
     <div className='w-screen min-h-screen bg-gray-200 overflow-y-auto flex flex-col justify-center items-center'>
         <div className='flex w-full md:max-w-4xl justify-start'>
