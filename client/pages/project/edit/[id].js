@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useQuery, useMutation } from 'react-query';
-import { useProjects, getProjectById, useAllProjects, editProject } from "../../../queries/projectQueries";
+import { getProjectById, editProject } from "../../../queries/projectQueries";
 import { useRouter } from 'next/router';
 import useAuth from '../../../utils/useAuth';
 import Footer from '../../../components/Footer';
@@ -10,13 +10,21 @@ import Link from 'next/link';
 
 export default function EditProject() {
     const router = useRouter();
-    // get id from url
     const { id } = router.query;
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [errors, setErrors] = useState("");
     const [formData, setFormData] = useState({ active: false });
-    const { data, status, error } = getProjectById(id);
-    // console.log(`data: ${JSON.stringify(data)}`);
+
+    // const { data, status, error } = getProjectById(id);
+    const projectQuery = useQuery({
+      queryKey: ["projectToEdit", id],
+      queryFn: () => getProjectById(id),
+      enabled: id !== undefined,
+    });
+
+
+    // console.log(`data: ${JSON.stringify(projectQuery.data?.data)}`);
+
     const [image, setImage] = useState(null);
     const [imageURL, setImageURL] = useState(null);
     const [imgPreview, setImgPreview] = useState("");
@@ -42,16 +50,17 @@ export default function EditProject() {
     useEffect(() => {
         // set form data once query resolves
         setFormData({ ...formData, 
-            name: data?.data.name,
-            shortDescription: data?.data.shortDescription,
-            longDescription: data?.data.longDescription,
-            category: data?.data.category,
-            active: data?.data.active,
-            image: data?.data.image,
-            website: data?.data.website,
+            name: projectQuery?.data?.data.name,
+            shortDescription: projectQuery?.data?.data.shortDescription,
+            longDescription: projectQuery?.data?.data.longDescription,
+            category: projectQuery?.data?.data.category,
+            active: projectQuery?.data?.data.active,
+            image: projectQuery?.data?.data.image,
+            website: projectQuery?.data?.data.website,
+            review: projectQuery?.data?.data.review,
          });
 
-    },[data])
+    },[projectQuery.data])
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -128,16 +137,17 @@ export default function EditProject() {
         <div className='flex w-full md:max-w-4xl justify-start'>
             <Link href="/admin"><button className='my-4 bg-blue-500 hover:bg-blue-600 rounded-md text-white py-2 px-3'>Back</button></Link>
         </div>
-    { status === "success" && (
+    { projectQuery.status === "success" && (
        <form onSubmit={handleSubmit} className="p-4 m-1 bg-gray-100 w-full md:max-w-4xl shadow-md rounded-md">
             <div className="flex items-center space-x-2 justify-between">
               <label>Project Name</label>
               <input
                 type="text"
                 value={formData.name}
-                className="p-1 my-2 outline-none border rounded-md ml-2"
+                className="p-1 my-2 outline-none border rounded-md ml-2 w-[80%]"
                 name="name"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="flex items-center space-x-2 justify-between">
@@ -145,9 +155,10 @@ export default function EditProject() {
               <input
                 type="text"
                 value={formData.shortDescription}
-                className="p-1 my-2 outline-none border rounded-md"
+                className="p-1 my-2 outline-none border rounded-md w-[80%]"
                 name="shortDescription"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="flex items-center space-x-2 justify-between">
@@ -155,9 +166,10 @@ export default function EditProject() {
               <textarea
                 rows="5"
                 value={formData.longDescription}
-                className="w-full p-1 my-2 outline-none border rounded-md"
+                className="p-1 my-2 outline-none border rounded-md w-[80%]"
                 name="longDescription"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="flex items-center space-x-2 justify-between">
@@ -165,8 +177,19 @@ export default function EditProject() {
               <input
                 type="text"
                 value={formData.website}
-                className="p-1 my-2 outline-none border rounded-md"
+                className="p-1 my-2 outline-none border rounded-md w-[80%]"
                 name="website"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="flex items-center space-x-2 justify-between">
+              <label>Review</label>
+              <textarea
+                rows="5"
+                value={formData.review}
+                className="p-1 my-2 outline-none border rounded-md w-[80%]"
+                name="review"
                 onChange={handleChange}
               />
             </div>
@@ -237,6 +260,7 @@ export default function EditProject() {
                 type="checkbox"
                 checked={formData.active}
                 onChange={handleCheckbox}
+                required
               />
             </div>
             <button
@@ -254,16 +278,16 @@ export default function EditProject() {
     )}
           
     {/* loading spinner */}
-    { status === "loading" || !isLoggedIn && (
+    { projectQuery.status === "loading" || !isLoggedIn && (
     <div className="text-center mt-10 flex justify-center mx-auto">
         <div className="animate-spin rounded-full h-15 w-15 border-b-2 border-gray-900"></div>
     </div>
     )}
 
     {/* error message */}
-    { status === "error" && (
+    { projectQuery.status === "error" && (
     <div className="text-center mt-10">
-        <h1 className="text-2xl font-bold">Error: {error.message}</h1>
+        <h1 className="text-2xl font-bold">Error: {JSON.stringify(projectQuery.error)}</h1>
     </div>
     )}
     <Footer/>

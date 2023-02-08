@@ -55,6 +55,8 @@ export default function Project() {
               <p className='my-2'><span className='font-semibold'>TLDR: </span>{projectyQuery.data?.data[0].shortDescription}</p>
               <h2 className='font-semibold mt-4'>Full Description</h2>
               <p className='my-2'>{projectyQuery.data?.data[0].longDescription}</p>
+              <h2 className='font-semibold mt-4'>Review</h2>
+              <p className='mt-2 mb-6 italic'>"{projectyQuery.data?.data[0].review}"</p>
               <span className='font-semibold'>Our Rating: 
                 <Rating 
                   className='text-yellow-500 ml-2'
@@ -65,11 +67,11 @@ export default function Project() {
                   fractions={2}
                 />
                 </span>
-                <div className='flex space-x-2 items-center mt-2'>
+                <div className='flex space-x-2 items-center my-4'>
                   <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="h-4 w-4"/>
-                  <a href={projectyQuery.data?.data[0].website} target="_blank" className='text-blue-500 underline hover:text-blue-700'>Visit {projectyQuery.data.data.name}</a>
+                  <a href={projectyQuery.data?.data[0].website} target="_blank" className='text-blue-500 underline hover:text-blue-700'>Visit {projectyQuery.data.data[0].name}</a>
                 </div>
-                  <Link href="/" className='mt-2 text-blue-500 underline hover:text-blue-700'>Back</Link>
+                  <Link href="/" className='mt-4 text-blue-500 underline hover:text-blue-700'>Back</Link>
             </div>    
           </>
         )}

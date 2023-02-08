@@ -28,6 +28,7 @@ function getAllProjects() {
 }
 
 function getProjectById(id){
+  console.log("id in function ", id)
   return axios
     .get(`/api/get-project-by-id?id=${id}`)
     .then((res) => res.data)
@@ -53,9 +54,6 @@ function getProjectByName(name){
       }
     })
 }
-
-
-
 
 function editProject({formData, id}) {
   return axios
