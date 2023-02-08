@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from 'react-query';
+import Router from 'next/router';
 
 export default function DeleteProjectButton({ project }) {
   const client = useQueryClient();
@@ -29,6 +30,8 @@ export default function DeleteProjectButton({ project }) {
     onSuccess: () => {
       // refetch the projects query after a successful mutation
       client.invalidateQueries(["allProjects"]);
+      // redirect to admin page
+      Router.push('/admin');
     }
   });
 
