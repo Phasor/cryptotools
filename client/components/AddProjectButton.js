@@ -139,6 +139,7 @@ export default function AddProjectButton() {
                 className="p-1 my-2 outline-none border rounded-md ml-2"
                 name="name"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="flex items-center space-x-2 justify-between">
@@ -149,16 +150,27 @@ export default function AddProjectButton() {
                 className="p-1 my-2 outline-none border rounded-md"
                 name="shortDescription"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="flex items-center space-x-2 justify-between">
               <label>Long Desc.</label>
               <textarea
                 rows="5"
-                
                 placeholder="Enter long description"
-                className="w-full p-1 my-2 outline-none border rounded-md"
+                className="w-full p-1 my-2 outline-none border rounded-md w-[80%]"
                 name="longDescription"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="flex items-center space-x-2 justify-between">
+              <label>Review</label>
+              <textarea
+                rows="5"
+                placeholder="Enter review"
+                className="p-1 my-2 outline-none border rounded-md w-[80%]"
+                name="review"
                 onChange={handleChange}
               />
             </div>
@@ -170,6 +182,7 @@ export default function AddProjectButton() {
                 className="p-1 my-2 outline-none border rounded-md"
                 name="website"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="flex items-center space-x-2 justify-between">
@@ -178,6 +191,7 @@ export default function AddProjectButton() {
                 name="rating"
                 onChange={handleChange}
                 className="p-1 my-2 outline-none border rounded-md"
+                required
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -192,6 +206,7 @@ export default function AddProjectButton() {
                 name="category"
                 onChange={handleChange}
                 className="p-1 my-2 outline-none border rounded-md"
+                required
               >
                 <option value="tax">Tax</option>
                 <option value="research">Research</option>
@@ -237,6 +252,7 @@ export default function AddProjectButton() {
                 type="checkbox"
                 checked={formData.active}
                 onChange={handleCheckbox}
+                required
               />
             </div>
             <button
