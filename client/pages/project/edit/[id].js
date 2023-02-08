@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { useQuery, useMutation } from 'react-query';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { getProjectById, editProject } from "../../../queries/projectQueries";
 import { useRouter } from 'next/router';
 import useAuth from '../../../utils/useAuth';
@@ -11,6 +11,7 @@ import Link from 'next/link';
 export default function EditProject() {
     const router = useRouter();
     const { id } = router.query;
+    const client = useQueryClient();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [errors, setErrors] = useState("");
     const [formData, setFormData] = useState({ active: false });
@@ -124,7 +125,11 @@ export default function EditProject() {
         onSuccess: (response) => {
           // refetch the projects query after a successful mutation
           client.invalidateQueries(["allProjects"]);
-          if(response.success == true) toast.success("Project updated successfully");
+          toast.success("Project updated successfully");
+        },
+        onError: (error) => {
+          toast.error("Something went wrong");
+          console.log(`error: ${error}`);
         }
       });
 
