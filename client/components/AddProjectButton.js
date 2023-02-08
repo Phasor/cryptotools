@@ -110,6 +110,7 @@ export default function AddProjectButton() {
       active: formData.active,
       category: formData.category,
       rating: formData.rating,
+      review: formData.review,
     });
     setShowModal(false); 
   };
@@ -136,7 +137,7 @@ export default function AddProjectButton() {
               <input
                 type="text"
                 placeholder="Cool Project"
-                className="p-1 my-2 outline-none border rounded-md ml-2"
+                className="p-1 my-2 outline-none border rounded-md ml-2 w-[80%]"
                 name="name"
                 onChange={handleChange}
                 required
@@ -147,7 +148,7 @@ export default function AddProjectButton() {
               <input
                 type="text"
                 placeholder="A great on chain analytics tool!"
-                className="p-1 my-2 outline-none border rounded-md"
+                className="p-1 my-2 outline-none border rounded-md w-[80%]"
                 name="shortDescription"
                 onChange={handleChange}
                 required
@@ -158,7 +159,7 @@ export default function AddProjectButton() {
               <textarea
                 rows="5"
                 placeholder="Enter long description"
-                className="w-full p-1 my-2 outline-none border rounded-md w-[80%]"
+                className="p-1 my-2 outline-none border rounded-md w-[80%]"
                 name="longDescription"
                 onChange={handleChange}
                 required
@@ -179,7 +180,7 @@ export default function AddProjectButton() {
               <input
                 type="text"
                 placeholder="www.glassnode.com"
-                className="p-1 my-2 outline-none border rounded-md"
+                className="p-1 my-2 outline-none border rounded-md w-[80%]"
                 name="website"
                 onChange={handleChange}
                 required

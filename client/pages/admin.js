@@ -70,7 +70,7 @@ return (
       { projectQuery.status === "success" && (
       <main className="max-w-6xl p-4 md:p-0 items-center mx-auto mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
         {filteredProducts?.map((project) => (
-          <Link href={`/project/${project.name}`}><ProjectCard key={project._id} project={project} isAdmin={true}/></Link>
+          <Link href={`/project/${(project.name).split(" ").join("")}`}><ProjectCard key={project._id} project={project} isAdmin={true}/></Link>
         ))}
       </main>
       )}
