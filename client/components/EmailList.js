@@ -43,7 +43,7 @@ return (
         <div className='space-x-4 mb-2 flex items-center justify-center'>
             <FontAwesomeIcon icon={faEnvelope} className="h-10 w-10 text-black"  />
             <input 
-                type="text" 
+                type="email" 
                 name='email'
                 placeholder='example@gmail.com'
                 className='rounded p-2 w-full outline-none'
