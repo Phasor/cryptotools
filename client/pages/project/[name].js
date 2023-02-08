@@ -23,7 +23,7 @@ export default function Project() {
   })
 
   return (
-    <div className='w-full min-h-screen bg-[#F9F8F8] overflow-y-auto relative'>
+    <div className='w-full min-h-screen bg-[#F9F8F8] overflow-y-auto'>
       <Script src="https://kit.fontawesome.com/b24cab7e32.js" crossorigin="anonymous"></Script>
       <Head>
         <title>{projectyQuery.data?.data[0].name}</title>
@@ -39,7 +39,7 @@ export default function Project() {
       </Head>
       <NavBar />
       <Hero />
-      <div className='max-w-6xl mx-auto flex flex-col items-center justify-center sm:flex-row sm:space-x-8 p-4 overflow-y-auto mb-20'>
+      <div className='max-w-6xl mx-auto flex flex-col items-center justify-center sm:flex-row sm:space-x-8 p-2 sm:p-4 overflow-y-auto mb-20'>
         { projectyQuery.status === "success" && (
           <>
             <Image
@@ -47,9 +47,9 @@ export default function Project() {
               alt={projectyQuery.data?.data[0].name}
               width={300}
               height={300}
-              className='object-cover my-4 md:my-2 w-[150px] md:w-[300px]'
+              className='object-cover my-4 md:my-2 w-[150px] md:w-[300px] rounded-full'
             />
-            <div className='flex flex-col border rounded-lg shadow-lg p-4'>
+            <div className='w-full flex flex-col border rounded-lg shadow-lg p-4 sm:min-w-[50%]'>
               <h1 className='font-bold text-3xl'>{projectyQuery.data?.data[0].name}</h1>
               <p className='my-2'><span className='text-small px-2 bg-blue-500 text-white rounded-full'>{projectyQuery.data?.data[0].category}</span></p>
               <p className='my-2'><span className='font-semibold'>TLDR: </span>{projectyQuery.data?.data[0].shortDescription}</p>
