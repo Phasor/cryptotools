@@ -19,9 +19,9 @@ const handler = async (req, res) => {
       // console.log(data);
       await transporter.sendMail({
         ...mailOptions,
-        subject: "New Link Suggestion",
-        text: `New Link Suggestion From: ${data.from}\nProject: ${data.project}\nLink: ${data.link}`,
-        html: `<p>New Link Suggestion From: ${data.from}\n Project: ${data.project}\n Link: ${data.link}</p>`,
+        subject: "Crypto Tools | New Tool Suggestion",
+        text: `New Tool Suggestion From: ${data.from}\n Project: ${data.project}\n Link: ${data.link}`,
+        html: `<p>New Message From Crypto Tools!</p><br><p>New Tool Suggestion From: ${data.from}</p><p> Project: ${data.project}</p><p> Link: ${data.link}</p>`,
       });
       return res.status(200).json({ success: true });
     } catch (err) {

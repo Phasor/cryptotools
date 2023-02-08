@@ -60,8 +60,8 @@ function getProjectByName(name) {
     .get(`/api/get-project-by-name?name=${name}`)
     .then((res) => res.data)
     .catch((err) => {
-      if (err.response && err.response.status === 404) {
-        // need to add spaces between words
+      if (err.response && err.response.status === 404) { // project not found
+        // need to add spaces between words e.g. "DuneAnalytics" => "Dune Analytics"
         const updatedName = name.split(/(?=[A-Z])/).join(" ");
         console.log("name updated to ", updatedName);
         return axios
