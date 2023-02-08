@@ -16,6 +16,7 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 export default function Project() {
   const router = useRouter();
   const { name } = router.query;
+  
   const projectyQuery = useQuery({
     queryKey: ["project"],
     queryFn: () => getProjectByName(name),
@@ -26,10 +27,10 @@ export default function Project() {
     <div className='w-full min-h-screen bg-[#F9F8F8] overflow-y-auto relative'>
       <Script src="https://kit.fontawesome.com/b24cab7e32.js" crossorigin="anonymous"></Script>
       <Head>
-        <title>{projectyQuery.data?.data[0].name}</title>
+        <title>{projectyQuery.data?.data[0]?.name}</title>
         <meta
           name="description"
-          content={`An overview of ${projectyQuery.data?.data[0].name} crypto project.`}
+          content={`An overview of ${projectyQuery.data?.data[0]?.name} crypto project.`}
         />
         <meta
           name="keywords"
@@ -43,8 +44,8 @@ export default function Project() {
         { projectyQuery.status === "success" && (
           <>
             <Image
-              src={projectyQuery.data?.data[0].image}
-              alt={projectyQuery.data?.data[0].name}
+              src={projectyQuery.data?.data[0]?.image}
+              alt={projectyQuery.data?.data[0]?.name}
               width={300}
               height={300}
               className='object-cover my-4 md:my-2 w-[150px] md:w-[300px] rounded-full'
