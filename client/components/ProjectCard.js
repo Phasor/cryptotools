@@ -13,7 +13,7 @@ export default function ProjectCard({ project, isAdmin }) {
   return (
     <div className='relative max-h-[400px]'>
       
-      <Link href={`/project/${project._id}`}>
+     
         <div className=' flex flex-col items-center justify-center sm:max-w-[300px] shadow-lg rounded-lg bg-white hover:bg-blue-100 cursor-pointer transform hover:scale-105'>
             <div className='flex justify-center p-4'>
                 <Image
@@ -47,7 +47,7 @@ export default function ProjectCard({ project, isAdmin }) {
         }
         
         </div>
-      </Link>
+      
 
 
     </div>

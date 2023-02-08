@@ -40,6 +40,22 @@ function getProjectById(id){
     })
 }
 
+function getProjectByName(name){
+  console.log("name in function ", name)
+  return axios
+    .get(`/api/get-project-by-name?name=${name}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      if (err.response) {
+        return Promise.reject(err.response.data);
+      } else {
+        return Promise.reject(new Error("Something went wrong"));
+      }
+    })
+}
+
+
+
 
 function editProject({formData, id}) {
   return axios
@@ -63,4 +79,4 @@ function editProject({formData, id}) {
 
 
 
-export { getActiveProjects, getAllProjects, getProjectById, editProject };
+export { getActiveProjects, getAllProjects, getProjectById, editProject, getProjectByName };
