@@ -47,14 +47,14 @@ export default function Project() {
                 alt={projectyQuery.data?.data?.name}
                 width={300}
                 height={300}
-                className='object-cover my-2 w-[150px] md:w-[300px]'
+                className='object-cover my-4 md:my-2 w-[150px] md:w-[300px]'
               />
               <div className='flex flex-col border rounded-lg shadow-lg p-4'>
                 <h1 className='font-bold text-3xl'>{projectyQuery.data?.data?.name}</h1>
                 <p className='my-2'><span className='text-small px-2 bg-blue-500 text-white rounded-full'>{projectyQuery.data?.data?.category}</span></p>
                 <p className='my-2'><span className='font-semibold'>TLDR: </span>{projectyQuery.data?.data?.shortDescription}</p>
                 <h2 className='font-semibold mt-4'>Full Description</h2>
-                <p className='my-2 whitespace-pre'>{projectyQuery.data?.data?.longDescription}</p>
+                <p className='my-2'>{projectyQuery.data?.data?.longDescription}</p>
                 <span className='font-semibold'>Our Rating: 
                   <Rating 
                     className='text-yellow-500 ml-2'
