@@ -12,13 +12,14 @@ import Link from 'next/link'
 import Footer from '../../components/Footer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import Spinner from '../../components/Spinner'
 
 export default function Project() {
   const router = useRouter();
   const { name } = router.query;
   
   const projectyQuery = useQuery({
-    queryKey: ["project"],
+    queryKey: ["project", name],
     queryFn: () => getProjectByName(name),
     enabled: name !== undefined,
   })
@@ -79,9 +80,10 @@ export default function Project() {
         
          {/* loading spinner */}
         { projectyQuery.status === "loading" && ( 
-              <div className="text-center mt-10 flex justify-center mx-auto">
-              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
-            </div>
+            //   <div className="text-center mt-10 flex justify-center mx-auto">
+            //   <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+            // </div>
+            <Spinner/>
         )}
 
         {/* error message */}
