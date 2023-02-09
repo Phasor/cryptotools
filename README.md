@@ -39,19 +39,12 @@ Install dependencies:
 Run the front end locally:
 `npm run dev`
 
-
 ## Demo
-
-
 ### Mobile Design
 ##### Home Page
-
 ##### Admin Page
-
-
 ### Desktop Design
 ##### Home Page
-
 ##### Admin Page
 
 
