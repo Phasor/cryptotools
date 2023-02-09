@@ -259,7 +259,6 @@ export default function EditProject() {
               type="checkbox"
               checked={formData.active}
               onChange={handleCheckbox}
-              required
             />
           </div>
           <button

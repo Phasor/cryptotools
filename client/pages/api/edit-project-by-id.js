@@ -40,13 +40,13 @@ export default async function handler(req, res) {
         : "";
       const category = req.body.formData.category
         ? xss(req.body.formData.category)
-        : "";
+        : "other";
       const rating = req.body.formData.rating
         ? xss(req.body.formData.rating)
-        : "";
+        : "1";
       const active = req.body.formData.active
         ? xss(req.body.formData.active)
-        : "";
+        : false;
 
       await Tool.findByIdAndUpdate(
         toolId,
@@ -69,7 +69,7 @@ export default async function handler(req, res) {
         .json({ success: true, message: "Tool updated successfully" });
     } catch (err) {
       console.log(JSON.stringify(err.message));
-      return res.status(500).json({ success: false, message: "Server error" });
+      return res.status(500).json({ success: false, message: err.message });
     }
   } else {
     return res
