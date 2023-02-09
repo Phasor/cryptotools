@@ -14,7 +14,10 @@ export default function ProjectCard({ project, isAdmin }) {
     <div className="relative max-h-[400px]">
       <div className=" flex flex-col items-center justify-center sm:max-w-[300px] shadow-lg rounded-lg bg-white hover:bg-blue-100 cursor-pointer transform hover:scale-105">
         <div className="flex justify-center p-4">
-          <Link key={project._id} href={`/project/${project.name.split(" ").join("")}`}>
+          <Link
+            key={project._id}
+            href={`/project/${project.name.split(" ").join("")}`}
+          >
             <Image
               src={project.image}
               alt={project.name}

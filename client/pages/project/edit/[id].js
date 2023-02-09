@@ -15,7 +15,7 @@ export default function EditProject() {
   const client = useQueryClient();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [errors, setErrors] = useState("");
-  const [formData, setFormData] = useState({ });
+  const [formData, setFormData] = useState({});
   const [image, setImage] = useState(null);
   const [imgPreview, setImgPreview] = useState("");
 
@@ -104,7 +104,7 @@ export default function EditProject() {
     if (image) {
       // image has been changed, upload new one
       newImgURL = await UploadImage(image);
-      const updatedFormData = {...formData, image: newImgURL}
+      const updatedFormData = { ...formData, image: newImgURL };
       EditProjectMutation.mutate({ formData: updatedFormData, id });
     } else {
       EditProjectMutation.mutate({ formData, id });
