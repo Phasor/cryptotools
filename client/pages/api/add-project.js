@@ -25,9 +25,9 @@ export default async function handler(req, res) {
       const shortDescription = xss(req.body.shortDescription.trim());
       const longDescription = xss(req.body.longDescription.trim());
       const review = xss(req.body.review.trim());
-      const category = xss(req.body.category.trim());
-      const rating = xss(req.body.rating.trim());
-      const active = xss(req.body.active.trim());
+      const category = xss(req.body.category);
+      const rating = xss(req.body.rating);
+      const active = xss(req.body.active);
 
       // create a new Tool
       const tool = new Tool({
@@ -44,7 +44,7 @@ export default async function handler(req, res) {
       const savedTool = await tool.save();
       return res.status(200).json({ success: true, data: savedTool });
     } catch (err) {
-      return res.status(500).json({ success: false, message: "Server error" });
+      return res.status(500).json({ success: false, message: err.message });
     }
   } else {
     return res
