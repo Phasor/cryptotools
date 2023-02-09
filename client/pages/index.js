@@ -21,8 +21,6 @@ export default function Home() {
     queryFn: getActiveProjects,
   });
 
-  console.log(projectQuery.data?.data)
-
   // Filter the products based on the search value
   useEffect(() => {
     setFilteredProducts(

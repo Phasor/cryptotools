@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Rating from "react-rating";
-import Link from "next/link";
 import DeleteProjectButton from "./DeleteProjectButton";
 import EditProjectButton from "./EditProjectButton";
 
@@ -45,10 +44,10 @@ export default function ProjectCard({ project, isAdmin }) {
           />
         </div>
         {isAdmin && (
-          <>
+          <div>
             <EditProjectButton project={project} />
             <DeleteProjectButton project={project} />
-          </>
+          </div>
         )}
       </div>
     </div>
