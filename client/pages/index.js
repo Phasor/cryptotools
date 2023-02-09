@@ -10,6 +10,7 @@ import SearchBox from "../components/SearchBox";
 import Link from "next/link";
 import EmailList from "../components/EmailList";
 import { useQuery } from "react-query";
+import Spinner from "../components/Spinner";
 
 export default function Home() { 
   const [searchValue, setSearchValue] = useState("");
@@ -65,9 +66,7 @@ return (
 
       {/* loading spinner */}
       { projectQuery.status === "loading" && (
-        <div className="text-center mt-10 flex justify-center mx-auto">
-          <div className="animate-spin rounded-full h-15 w-15 border-b-2 border-gray-900"></div>
-        </div>
+        <Spinner/>
       )}
 
       {/* error message */}

@@ -7,6 +7,7 @@ import Footer from '../../../components/Footer';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from 'next/link';
+import Spinner from '../../../components/Spinner';
 
 export default function EditProject() {
     const router = useRouter();
@@ -280,9 +281,7 @@ export default function EditProject() {
           
     {/* loading spinner */}
     { projectQuery.status === "loading" || !isLoggedIn && (
-    <div className="text-center mt-10 flex justify-center mx-auto">
-        <div className="animate-spin rounded-full h-15 w-15 border-b-2 border-gray-900"></div>
-    </div>
+      <Spinner/>
     )}
 
     {/* error message */}

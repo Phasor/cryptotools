@@ -11,6 +11,7 @@ import SearchBox from "../components/SearchBox";
 import AddProjectButton from "../components/AddProjectButton";
 import { useQuery } from "react-query";
 import Link from "next/link";
+import Spinner from "../components/Spinner";
 
 export default function Home() { 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -77,9 +78,7 @@ return (
 
       {/* loading spinner */}
       { projectQuery.status === "loading" || !isLoggedIn && (
-        <div className="text-center mt-10 flex justify-center mx-auto">
-          <div className="animate-spin rounded-full h-15 w-15 border-b-2 border-gray-900"></div>
-        </div>
+        <Spinner/>
       )}
 
       {/* error message */}

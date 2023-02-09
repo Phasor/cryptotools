@@ -80,9 +80,6 @@ export default function Project() {
         
          {/* loading spinner */}
         { projectyQuery.status === "loading" && ( 
-            //   <div className="text-center mt-10 flex justify-center mx-auto">
-            //   <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
-            // </div>
             <Spinner/>
         )}
 
