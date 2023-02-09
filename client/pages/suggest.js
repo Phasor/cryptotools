@@ -44,6 +44,7 @@ export default function Suggest() {
         token: "",
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState.token]);
 
   const [error, setError] = useState({

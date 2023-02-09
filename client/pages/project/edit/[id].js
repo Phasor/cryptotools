@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import Spinner from "../../../components/Spinner";
+import Image from "next/image";
 
 export default function EditProject() {
   const router = useRouter();
@@ -37,7 +38,7 @@ export default function EditProject() {
       }
     });
     // console.log(`isLoggedIn: ${isLoggedIn}`);
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     // set form data once query resolves
@@ -52,6 +53,7 @@ export default function EditProject() {
       website: projectQuery?.data?.data.website,
       review: projectQuery?.data?.data.review,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectQuery.data]);
 
   const handleChange = (e) => {
@@ -241,7 +243,7 @@ export default function EditProject() {
               onClick={removeImage}
               className="my-2 flex flex-col items-center text-center filter hover:brightness-110 transition duration-150 transform hover:scale-105 cursor-pointer"
             >
-              <img
+              <Image
                 src={imgPreview}
                 alt="post preview"
                 height={60}

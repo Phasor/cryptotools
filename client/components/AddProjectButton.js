@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 import Modal from "./Modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Image from "next/image";
 
 export default function AddProjectButton() {
   const [showModal, setShowModal] = useState(false);
@@ -233,7 +234,7 @@ export default function AddProjectButton() {
                 onClick={removeImage}
                 className="my-2 flex flex-col items-center text-center filter hover:brightness-110 transition duration-150 transform hover:scale-105 cursor-pointer"
               >
-                <img
+                <Image
                   src={imgPreview}
                   alt="post preview"
                   height={60}

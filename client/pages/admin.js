@@ -33,7 +33,7 @@ export default function Home() {
       }
     });
     // console.log(`isLoggedIn: ${isLoggedIn}`);
-  }, []);
+  }, [router]);
 
   // Filter the products based on the search value
   useEffect(() => {

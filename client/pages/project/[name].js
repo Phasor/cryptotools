@@ -73,7 +73,7 @@ export default function Project() {
               </p>
               <h2 className="font-semibold mt-4">Review</h2>
               <p className="mt-2 mb-6 italic">
-                "{projectyQuery.data?.data[0].review}"
+                &quot;{projectyQuery.data?.data[0].review}&quot;
               </p>
               <span className="font-semibold">
                 Our Rating:
@@ -94,6 +94,7 @@ export default function Project() {
                 <a
                   href={projectyQuery.data?.data[0].website}
                   target="_blank"
+                  rel="noreferrer"
                   className="text-blue-500 underline hover:text-blue-700"
                 >
                   Visit {projectyQuery.data.data[0].name}

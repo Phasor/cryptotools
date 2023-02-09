@@ -23,7 +23,7 @@ export default function About() {
         <div className="flex flex-col p-5 md:max-w-[80%] ">
           <h1 className="text-xl">404</h1>
           <p className="mt-2">
-            Sorry, we can't find the page you're looking for.
+            Sorry, we can&apos;t find the page you&apos;re looking for.
           </p>
           <Link href="/" className="underline text-blue-500 mt-4">
             Go back
