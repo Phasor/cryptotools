@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getProjectById, editProject } from "../../../queries/projectQueries";
 import { useRouter } from "next/router";
@@ -15,7 +15,9 @@ export default function EditProject() {
   const client = useQueryClient();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [errors, setErrors] = useState("");
-  const [formData, setFormData] = useState({ active: false });
+  const [formData, setFormData] = useState({ });
+  const [image, setImage] = useState(null);
+  const [imgPreview, setImgPreview] = useState("");
 
   const projectQuery = useQuery({
     queryKey: ["projectToEdit", id],
@@ -24,11 +26,6 @@ export default function EditProject() {
   });
 
   // console.log(`data: ${JSON.stringify(projectQuery.data?.data)}`);
-
-  const [image, setImage] = useState(null);
-  const [imageURL, setImageURL] = useState(null);
-  const [imgPreview, setImgPreview] = useState("");
-  const imgInputRef = useRef(null);
 
   // is logged in check
   useEffect(() => {
@@ -41,10 +38,6 @@ export default function EditProject() {
     });
     // console.log(`isLoggedIn: ${isLoggedIn}`);
   }, []);
-
-  const handleModalSubmit = (e) => {
-    e.preventDefault();
-  };
 
   useEffect(() => {
     // set form data once query resolves
@@ -83,18 +76,18 @@ export default function EditProject() {
         }
       );
       const data = await response.json();
-      // console.log(data.secure_url);
+      console.log(data.secure_url);
       return data.secure_url;
     } catch (err) {
-      // console.log(err);
+      console.log(err);
       setErrors(err);
     }
   };
 
   const addImageToPost = (e) => {
     const reader = new FileReader();
-    if (e.target.files) {
-      reader.readAsDataURL(e.target.files);
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
     }
     reader.onload = (readerEvent) => {
       setImgPreview(readerEvent.target.result);
@@ -111,11 +104,11 @@ export default function EditProject() {
     if (image) {
       // image has been changed, upload new one
       newImgURL = await UploadImage(image);
-      setFormData({ ...formData, image: newImgURL });
+      const updatedFormData = {...formData, image: newImgURL}
+      EditProjectMutation.mutate({ formData: updatedFormData, id });
+    } else {
+      EditProjectMutation.mutate({ formData, id });
     }
-
-    // send mutation to update project
-    EditProjectMutation.mutate({ formData, id });
   };
 
   const EditProjectMutation = useMutation({
@@ -230,6 +223,7 @@ export default function EditProject() {
               <option value="other">Other</option>
             </select>
           </div>
+
           <div className="flex items-center space-x-2 justify-between my-3">
             {/* upload image */}
             <label>Project Image</label>
@@ -237,7 +231,7 @@ export default function EditProject() {
               type="file"
               onChange={(e) => {
                 addImageToPost(e);
-                setImage(e.target.files);
+                setImage(e.target.files[0]);
               }}
             />
           </div>
