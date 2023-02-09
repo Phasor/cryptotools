@@ -48,7 +48,6 @@ export default async function handler(req, res) {
         ? xss(req.body.formData.active)
         : "";
 
-      // await Tool.findByIdAndUpdate(toolId, req.body.formData, { new: true })
       await Tool.findByIdAndUpdate(
         toolId,
         {

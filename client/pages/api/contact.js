@@ -1,5 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 import { mailOptions, transporter } from "../../utils/nodemailer";
 
 const handler = async (req, res) => {
