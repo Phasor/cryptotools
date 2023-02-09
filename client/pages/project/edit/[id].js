@@ -17,7 +17,6 @@ export default function EditProject() {
   const [errors, setErrors] = useState("");
   const [formData, setFormData] = useState({ active: false });
 
-  // const { data, status, error } = getProjectById(id);
   const projectQuery = useQuery({
     queryKey: ["projectToEdit", id],
     queryFn: () => getProjectById(id),
