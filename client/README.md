@@ -6,7 +6,7 @@ The application uses [Cloudinary](https://cloudinary.com/) for image hosting. Si
 
 [Tailwind CSS](https://tailwindcss.com/) is used for styling.
 
-[Google ReCaptcha](https://www.google.com/recaptcha/about/) is used for bot detection. You will need to sign up and get some api keys. 
+[Google ReCaptcha](https://www.google.com/recaptcha/about/) is used for bot detection. You will need to sign up and get some api keys.
 
 ## Environment Variables
 
@@ -19,4 +19,3 @@ Install dependencies:
 
 Run the front end locally:
 `npm run dev`
-

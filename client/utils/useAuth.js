@@ -4,20 +4,17 @@
 const useAuth = async () => {
   try {
     if (!localStorage.getItem("token")) {
-      console.log("no token")
+      console.log("no token");
       return false;
     }
     const token = localStorage.getItem("token");
-    const response = await fetch(
-      '/api/authcheck',
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token,
-        },
-      }
-    );
+    const response = await fetch("/api/authcheck", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    });
     const data = await response.json();
     if (data.success) {
       // console.log(`data.user: ${data.user}`)

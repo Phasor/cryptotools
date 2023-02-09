@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from "react-query";
 import Modal from "./Modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,12 +12,12 @@ export default function AddProjectButton() {
   const [errors, setErrors] = useState(null);
   const client = useQueryClient();
 
-  const addProject = async(data) => {
+  const addProject = async (data) => {
     // console.log(`Form data: ${JSON.stringify(data)}`)
-    if(localStorage.getItem("token")){
-      try{
+    if (localStorage.getItem("token")) {
+      try {
         const token = localStorage.getItem("token");
-        const response = await fetch('/api/add-project', {
+        const response = await fetch("/api/add-project", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -27,13 +27,13 @@ export default function AddProjectButton() {
         });
         const dataResponse = await response.json();
         return dataResponse;
-      } catch(err){
+      } catch (err) {
         console.log(err);
       }
     } else {
       console.log("No token found");
     }
-  }
+  };
 
   const addProjectMutation = useMutation(addProject, {
     onSuccess: (response) => {
@@ -46,9 +46,8 @@ export default function AddProjectButton() {
     onError: (error) => {
       console.log(error);
       toast.error("Error adding project");
-    }
+    },
   });
-
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -98,7 +97,7 @@ export default function AddProjectButton() {
     e.preventDefault();
     let imgURL = "";
     if (image) {
-      imgURL = await UploadImage(image)
+      imgURL = await UploadImage(image);
       // console.log(`imgURL: ${imgURL}`);
     }
     addProjectMutation.mutate({
@@ -112,7 +111,7 @@ export default function AddProjectButton() {
       rating: formData.rating,
       review: formData.review,
     });
-    setShowModal(false); 
+    setShowModal(false);
   };
 
   return (
@@ -218,7 +217,6 @@ export default function AddProjectButton() {
               </select>
             </div>
             <div className="flex items-center space-x-2 justify-between my-3">
-
               {/* upload image */}
               <label>Project Image</label>
               <input

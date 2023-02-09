@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function EditProjectButton({ project }) {
   return (
-    <div className=' bg-blue-800 absolute bottom-0 right-0 h-10 w-10 rounded-md flex justify-center items-center'>
+    <div className=" bg-blue-800 absolute bottom-0 right-0 h-10 w-10 rounded-md flex justify-center items-center">
       <Link href={`/project/edit/${project._id}`}>
         <PencilIcon
           title="Edit Project"

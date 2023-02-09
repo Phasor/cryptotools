@@ -1,12 +1,11 @@
 import "../styles/globals.css";
 import { ToastContainer } from "react-toastify";
 import Script from "next/script";
-import { QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
- // Create a react-query client
- const queryClient = new QueryClient()
-
+// Create a react-query client
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -40,11 +39,10 @@ function MyApp({ Component, pageProps }) {
             gtag('config', 'G-BFYE8M0LZL');
           `}
         </Script> */}
-        
 
         <Component {...pageProps} />
-        <ReactQueryDevtools/>
-        </QueryClientProvider>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </div>
   );
 }

@@ -12,8 +12,8 @@ export default function Hero() {
           </h1>
           <h3 className="text-2xl py-2">Do Your Own Research.</h3>
           <p className="text-gray-500">
-            Links to great crypto tools so you can stop relying on
-            influncers and DYOR with confidence.
+            Links to great crypto tools so you can stop relying on influncers
+            and DYOR with confidence.
           </p>
         </div>
       </Link>

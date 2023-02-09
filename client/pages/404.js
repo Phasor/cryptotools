@@ -10,10 +10,7 @@ export default function About() {
     <div className="w-screen min-h-screen relative bg-[#F9F8F8]">
       <Head>
         <title>Page Not Found 404</title>
-        <meta
-          name="description"
-          content="404 page not found."
-        />
+        <meta name="description" content="404 page not found." />
         <meta
           name="keywords"
           content="crypto, cryptocurrency, dashboards, projects, data, blockchain, bitcoin, ethereum"
@@ -28,7 +25,9 @@ export default function About() {
           <p className="mt-2">
             Sorry, we can't find the page you're looking for.
           </p>
-          <Link href="/" className="underline text-blue-500 mt-4">Go back</Link>
+          <Link href="/" className="underline text-blue-500 mt-4">
+            Go back
+          </Link>
         </div>
         <Footer />
       </div>

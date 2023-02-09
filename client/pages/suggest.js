@@ -6,8 +6,7 @@ import Footer from "../components/Footer";
 import "react-toastify/dist/ReactToastify.css";
 import Head from "next/head";
 import ReCaptcha from "react-google-recaptcha";
-import DOMPurify from 'dompurify';
-
+import DOMPurify from "dompurify";
 
 export default function Suggest() {
   const reRef = useRef();
@@ -24,7 +23,7 @@ export default function Suggest() {
     if (formState.token !== "") {
       // console.log(`formState in useeffect: ${JSON.stringify(formState)}`)
 
-     // sanitize the input fields on the client-side
+      // sanitize the input fields on the client-side
       const sanitizedEmail = DOMPurify.sanitize(formState.from);
       const sanitizedText1 = DOMPurify.sanitize(formState.project);
       const sanitizedText2 = DOMPurify.sanitize(formState.link);
@@ -61,7 +60,7 @@ export default function Suggest() {
     e.preventDefault();
     // get recaptcha token
     const token = await reRef.current.executeAsync();
-    console.log(`token: ${token}`)
+    console.log(`token: ${token}`);
 
     // add token to formState
     setFormState((prev) => ({ ...prev, token }));
@@ -137,9 +136,8 @@ export default function Suggest() {
         <div className="p-5 flex flex-col items-left md:max-w-[60%]">
           <h1 className="text-xl">New Crypto Tool Link</h1>
           <p className="py-2">
-            Suggest a link to a crypto tool/website
-            that you find useful and we will add it to the website where
-            appropriate.
+            Suggest a link to a crypto tool/website that you find useful and we
+            will add it to the website where appropriate.
           </p>
           <div className="flex justify-center mt-5 mb-16 ">
             {/* Form */}

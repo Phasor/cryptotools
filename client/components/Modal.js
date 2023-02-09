@@ -15,7 +15,6 @@ export default function Modal({ show, onClose, children }) {
 
   const modalContent = show ? (
     <div className="absolute top-0 left-0 w-full h-screen min-h-full flex justify-center items-center bg-gray-900 opacity-100">
-      
       <div className="bg-white rounded-md p-2 z-[1000] w-full sm:max-w-[80%] md:max-w-[40%]">
         <div>
           <a href="#" onClick={handleClose}>
@@ -23,7 +22,6 @@ export default function Modal({ show, onClose, children }) {
           </a>
         </div>
         <div className="">{children}</div>
-      
       </div>
     </div>
   ) : (

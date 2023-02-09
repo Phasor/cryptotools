@@ -27,8 +27,8 @@ function getAllProjects() {
     });
 }
 
-function getProjectById(id){
-  console.log("id in function ", id)
+function getProjectById(id) {
+  console.log("id in function ", id);
   return axios
     .get(`/api/get-project-by-id?id=${id}`)
     .then((res) => res.data)
@@ -38,7 +38,7 @@ function getProjectById(id){
       } else {
         return Promise.reject(new Error("Something went wrong"));
       }
-    })
+    });
 }
 
 // function getProjectByName(name){
@@ -60,7 +60,8 @@ function getProjectByName(name) {
     .get(`/api/get-project-by-name?name=${name}`)
     .then((res) => res.data)
     .catch((err) => {
-      if (err.response && err.response.status === 404) { // project not found
+      if (err.response && err.response.status === 404) {
+        // project not found
         // need to add spaces between words e.g. "DuneAnalytics" => "Dune Analytics"
         const updatedName = name.split(/(?=[A-Z])/).join(" ");
         console.log("name updated to ", updatedName);
@@ -80,17 +81,18 @@ function getProjectByName(name) {
     });
 }
 
-
-function editProject({formData, id}) {
+function editProject({ formData, id }) {
   return axios
-    .post("/api/edit-project-by-id", 
-      {formData, id},
+    .post(
+      "/api/edit-project-by-id",
+      { formData, id },
       {
-        headers : {
-          'Content-Type': 'application/json',
+        headers: {
+          "Content-Type": "application/json",
           Authorization: localStorage.getItem("token"),
-        }
-      })
+        },
+      }
+    )
     .then((res) => res.data)
     .catch((err) => {
       if (err.response) {
@@ -99,8 +101,12 @@ function editProject({formData, id}) {
         return Promise.reject(new Error("Something went wrong"));
       }
     });
-} 
+}
 
-
-
-export { getActiveProjects, getAllProjects, getProjectById, editProject, getProjectByName };
+export {
+  getActiveProjects,
+  getAllProjects,
+  getProjectById,
+  editProject,
+  getProjectByName,
+};
