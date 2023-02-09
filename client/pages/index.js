@@ -15,7 +15,7 @@ import Spinner from "../components/Spinner";
 export default function Home() {
   const [searchValue, setSearchValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  
+
   const projectQuery = useQuery({
     queryKey: "activeProjects",
     queryFn: getActiveProjects,
