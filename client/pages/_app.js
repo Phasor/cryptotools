@@ -3,9 +3,13 @@ import { ToastContainer } from "react-toastify";
 import Script from "next/script";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import dbConnect from "../utils/dbConnect";
 
 // Create a react-query client
 const queryClient = new QueryClient();
+
+// Connect to the database
+dbConnect();
 
 function MyApp({ Component, pageProps }) {
   return (
