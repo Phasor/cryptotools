@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import dbConnect from "../utils/dbConnect";
 
-export default function Login() {
+export default function Login({test}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -78,4 +79,14 @@ export default function Login() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps({ params }) {
+  await dbConnect()
+  const test = "test"
+
+  // const pet = await Pet.findById(params.id).lean()
+  // pet._id = pet._id.toString()
+
+  return { props: { test } }
 }
