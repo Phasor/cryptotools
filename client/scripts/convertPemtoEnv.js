@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+// simple script to take a multi line string and convert it to a single line string
+
 function makeSingleLineKey(key) {
     return key.replace(/(\r\n|\n|\r)/gm, '\\n');
   }

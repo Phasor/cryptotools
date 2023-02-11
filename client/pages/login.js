@@ -22,11 +22,11 @@ export default function Login({test}) {
         }),
       });
       const data = await response.json();
-      console.log(`data: ${JSON.stringify(data)}`);
+      // console.log(`data: ${JSON.stringify(data)}`);
       if (data.success) {
         // test if localstorage is available
         if (typeof window !== "undefined") {
-          console.log("localstorage is available");
+          // console.log("localstorage is available");
           localStorage.setItem("token", data.token);
           localStorage.setItem("user", JSON.stringify(data.user._id));
         }
