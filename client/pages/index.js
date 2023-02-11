@@ -9,7 +9,6 @@ import Script from "next/script";
 import SearchBox from "../components/SearchBox";
 import Link from "next/link";
 import EmailList from "../components/EmailList";
-// import { useQuery } from "react-query";
 import Spinner from "../components/Spinner";
 import dbConnect from "../utils/dbConnect";
 import Tool from "../models/Tool";
@@ -17,11 +16,6 @@ import Tool from "../models/Tool";
 export default function Home({ projects }) {
   const [searchValue, setSearchValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
-
-  // const projectQuery = useQuery({
-  //   queryKey: "activeProjects",
-  //   queryFn: getActiveProjects,
-  // });
 
   // Filter the products based on the search value
   useEffect(() => {
