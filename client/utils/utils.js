@@ -3,10 +3,18 @@ const jsonwebtoken = require("jsonwebtoken");
 const fs = require("fs");
 const path = require("path");
 
-const pathToPvtKey = path.join(__dirname, "../../../..", "id_rsa_priv.pem");
-const pathToPubKey = path.join(__dirname, "../../../..", "id_rsa_pub.pem");
-const PRIV_KEY = fs.readFileSync(pathToPvtKey, "utf8");
-const PUB_KEY = fs.readFileSync(pathToPubKey, "utf8");
+// const pathToPvtKey = path.join(__dirname, "../../../..", "id_rsa_priv.pem");
+// const PRIV_KEY = fs.readFileSync(pathToPvtKey, "utf8");
+// const pathToPubKey = path.join(__dirname, "../../../..", "id_rsa_pub.pem");
+// const PUB_KEY = fs.readFileSync(pathToPubKey, "utf8");
+
+// function makeSingleLineKey(key) {
+//   return key.replace(/(\r\n|\n|\r)/gm, '\\n');
+// }
+
+const { PUB_KEY } = JSON.parse(process.env.LOCAL_AUTH_PUB_KEY);
+const { PRIV_KEY } = JSON.parse(process.env.LOCAL_AUTH_PRIV_KEY);
+
 
 /**
  * -------------- HELPER FUNCTIONS ----------------
