@@ -76,7 +76,7 @@ export default function Home({ projects }) {
 
 /* Retrieves pet(s) data from mongodb database */
 export async function getServerSideProps() {
-  // await dbConnect()
+  await dbConnect()
 
   /* find all the projects in our database */
   const result = await Tool.find({ active: true });
