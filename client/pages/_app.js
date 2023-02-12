@@ -8,9 +8,6 @@ import dbConnect from "../utils/dbConnect";
 // Create a react-query client
 const queryClient = new QueryClient();
 
-// Connect to the database
-dbConnect();
-
 function MyApp({ Component, pageProps }) {
   return (
     <div className="overflow-x-hidden min-h-screen">
