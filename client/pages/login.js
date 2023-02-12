@@ -82,7 +82,7 @@ export default function Login({test}) {
 }
 
 export async function getServerSideProps({ params }) {
-  await dbConnect()
+  // await dbConnect()
   const test = "test"
 
   // const pet = await Pet.findById(params.id).lean()
