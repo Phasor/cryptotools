@@ -13,7 +13,7 @@ import { useQuery } from "react-query";
 import Link from "next/link";
 import Spinner from "../components/Spinner";
 
-export default function Home() {
+export default function Admin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -105,3 +105,4 @@ export default function Home() {
   </>
   );
 }
+

@@ -1,20 +1,32 @@
 import { useQuery } from "react-query";
-import axios from "axios";
 
-function getActiveProjects() {
-  return axios
-    .get("/api/get-active-projects")
-    .then((res) => res.data)
-    .catch((err) => {
-      if (err.response) {
-        return Promise.reject(err.response.data);
-      } else {
-        return Promise.reject(new Error("Something went wrong"));
-      }
-    });
+// const { dbConnect, MONGODB_URI } = require('../utils/dbConnect');
+
+// async function getActiveProjects() {
+//   return axios
+//     .get(`${BASE_API_URL}/api/get-active-projects`)
+//     .then((res) => res.data)
+//     .catch((err) => {
+//       if (err.response) {
+//         return Promise.reject(err.response.data);
+//       } else {
+//         return Promise.reject(new Error(err));
+//       }
+//     });
+// }
+
+export async function getActiveProjects() {
+  const response = await fetch(`${process.env.BASE_API_URL}/api/get-active-projects`)
+  if (!response.ok) {
+    throw new Error('Network response was not ok')
+  }
+  return response.json()
 }
 
-function getAllProjects() {
+
+
+async function getAllProjects() {
+  await dbConnect();
   return axios
     .get("/api/get-all-projects")
     .then((res) => res.data)
@@ -90,7 +102,6 @@ function editProject({ formData, id }) {
 }
 
 export {
-  getActiveProjects,
   getAllProjects,
   getProjectById,
   editProject,

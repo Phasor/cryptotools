@@ -1,4 +1,11 @@
+// /lib/dbConnect.js
 import mongoose from 'mongoose'
+
+/** 
+Source : 
+https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/utils/dbConnect.js 
+**/
+
 
 const MONGODB_URI = process.env.MONGODB_URI
 
@@ -19,28 +26,23 @@ if (!cached) {
   cached = global.mongoose = { conn: null, promise: null }
 }
 
-async function dbConnect() {
+async function dbConnect () {
   if (cached.conn) {
     return cached.conn
   }
 
   if (!cached.promise) {
     const opts = {
-      bufferCommands: false,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      bufferCommands: false
     }
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+    cached.promise = mongoose.connect(MONGODB_URI, opts).then(mongoose => {
       return mongoose
     })
   }
-
-  try {
-    cached.conn = await cached.promise
-  } catch (e) {
-    cached.promise = null
-    throw e
-  }
-
+  cached.conn = await cached.promise
   return cached.conn
 }
 

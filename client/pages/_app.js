@@ -3,28 +3,12 @@ import { ToastContainer } from "react-toastify";
 import Script from "next/script";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import dbConnect from "../utils/dbConnect";
-import { useEffect }  from "react"; 
-import mongoose from "mongoose";
 
 // Create a react-query client
 const queryClient = new QueryClient();
 
-
 function MyApp({ Component, pageProps }) {
-
-  useEffect(() => {
-    const connect = async () => {
-      await dbConnect().catch(console.error);
-    };
-    connect();
-    return () => {
-      mongoose.disconnect();
-    };
-  }, []);
-
-
-  
+ 
   return (
     <div className="overflow-x-hidden min-h-screen">
       <QueryClientProvider client={queryClient}>

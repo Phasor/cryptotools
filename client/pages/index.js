@@ -1,26 +1,30 @@
+import { useQuery } from "react-query";
+import getActiveProjects from  "../queries/getActiveProjects";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import ProjectCard from "../components/ProjectCard";
-// import { getActiveProjects } from "../queries/projectQueries";
 import Script from "next/script";
 import SearchBox from "../components/SearchBox";
 import Link from "next/link";
 import EmailList from "../components/EmailList";
-import Spinner from "../components/Spinner";
-import dbConnect from "../utils/dbConnect";
-import Tool from "../models/Tool";
 
-export default function Home({ projects }) {
+export default function Home({ data }) {
   const [searchValue, setSearchValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+
+  const projectQuery = useQuery({
+    queryKey: ["allActiveProjects"],
+    queryFn: getActiveProjects,
+    initialData: data,
+  });
 
   // Filter the products based on the search value
   useEffect(() => {
     setFilteredProducts(
-      projects.filter(
+      projectQuery.data.data.filter(
         (product) =>
           product.name.toLowerCase().includes(searchValue.toLowerCase()) ||
           product.longDescription
@@ -32,7 +36,7 @@ export default function Home({ projects }) {
           product.category.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
-  }, [searchValue, projects]);
+  }, [searchValue, data]);
 
   return (
     <div className="w-screen min-h-screen relative bg-[#F9F8F8] overflow-y-auto">
@@ -74,16 +78,15 @@ export default function Home({ projects }) {
   );
 }
 
-/* Retrieves pet(s) data from mongodb database */
-export async function getServerSideProps() {
-  
-  /* find all the projects in our database */
-  const result = await Tool.find({ active: true });
-  const projects = result.map((doc) => {
-    const project = doc.toObject()
-    project._id = project._id.toString()
-    return project
-  })
 
-  return { props: { projects: projects } }
+export async function getServerSideProps() {
+  const data = await getActiveProjects();
+    return {
+      props: {
+        data,
+      }
+    }
 }
+
+
+

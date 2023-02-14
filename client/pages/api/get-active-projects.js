@@ -1,6 +1,8 @@
-const Tool = require("../../models/Tool");
+import dbConnect from '../../utils/dbConnect';
+import Tool from "../../models/Tool";
 
 export default async function handler(req, res) {
+  await dbConnect();
   if (req.method === "GET") {
     try {
       const projects = await Tool.find({ active: true });
