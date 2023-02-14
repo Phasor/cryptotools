@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "../../components/Spinner";
 
-export default function Project() {
+export default function Project({data}) {
   const router = useRouter();
   const { name } = router.query;
 
@@ -22,6 +22,7 @@ export default function Project() {
     queryKey: ["project", name],
     queryFn: () => getProjectByName(name),
     enabled: name !== undefined,
+    initialData: data,
   });
 
   return (
@@ -125,4 +126,15 @@ export default function Project() {
       <Footer />
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { name } = context.query;
+  const data = await getProjectByName(name);
+
+  return {
+    props: {
+      data,
+    },
+  };
 }

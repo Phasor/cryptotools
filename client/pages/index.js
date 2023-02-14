@@ -1,5 +1,3 @@
-import { useQuery } from "react-query";
-import getActiveProjects from  "../queries/getActiveProjects";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import NavBar from "../components/NavBar";
@@ -10,6 +8,8 @@ import Script from "next/script";
 import SearchBox from "../components/SearchBox";
 import Link from "next/link";
 import EmailList from "../components/EmailList";
+import { useQuery } from "react-query";
+import getActiveProjects from  "../queries/getActiveProjects";
 
 export default function Home({ data }) {
   const [searchValue, setSearchValue] = useState("");

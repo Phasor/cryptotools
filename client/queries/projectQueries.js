@@ -53,31 +53,61 @@ function getProjectById(id) {
     });
 }
 
-function getProjectByName(name) {
-  return axios
-    .get(`/api/get-project-by-name?name=${name}`)
-    .then((res) => res.data)
-    .catch((err) => {
-      if (err.response && err.response.status === 404) {
+// function getProjectByName(name) {
+//   return axios
+//     .get(`/api/get-project-by-name?name=${name}`)
+//     .then((res) => res.data)
+//     .catch((err) => {
+//       if (err.response && err.response.status === 404) {
+//         // project not found
+//         // need to add spaces between words e.g. "DuneAnalytics" => "Dune Analytics"
+//         const updatedName = name.split(/(?=[A-Z])/).join(" ");
+//         console.log("name updated to ", updatedName);
+//         return axios
+//           .get(`/api/get-project-by-name?name=${updatedName}`)
+//           .then((res) => res.data)
+//           .catch((err) => {
+//             if (err.response) {
+//               return Promise.reject(err.response.data);
+//             } else {
+//               return Promise.reject(new Error("Something went wrong"));
+//             }
+//           });
+//       } else {
+//         return Promise.reject(err.response.data);
+//       }
+//     });
+// }
+
+async function getProjectByName(name) {
+  try {
+    const res = await fetch(`${process.env.BASE_API_URL}/api/get-project-by-name?name=${name}`);
+
+    if (!res.ok) {
+      if (res.status === 404) {
         // project not found
         // need to add spaces between words e.g. "DuneAnalytics" => "Dune Analytics"
         const updatedName = name.split(/(?=[A-Z])/).join(" ");
         console.log("name updated to ", updatedName);
-        return axios
-          .get(`/api/get-project-by-name?name=${updatedName}`)
-          .then((res) => res.data)
-          .catch((err) => {
-            if (err.response) {
-              return Promise.reject(err.response.data);
-            } else {
-              return Promise.reject(new Error("Something went wrong"));
-            }
-          });
-      } else {
-        return Promise.reject(err.response.data);
+
+        const updatedRes = await fetch(`${process.env.BASE_API_URL}/api/get-project-by-name?name=${updatedName}`);
+
+        if (!updatedRes.ok) {
+          throw new Error("Something went wrong with finding the project by updated name");
+        }
+        return updatedRes.json();
       }
-    });
+      throw new Error("Something went wrong finding the project by name");
+    }
+
+    return res.json();
+  } catch (err) {
+    throw new Error("Something went wrong, in catch block");
+  }
 }
+
+
+
 
 function editProject({ formData, id }) {
   return axios
