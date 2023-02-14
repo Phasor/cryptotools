@@ -13,7 +13,7 @@ import { useQuery } from "react-query";
 import Link from "next/link";
 import Spinner from "../components/Spinner";
 
-export default function Admin() {
+export default function Admin({data}) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -22,6 +22,7 @@ export default function Admin() {
   const projectQuery = useQuery({
     queryKey: "allProjects",
     queryFn: getAllProjects,
+    initialData: data,
   });
 
   useEffect(() => {
@@ -104,5 +105,14 @@ export default function Admin() {
     )}
   </>
   );
+}
+
+export async function getServerSideProps() {
+  const data = await getAllProjects();
+  return {
+    props: {
+      data,
+    },
+  };
 }
 

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import dbConnect from "../utils/dbConnect";
 
-export default function Login({test}) {
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -11,7 +10,7 @@ export default function Login({test}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/login/", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/login/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,18 +21,18 @@ export default function Login({test}) {
         }),
       });
       const data = await response.json();
-      // console.log(`data: ${JSON.stringify(data)}`);
+      console.log(`data: ${JSON.stringify(data)}`);
       if (data.success) {
         // test if localstorage is available
         if (typeof window !== "undefined") {
-          // console.log("localstorage is available");
+          console.log("localstorage is available");
           localStorage.setItem("token", data.token);
           localStorage.setItem("user", JSON.stringify(data.user._id));
         }
         router.push("/admin");
       } else {
         setError(data.message);
-        // console.log(data.message);
+        console.log(data.message);
       }
     } catch (error) {
       console.log(error);
@@ -79,14 +78,4 @@ export default function Login({test}) {
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps({ params }) {
-  // await dbConnect()
-  const test = "test"
-
-  // const pet = await Pet.findById(params.id).lean()
-  // pet._id = pet._id.toString()
-
-  return { props: { test } }
 }

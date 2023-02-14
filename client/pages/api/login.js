@@ -1,11 +1,9 @@
 import logUserIn from "../../services/authService";
-import dbConnect from "../../utils/dbConnect";
 
 export default async function handler(req, res) {
-  // await dbConnect();
   try {
     const user = await logUserIn(req.body.username, req.body.password);
-    //   debug(`user: ${user}`);
+    console.log(`user: ${user}`);
     if (user.success) {
       res.status(200).json({
         success: true,
