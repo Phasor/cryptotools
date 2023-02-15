@@ -1,11 +1,12 @@
 const mailchimp = require("@mailchimp/mailchimp_marketing");
+import allowCors from "../../utils/allowCors";
 
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,
   server: process.env.MAILCHIMP_API_SERVER,
 });
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   const { email } = req.body;
   console.log(`email: ${email}`);
   try {
@@ -27,3 +28,6 @@ export default async function handler(req, res) {
 export const config = {
   method: "POST",
 };
+
+// wrap the handler function with the allowCors function
+export default allowCors(handler);
