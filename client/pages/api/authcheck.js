@@ -1,6 +1,6 @@
 import { verifyJWT } from "../../utils/utils";
 
-export default async function authcheck (req, res) {
+export default async function authcheck(req, res) {
   try {
     const token = req.headers.authorization.split(" ")[1];
     // console.log(`token: ${token}`);

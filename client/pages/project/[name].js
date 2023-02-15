@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "../../components/Spinner";
 
-export default function Project({data}) {
+export default function Project({ data }) {
   const router = useRouter();
   const { name } = router.query;
 

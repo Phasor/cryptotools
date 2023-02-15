@@ -9,7 +9,7 @@ import SearchBox from "../components/SearchBox";
 import Link from "next/link";
 import EmailList from "../components/EmailList";
 import { useQuery } from "react-query";
-import getActiveProjects from  "../queries/getActiveProjects";
+import getActiveProjects from "../queries/getActiveProjects";
 
 export default function Home({ data }) {
   const [searchValue, setSearchValue] = useState("");
@@ -72,21 +72,17 @@ export default function Home({ data }) {
           </Link>
         ))}
       </main>
-      
+
       <Footer />
     </div>
   );
 }
 
-
 export async function getServerSideProps() {
   const data = await getActiveProjects();
-    return {
-      props: {
-        data,
-      }
-    }
+  return {
+    props: {
+      data,
+    },
+  };
 }
-
-
-

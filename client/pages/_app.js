@@ -8,7 +8,6 @@ import { ReactQueryDevtools } from "react-query/devtools";
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
- 
   return (
     <div className="overflow-x-hidden min-h-screen">
       <QueryClientProvider client={queryClient}>

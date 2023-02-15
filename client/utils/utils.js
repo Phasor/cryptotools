@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 // use the below if you can upload secret files to the host, otherwise need to store .pem in env variables
-  /*
+/*
   const pathToPvtKey = path.join(__dirname, "../../../..", "id_rsa_priv.pem");
   const PRIV_KEY = fs.readFileSync(pathToPvtKey, "utf8");
   const pathToPubKey = path.join(__dirname, "../../../..", "id_rsa_pub.pem");
@@ -13,13 +13,12 @@ const path = require("path");
 
 // function to take a multi line string and convert it to a single line string
 function makeSingleLineKey(key) {
-  return key.replace(/(\r\n|\n|\r)/gm, '\\n');
+  return key.replace(/(\r\n|\n|\r)/gm, "\\n");
 }
 
 // must be a single line string with the \n characters preserved for the below to work
 const { PUB_KEY } = JSON.parse(process.env.LOCAL_AUTH_PUB_KEY);
 const { PRIV_KEY } = JSON.parse(process.env.LOCAL_AUTH_PRIV_KEY);
-
 
 /**
  * -------------- HELPER FUNCTIONS ----------------
