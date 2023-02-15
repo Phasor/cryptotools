@@ -11,7 +11,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/login/`,
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/login`,
         {
           method: "POST",
           headers: {
