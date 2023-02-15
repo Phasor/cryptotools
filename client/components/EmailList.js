@@ -10,12 +10,13 @@ export default function EmailList() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(`inside handler: ${email}`);
 
     // Sanitise email input
     const sanitizedEmail = DOMPurify.sanitize(email);
 
     try {
-      const res = await fetch("/api/subscribe", {
+      const res = await fetch(`${NEXT_PUBLIC_BASE_API_URL}/api/subscribe`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +63,7 @@ export default function EmailList() {
             className={
               email != ""
                 ? "bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md shadow"
-                : "bg-blue-400  text-white py-1 px-2 rounded-md shadow"
+                : "bg-blue-400  text-white p-2 rounded-md shadow"
             }
           >
             Submit
