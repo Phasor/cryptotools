@@ -25,20 +25,16 @@ function MyApp({ Component, pageProps }) {
         />
 
         {/* Google Analytics Script */}
-        {/* <Script
-          id="google-analytics1"
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-BFYE8M0LZL"
-        />
-        <Script id="google-analytics2" strategy="afterInteractive">
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-XHW4FZR83P"/>
+        <Script>
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-          
-            gtag('config', 'G-BFYE8M0LZL');
+
+            gtag('config', 'G-XHW4FZR83P');
           `}
-        </Script> */}
+        </Script>
 
         <Component {...pageProps} />
         <ReactQueryDevtools />
