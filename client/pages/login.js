@@ -29,7 +29,7 @@ export default function Login() {
           localStorage.setItem("token", data.token);
           localStorage.setItem("user", JSON.stringify(data.user._id));
         }
-        router.push("/admin");
+        router.push(`${process.env.NEXT_PUBLIC_BASE_API_URL}/admin`);
       } else {
         setError(data.message);
         console.log(data.message);

@@ -34,7 +34,7 @@ export default function EditProject() {
     const isLoggedIn = useAuth().then((loggedIn) => {
       setIsLoggedIn(loggedIn);
       if (loggedIn === false) {
-        router.push("/login");
+        router.push(`${process.env.NEXT_PUBLIC_BASE_API_URL}/login`);
       }
     });
     // console.log(`isLoggedIn: ${isLoggedIn}`);

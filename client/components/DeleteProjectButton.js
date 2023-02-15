@@ -31,7 +31,7 @@ export default function DeleteProjectButton({ project }) {
       // refetch the projects query after a successful mutation
       client.invalidateQueries(["allProjects"]);
       // redirect to admin page
-      Router.push("/admin");
+      Router.push(`${process.env.NEXT_PUBLIC_BASE_API_URL}/admin`);
     },
   });
 

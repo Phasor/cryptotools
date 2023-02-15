@@ -9,7 +9,7 @@ export default function LogOutButton() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     // redirect to login page
-    router.push("/");
+    router.push(`${process.env.NEXT_PUBLIC_BASE_API_URL}`);
   };
 
   return (
