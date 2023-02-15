@@ -25,7 +25,7 @@ export default function SearchBox({ value, setSearchValue, isAdmin }) {
         </div>
       </div>
       <div className="max-w-6xl mx-auto flex justify-center">
-        <p className="underline text-blue-600 hover:text-blue-800">Visit <a href="http://www.cryptostatlist.com" target="_blank">CryptoStatList.com</a></p>
+        <p className="underline text-blue-600 hover:text-blue-800">Visit <a href="http://www.cryptostatlist.com" target="_blank" rel="noreferrer">CryptoStatList.com</a></p>
       </div>
     </>
   );
