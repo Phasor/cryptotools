@@ -62,16 +62,18 @@ export default function Home({ data }) {
       <SearchBox value={searchValue} setSearchValue={setSearchValue} />
 
       {/* Project List */}
-      <main className="max-w-6xl p-4 md:p-0 items-center mx-auto mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
-        {filteredProducts?.map((project) => (
-          <Link
-            key={project._id}
-            href={`/project/${project.name.split(" ").join("")}`}
-          >
-            <ProjectCard key={project._id} project={project} />
-          </Link>
-        ))}
-      </main>
+      <div className="mx-auto flex justify-center max-w-6xl"> 
+        <main className="w-full m-4 md:p-0 items-center mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
+          {filteredProducts?.map((project) => (
+            <Link
+              key={project._id}
+              href={`/project/${project.name.split(" ").join("")}`}
+            >
+              <ProjectCard key={project._id} project={project} />
+            </Link>
+          ))}
+        </main>
+      </div>
 
       <Footer />
     </div>
