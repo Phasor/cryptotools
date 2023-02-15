@@ -18,19 +18,33 @@ export async function getAllProjects() {
 }
 
 
-function getProjectById(id) {
-  // console.log("id in function ", id);
-  return axios
-    .get(`/api/get-project-by-id?id=${id}`)
-    .then((res) => res.data)
-    .catch((err) => {
-      if (err.response) {
-        return Promise.reject(err.response.data);
-      } else {
-        return Promise.reject(new Error("Something went wrong"));
-      }
-    });
+// function getProjectById(id) {
+//   // console.log("id in function ", id);
+//   return axios
+//     .get(`/api/get-project-by-id?id=${id}`)
+//     .then((res) => res.data)
+//     .catch((err) => {
+//       if (err.response) {
+//         return Promise.reject(err.response.data);
+//       } else {
+//         return Promise.reject(new Error("Something went wrong"));
+//       }
+//     });
+// }
+
+export async function getProjectById(id) {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-project-by-id?id=${id}`);
+    if (!res.ok) {
+      throw new Error("Something went wrong finding the project by id");
+    }
+    return res.json();
+  } catch (err) {
+    throw new Error("Something went wrong, in catch block");
+  }
 }
+
+
 
 export async function getProjectByName(name) {
   try {
@@ -62,29 +76,45 @@ export async function getProjectByName(name) {
 
 
 
-function editProject({ formData, id }) {
-  return axios
-    .post(
-      "/api/edit-project-by-id",
-      { formData, id },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.getItem("token"),
-        },
-      }
-    )
-    .then((res) => res.data)
-    .catch((err) => {
-      if (err.response) {
-        return Promise.reject(err.response.data);
-      } else {
-        return Promise.reject(new Error("Something went wrong"));
-      }
-    });
-}
+// function editProject({ formData, id }) {
+//   return axios
+//     .post(
+//       "/api/edit-project-by-id",
+//       { formData, id },
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: localStorage.getItem("token"),
+//         },
+//       }
+//     )
+//     .then((res) => res.data)
+//     .catch((err) => {
+//       if (err.response) {
+//         return Promise.reject(err.response.data);
+//       } else {
+//         return Promise.reject(new Error("Something went wrong"));
+//       }
+//     });
+// }
 
-export {
-  getProjectById,
-  editProject,
-};
+
+export async function editProject({ formData, id }) {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/edit-project-by-id`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({ formData, id }),
+    });    
+
+    if (!res.ok) {
+      throw new Error("Something went wrong with editing the project");
+    }
+    return res.json();
+  } catch (err) {
+    throw new Error("Something went wrong, in catch block");
+  }
+}
