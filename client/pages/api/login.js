@@ -1,6 +1,7 @@
 import logUserIn from "../../services/authService";
+import allowCors from "../../utils/allowCors";
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   try {
     const user = await logUserIn(req.body.username, req.body.password);
     console.log(`user: ${user}`);
@@ -22,3 +23,6 @@ export default async function handler(req, res) {
     });
   }
 }
+
+// wrap the handler function with the allowCors function
+export default allowCors(handler);
