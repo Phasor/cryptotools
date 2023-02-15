@@ -1,4 +1,5 @@
 import { mailOptions, transporter } from "../../utils/nodemailer";
+import allowCors from "../../utils/allowCors";
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
@@ -44,4 +45,4 @@ async function validateHuman(token) {
   return data.success;
 }
 
-export default handler;
+export default allowCors(handler);
