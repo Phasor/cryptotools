@@ -41,7 +41,7 @@ async function validateHuman(token) {
     }
   );
   const data = await response.json();
-  console.log(`data: ${JSON.stringify(data)}`);
+  // console.log(`data: ${JSON.stringify(data)}`);
   return data.success;
 }
 
