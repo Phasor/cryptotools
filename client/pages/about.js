@@ -26,21 +26,13 @@ export default function About() {
         <div className="flex flex-col p-5 md:max-w-[60%] ">
           <h1 className="text-xl">About</h1>
           <p className="mt-2">
-            I&apos;ve been into crypto for a while. I got tired of getting my
-            information from &quot;crypto influencers&quot; on twitter. I got
-            burned. I want to do my own research using dashboards that the
-            comminut has put together. From time to time I would find a cool new
-            dashboard about a project I liked. The problem was that they were
-            totally disparate and all over the internet.
-          </p>
-          <p className="mt-2">
-            This is a simple repository of 3rd party links to dashboards about
-            crypto projects that I have found useful.
+            This site is a list of crypto tools to help you succeed in the crypto markets. From crypto portfolio trackers to the best crypto tax software, 
+            we have you covered.
           </p>
           <p className="mt-2">
             Please feel free to{" "}
             <Link href="/suggest" className="text-blue-500 underline">
-              suggest a new link
+              suggest a new crypto focused tool
             </Link>{" "}
             if you found it useful.
           </p>

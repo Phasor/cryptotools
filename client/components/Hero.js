@@ -6,14 +6,13 @@ export default function Hero() {
   return (
     <div className="lg:min-h-[500px] max-h-[600px] w-screen lg:flex justify-center items-center bg-gradient-to-t from-[#F9F8F8] to-blue-200">
       <Link href="/">
-        <div className="p-5 lg:w-[50%] lg:mt-[200px] flex flex-col lg:ml-20">
+        <div className="p-5 lg:min-w-[50%] lg:mt-[200px] flex flex-col lg:ml-20">
           <h1 className="mt-10 md:mt-2 text-5xl md:text-7xl py-2 font-bold whitespace-nowrap ">
-            Crypto Tools
+            Crypto<span className="text-blue-500">Toolkit</span>
           </h1>
-          <h3 className="text-2xl py-2">Do Your Own Research.</h3>
+          <h3 className="text-2xl py-2">The best crypto tools</h3>
           <p className="text-gray-500">
-            Links to great crypto tools so you can stop relying on influncers
-            and DYOR with confidence.
+            Get an edge in your research, and do your taxes...
           </p>
         </div>
       </Link>
