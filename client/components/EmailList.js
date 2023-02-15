@@ -16,7 +16,7 @@ export default function EmailList() {
     const sanitizedEmail = DOMPurify.sanitize(email);
 
     try {
-      const res = await fetch(`${NEXT_PUBLIC_BASE_API_URL}/api/subscribe`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/subscribe`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

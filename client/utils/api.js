@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const sendContactForm = async (data) => {
   // console.log(`data: ${JSON.stringify(data)}`)
   try {
-    const res = await fetch("/api/contact", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/contact`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
