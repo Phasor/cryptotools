@@ -20,20 +20,6 @@ export async function getAllProjects() {
   return response.json();
 }
 
-// function getProjectById(id) {
-//   // console.log("id in function ", id);
-//   return axios
-//     .get(`/api/get-project-by-id?id=${id}`)
-//     .then((res) => res.data)
-//     .catch((err) => {
-//       if (err.response) {
-//         return Promise.reject(err.response.data);
-//       } else {
-//         return Promise.reject(new Error("Something went wrong"));
-//       }
-//     });
-// }
-
 export async function getProjectById(id) {
   try {
     const res = await fetch(
@@ -59,7 +45,7 @@ export async function getProjectByName(name) {
         // project not found
         // need to add spaces between words e.g. "DuneAnalytics" => "Dune Analytics"
         const updatedName = name.split(/(?=[A-Z])/).join(" ");
-        console.log("name updated to ", updatedName);
+        // console.log("name updated to ", updatedName);
 
         const updatedRes = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-project-by-name?name=${updatedName}`
@@ -80,28 +66,6 @@ export async function getProjectByName(name) {
     throw new Error("Something went wrong, in catch block");
   }
 }
-
-// function editProject({ formData, id }) {
-//   return axios
-//     .post(
-//       "/api/edit-project-by-id",
-//       { formData, id },
-//       {
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: localStorage.getItem("token"),
-//         },
-//       }
-//     )
-//     .then((res) => res.data)
-//     .catch((err) => {
-//       if (err.response) {
-//         return Promise.reject(err.response.data);
-//       } else {
-//         return Promise.reject(new Error("Something went wrong"));
-//       }
-//     });
-// }
 
 export async function editProject({ formData, id }) {
   try {

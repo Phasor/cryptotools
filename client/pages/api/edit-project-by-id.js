@@ -68,7 +68,7 @@ export default async function handler(req, res) {
         .status(200)
         .json({ success: true, message: "Tool updated successfully" });
     } catch (err) {
-      console.log(JSON.stringify(err.message));
+      // console.log(JSON.stringify(err.message));
       return res.status(500).json({ success: false, message: err.message });
     }
   } else {

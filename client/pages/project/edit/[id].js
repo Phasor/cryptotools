@@ -78,7 +78,7 @@ export default function EditProject() {
         }
       );
       const data = await response.json();
-      console.log(data.secure_url);
+      // console.log(data.secure_url);
       return data.secure_url;
     } catch (err) {
       console.log(err);

@@ -9,7 +9,7 @@ import SearchBox from "../components/SearchBox";
 import Link from "next/link";
 import EmailList from "../components/EmailList";
 import { useQuery } from "react-query";
-import getActiveProjects from "../queries/getActiveProjects";
+import { getActiveProjects } from "../queries/projectQueries";
 
 export default function Home({ data }) {
   const [searchValue, setSearchValue] = useState("");

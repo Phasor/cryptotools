@@ -61,7 +61,7 @@ export default function Suggest() {
     e.preventDefault();
     // get recaptcha token
     const token = await reRef.current.executeAsync();
-    // console.log(`token: ${token}`);
+    console.log(`token: ${token}`);
 
     // add token to formState
     setFormState((prev) => ({ ...prev, token }));

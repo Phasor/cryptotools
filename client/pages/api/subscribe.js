@@ -8,7 +8,7 @@ mailchimp.setConfig({
 
 async function handler(req, res) {
   const { email } = req.body;
-  console.log(`email: ${email}`);
+  // console.log(`email: ${email}`);
   try {
     const response = await mailchimp.lists.addListMember(
       `${process.env.MAILCHIMP_LIST_ID}`,

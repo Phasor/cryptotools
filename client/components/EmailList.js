@@ -10,7 +10,6 @@ export default function EmailList() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`inside handler: ${email}`);
 
     // Sanitise email input
     const sanitizedEmail = DOMPurify.sanitize(email);

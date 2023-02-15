@@ -4,7 +4,7 @@ import allowCors from "../../utils/allowCors";
 async function handler(req, res) {
   try {
     const user = await logUserIn(req.body.username, req.body.password);
-    console.log(`user: ${user}`);
+    // console.log(`user: ${user}`);
     if (user.success) {
       res.status(200).json({
         success: true,
