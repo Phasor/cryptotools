@@ -35,38 +35,40 @@ export default function EmailList() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-6xl mx-4 md:mx-auto mb-10 p-4  rounded-lg shadow-lg bg-yellow-500"
-    >
-      <p className="px-1 py-2 font-semi-bold text-md font-semibold">
-        Yes, I want an edge and to be kept up to date with the latest crypto
-        tools:
-      </p>
-      <div className="space-x-4 mb-2 flex items-center justify-center">
-        <FontAwesomeIcon icon={faEnvelope} className="h-10 w-10 text-black" />
-        <input
-          type="email"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-          required
-          name="email"
-          placeholder="example@gmail.com"
-          className="rounded p-2 w-full outline-none"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <button
-          type="submit"
-          disabled={email == ""}
-          className={
-            email != ""
-              ? "bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-md shadow"
-              : "bg-blue-400  text-white py-1 px-2 rounded-md shadow"
-          }
-        >
-          Submit
-        </button>
-      </div>
-    </form>
+    <div className="mx-auto flex justify-center max-w-6xl"> 
+      <form
+        onSubmit={handleSubmit}
+        className="w-full m-4 mb-10 p-4  rounded-lg shadow-lg bg-yellow-500"
+      >
+        <p className="px-1 py-2 font-semi-bold text-md font-semibold">
+          Yes, I want an edge and to be kept up to date with the latest crypto
+          tools:
+        </p>
+        <div className="space-x-4 mb-2 flex items-center justify-center">
+          <FontAwesomeIcon icon={faEnvelope} className="h-16 w-16 text-black" />
+          <input
+            type="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            required
+            name="email"
+            placeholder="example@gmail.com"
+            className="rounded p-2 w-full outline-none"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button
+            type="submit"
+            disabled={email == ""}
+            className={
+              email != ""
+                ? "bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md shadow"
+                : "bg-blue-400  text-white py-1 px-2 rounded-md shadow"
+            }
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
