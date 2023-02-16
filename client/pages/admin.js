@@ -9,6 +9,7 @@ import { getAllProjects } from "../queries/projectQueries";
 import Script from "next/script";
 import SearchBox from "../components/SearchBox";
 import AddProjectButton from "../components/AddProjectButton";
+import AddCategoryButton from "../components/AddCategoryButton";
 import { useQuery } from "react-query";
 import Link from "next/link";
 import Spinner from "../components/Spinner";
@@ -74,7 +75,10 @@ export default function Admin({ data }) {
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <NavBar />
-          <AddProjectButton />
+          <div className="flex">
+            <AddProjectButton />
+            <AddCategoryButton />
+          </div>
           <SearchBox
             value={searchValue}
             setSearchValue={setSearchValue}

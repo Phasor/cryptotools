@@ -1,9 +1,9 @@
-const Tool = require("../../models/Tool");
+const Category = require("../../models/Category");
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
-      const categories = await Tool.find().distinct('category')
+      const categories = await Category.find({})
       res.status(200).json({ success: true, data: categories });
     } catch (err) {
       res.status(500).json({ success: false, message: "Server error" });

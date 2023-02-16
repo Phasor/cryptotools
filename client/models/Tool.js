@@ -9,11 +9,7 @@ const ToolSchema = new mongoose.Schema({
   longDescription: { type: String, required: true },
   review: { type: String, required: false },
   active: { type: Boolean, required: true, default: false },
-  category: {
-    type: String,
-    required: true,
-    enum: ["tax", "research", "onchain-data", "wallet", "exchange", "other"],
-  },
+  category: { type: Schema.Types.ObjectId, ref: "Category" },
   rating: { type: String, required: true, enum: ["1", "2", "3", "4", "5"] },
 });
 

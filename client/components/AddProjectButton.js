@@ -1,22 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import Modal from "./Modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
+import mongoose from "mongoose";
 
 export default function AddProjectButton() {
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({ active: false });
+  const [categories, setCategories] = useState([]);
+  const [formData, setFormData] = useState(
+    { 
+      active: false,
+      category: "",
+      name: "",
+      image: "",
+      website: "",
+      shortDescription: "",
+      longDescription: "",
+      rating: 0,
+      review: "",
+     });
   const [image, setImage] = useState(null);
   const [imgPreview, setImgPreview] = useState(null);
   const [errors, setErrors] = useState(null);
   const client = useQueryClient();
 
+  useEffect(() => {
+    // get list of categories
+    const getCategories = async () => {
+      try {
+        const response = await fetch("/api/get-all-categories");
+        const data = await response.json();
+        setCategories(data.data); // array of objects
+        console.log(`Categories: ${JSON.stringify(data.data)}`)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getCategories();
+  }, []);
+
+
   const addProject = async (data) => {
     // console.log(`Form data: ${JSON.stringify(data)}`)
     if (localStorage.getItem("token")) {
       try {
+        
         const token = localStorage.getItem("token");
         const response = await fetch("/api/add-project", {
           method: "POST",
@@ -47,6 +77,9 @@ export default function AddProjectButton() {
     onError: (error) => {
       console.log(error);
       toast.error("Error adding project");
+    },
+    onMutate: () => {
+      console.log(`formData: ${JSON.stringify(formData)}`)
     },
   });
 
@@ -108,7 +141,8 @@ export default function AddProjectButton() {
       shortDescription: formData.shortDescription,
       longDescription: formData.longDescription,
       active: formData.active,
-      category: formData.category,
+      // create new mongoose object id for category from formData
+      category: mongoose.Types.ObjectId(formData.category),
       rating: formData.rating,
       review: formData.review,
     });
@@ -139,6 +173,7 @@ export default function AddProjectButton() {
                 placeholder="Cool Project"
                 className="p-1 my-2 outline-none border rounded-md ml-2 w-[80%]"
                 name="name"
+                value={formData.name}
                 onChange={handleChange}
                 required
               />
@@ -150,6 +185,7 @@ export default function AddProjectButton() {
                 placeholder="A great on chain analytics tool!"
                 className="p-1 my-2 outline-none border rounded-md w-[80%]"
                 name="shortDescription"
+                value={formData.shortDescription}
                 onChange={handleChange}
                 required
               />
@@ -161,6 +197,7 @@ export default function AddProjectButton() {
                 placeholder="Enter long description"
                 className="p-1 my-2 outline-none border rounded-md w-[80%]"
                 name="longDescription"
+                value={formData.longDescription}
                 onChange={handleChange}
                 required
               />
@@ -172,6 +209,7 @@ export default function AddProjectButton() {
                 placeholder="Enter review"
                 className="p-1 my-2 outline-none border rounded-md w-[80%]"
                 name="review"
+                value={formData.review}
                 onChange={handleChange}
               />
             </div>
@@ -182,6 +220,7 @@ export default function AddProjectButton() {
                 placeholder="www.glassnode.com"
                 className="p-1 my-2 outline-none border rounded-md w-[80%]"
                 name="website"
+                value={formData.website}
                 onChange={handleChange}
                 required
               />
@@ -190,6 +229,7 @@ export default function AddProjectButton() {
               <label>Rating</label>
               <select
                 name="rating"
+                value={formData.rating}
                 onChange={handleChange}
                 className="p-1 my-2 outline-none border rounded-md"
                 required
@@ -205,16 +245,16 @@ export default function AddProjectButton() {
               <label>Category</label>
               <select
                 name="category"
+                value={formData.category}
                 onChange={handleChange}
                 className="p-1 my-2 outline-none border rounded-md"
                 required
               >
-                <option value="tax">Tax</option>
-                <option value="research">Research</option>
-                <option value="onchain-data">On-chain Data</option>
-                <option value="wallet">Wallet</option>
-                <option value="exchange">Exchange</option>
-                <option value="other">Other</option>
+                {categories.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {category.category}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="flex items-center space-x-2 justify-between my-3">
