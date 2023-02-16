@@ -10,6 +10,7 @@ import Link from "next/link";
 import EmailList from "../components/EmailList";
 import { useQuery } from "react-query";
 import { getActiveProjects } from "../queries/projectQueries";
+import AdvancedSearch from "../components/AdvancedSearch";
 
 export default function Home({ data }) {
   const [searchValue, setSearchValue] = useState("");
@@ -60,6 +61,7 @@ export default function Home({ data }) {
       <Hero />
       <EmailList />
       <SearchBox value={searchValue} setSearchValue={setSearchValue} />
+      <AdvancedSearch/>
 
       {/* Project List */}
       <div className="mx-auto flex justify-center max-w-6xl"> 
