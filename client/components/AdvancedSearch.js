@@ -9,7 +9,7 @@ export default function AdvancedSearch() {
     const fetchCategories = async () => {
         const categories = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-all-categories`)
         const data = await categories.json()
-        console.log(data)
+        // console.log(data)
         setCategories(data.data)
     }
     fetchCategories()

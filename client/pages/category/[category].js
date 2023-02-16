@@ -9,15 +9,14 @@ import { useQuery } from "react-query";
 import { getProjectsByCategory } from "../../queries/projectQueries";
 import { useRouter } from "next/router";
 
-export default function Project({ data }) {
+export default function Project() {
     const router = useRouter();
     const { category } = router.query;
 
   const projectQuery = useQuery({
     queryKey: ["allProjectsInCategory", category],
     queryFn: () => getProjectsByCategory(category),
-    enabled: category !== undefined,
-    initialData: data,
+    enabled: category !== undefined
   });
 
   if (projectQuery.isLoading) return <div>Loading...</div>;
@@ -46,8 +45,9 @@ export default function Project({ data }) {
 
       {/* Project List */}
       <div className="mx-auto flex justify-center max-w-6xl"> 
+      <Link href="/">Back</Link>
         <main className="w-full m-2 md:p-0 items-center mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
-          {projectQuery?.data.data.map((project) => (
+          {projectQuery?.data?.data?.map((project) => (
             <Link
               key={project._id}
               href={`/project/${project.name.split(" ").join("")}`}
@@ -63,14 +63,3 @@ export default function Project({ data }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  // get the category from the url
-  const { category } = context.query;
-  const data = await getProjectsByCategory(category);
-  
-  return {
-    props: {
-      data,
-    },
-  };
-}
