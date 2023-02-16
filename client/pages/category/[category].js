@@ -44,8 +44,8 @@ export default function Project() {
       <Hero />
 
       {/* Project List */}
-      <div className="mx-auto flex justify-center max-w-6xl"> 
-      <Link href="/">Back</Link>
+      <div className="mx-auto max-w-6xl">
+        <Link href="/" className="text-blue-500 underline mx-2">Back</Link> 
         <main className="w-full m-2 md:p-0 items-center mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
           {projectQuery?.data?.data?.map((project) => (
             <Link
