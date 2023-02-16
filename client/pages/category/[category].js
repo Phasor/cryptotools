@@ -52,7 +52,7 @@ export default function Project() {
 
       {/* Category Description */}
       {categoryQuery?.data?.data?.map((category) => (
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl" key={category._id}>
         <p className="m-2">{category.description}</p>
       </div>
       ))}

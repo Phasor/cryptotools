@@ -14,7 +14,7 @@ export default function AdvancedSearch() {
         setCategories(data.data)
     }
     fetchCategories()
-    }, [])
+    }, [BASE_URL])
     
 
   return (
