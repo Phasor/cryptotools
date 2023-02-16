@@ -20,6 +20,16 @@ export async function getAllProjects() {
   return response.json();
 }
 
+export async function getProjectsByCategory(category) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-projects-by-category?category=${category}`
+  );
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
+}
+
 export async function getProjectById(id) {
   try {
     const res = await fetch(
