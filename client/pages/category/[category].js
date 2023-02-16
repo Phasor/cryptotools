@@ -6,8 +6,9 @@ import ProjectCard from "../../components/ProjectCard";
 import Script from "next/script";
 import Link from "next/link";
 import { useQuery } from "react-query";
-import { getProjectsByCategory } from "../../queries/projectQueries";
+import { getProjectsByCategory, getCategoryDescription } from "../../queries/projectQueries";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function Project() {
     const router = useRouter();
@@ -16,6 +17,12 @@ export default function Project() {
   const projectQuery = useQuery({
     queryKey: ["allProjectsInCategory", category],
     queryFn: () => getProjectsByCategory(category),
+    enabled: category !== undefined
+  });
+
+  const categoryQuery = useQuery({
+    queryKey: ["categoryDescription", category],
+    queryFn: () => getCategoryDescription(category),
     enabled: category !== undefined
   });
 
@@ -42,6 +49,13 @@ export default function Project() {
       </Head>
       <NavBar />
       <Hero />
+
+      {/* Category Description */}
+      {categoryQuery?.data?.data?.map((category) => (
+      <div className="mx-auto max-w-6xl">
+        <p className="m-2">{category.description}</p>
+      </div>
+      ))}
 
       {/* Project List */}
       <div className="mx-auto max-w-6xl">
