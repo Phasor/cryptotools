@@ -3,7 +3,7 @@ const Tool = require("../../models/Tool");
 export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
-      const projects = await Tool.find();
+      const projects = await Tool.find({}).populate("category");
       res.status(200).json({ success: true, data: projects });
     } catch (err) {
       res.status(500).json({ success: false, message: "Server error" });

@@ -6,10 +6,10 @@ import EditProjectButton from "./EditProjectButton";
 import Link from "next/link";
 
 export default function ProjectCard({ project, isAdmin }) {
-  let projectCategory = project.category;
+  let projectCategory = project.category.category;
   // console.log(`project`, project);
-  // let capitalizedProjectCategory =
-  //   projectCategory[0].toUpperCase() + projectCategory.slice(1);
+  let capitalizedProjectCategory =
+    projectCategory[0].toUpperCase() + projectCategory.slice(1);
 
   return (
     <div className="relative max-h-[400px]">
@@ -32,7 +32,7 @@ export default function ProjectCard({ project, isAdmin }) {
           <h1 className="text-xl font-bold">{project.name}</h1>
           <p className="text-xs my-1">
             <span className="bg-blue-500 text-white px-1 rounded-full">
-              {/* {capitalizedProjectCategory} */}
+              {capitalizedProjectCategory}
             </span>
           </p>
           <p
