@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import Spinner from "../../../components/Spinner";
 import Image from "next/image";
+import mongoose from "mongoose";
 
 export default function EditProject() {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function EditProject() {
   const [formData, setFormData] = useState({});
   const [image, setImage] = useState(null);
   const [imgPreview, setImgPreview] = useState("");
+  const [categories, setCategories] = useState([]);
 
   const projectQuery = useQuery({
     queryKey: ["projectToEdit", id],
@@ -55,6 +57,22 @@ export default function EditProject() {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectQuery.data]);
+
+  useEffect(() => {
+    // get list of categories
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
+    const getCategories = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/api/get-all-categories`);
+        const data = await response.json();
+        setCategories(data.data); 
+        console.log(`Categories in edit > id: ${JSON.stringify(data.data)}`)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getCategories();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -106,7 +124,7 @@ export default function EditProject() {
     if (image) {
       // image has been changed, upload new one
       newImgURL = await UploadImage(image);
-      const updatedFormData = { ...formData, image: newImgURL };
+      const updatedFormData = { ...formData, image: newImgURL, category:mongoose.Types.ObjectId(formData.category) };
       EditProjectMutation.mutate({ formData: updatedFormData, id });
     } else {
       EditProjectMutation.mutate({ formData, id });
@@ -210,20 +228,20 @@ export default function EditProject() {
             </select>
           </div>
           <div className="flex items-center space-x-2 justify-between">
-            <label>Category</label>
-            <select
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              className="p-1 my-2 outline-none border rounded-md"
-            >
-              <option value="tax">Tax</option>
-              <option value="research">Research</option>
-              <option value="onchain-data">On-chain Data</option>
-              <option value="wallet">Wallet</option>
-              <option value="exchange">Exchange</option>
-              <option value="other">Other</option>
-            </select>
+              <label>Category</label>
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                className="p-1 my-2 outline-none border rounded-md"
+                required
+              >
+                {categories.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {category.category}
+                  </option>
+                ))}
+              </select>
           </div>
 
           <div className="flex items-center space-x-2 justify-between my-3">

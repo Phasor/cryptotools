@@ -28,12 +28,13 @@ export default function AddProjectButton() {
 
   useEffect(() => {
     // get list of categories
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
     const getCategories = async () => {
       try {
-        const response = await fetch("/api/get-all-categories");
+        const response = await fetch(`${BASE_URL}/api/get-all-categories`);
         const data = await response.json();
-        setCategories(data.data); // array of objects
-        console.log(`Categories: ${JSON.stringify(data.data)}`)
+        setCategories(data.data); 
+        // console.log(`Categories: ${JSON.stringify(data.data)}`)
       } catch (err) {
         console.log(err);
       }
@@ -72,15 +73,29 @@ export default function AddProjectButton() {
       if (response.success) {
         client.invalidateQueries(["allProjects"]);
         toast.success("Project added!");
+
+        // reset form data
+        setFormData(
+          { 
+            active: false,
+            category: "",
+            name: "",
+            image: "",
+            website: "",
+            shortDescription: "",
+            longDescription: "",
+            rating: 0,
+            review: "",
+           });
       }
     },
     onError: (error) => {
       console.log(error);
       toast.error("Error adding project");
     },
-    onMutate: () => {
-      console.log(`formData: ${JSON.stringify(formData)}`)
-    },
+    // onMutate: () => {
+    //   console.log(`formData: ${JSON.stringify(formData)}`)
+    // },
   });
 
   const handleChange = (e) => {
