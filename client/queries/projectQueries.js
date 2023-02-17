@@ -1,23 +1,27 @@
 import { useQuery } from "react-query";
 
 export async function getActiveProjects() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-active-projects`
-  );
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-active-projects`
+    );
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch data from server");
   }
-  return response.json();
 }
 
 export async function getAllProjects() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-all-projects`
-  );
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-all-projects`
+    );
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch data from server");
   }
-  return response.json();
 }
 
 export async function getProjectsByCategory(category) {

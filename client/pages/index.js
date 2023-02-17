@@ -22,10 +22,12 @@ export default function Home({ data }) {
     initialData: data,
   });
 
-  // Filter the products based on the search value
+  // console.log(`projectQuery.data: ${projectQuery.data}`);
+
+// Filter the products based on the search value
   useEffect(() => {
     setFilteredProducts(
-      projectQuery.data.data.filter(
+      projectQuery?.data?.data?.filter(
         (product) =>
           product.name.toLowerCase().includes(searchValue.toLowerCase()) ||
           product.longDescription
@@ -34,7 +36,7 @@ export default function Home({ data }) {
           product.shortDescription
             .toLowerCase()
             .includes(searchValue.toLowerCase()) ||
-          product.category.toLowerCase().includes(searchValue.toLowerCase())
+          product.category?.category?.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
   }, [searchValue, projectQuery.data.data]);

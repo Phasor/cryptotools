@@ -6,10 +6,10 @@ import EditProjectButton from "./EditProjectButton";
 import Link from "next/link";
 
 export default function ProjectCard({ project, isAdmin }) {
-  let projectCategory = project.category.category;
+  let projectCategory = project.category.category || "";
   // console.log(`project`, project);
   let capitalizedProjectCategory =
-    projectCategory[0].toUpperCase() + projectCategory.slice(1);
+    projectCategory[0]?.toUpperCase() + projectCategory?.slice(1);
 
   return (
     <div className="relative max-h-[400px]">
@@ -31,8 +31,10 @@ export default function ProjectCard({ project, isAdmin }) {
         <div className="flex flex-col items-start w-full p-4 overflow-hidden">
           <h1 className="text-xl font-bold">{project.name}</h1>
           <p className="text-xs my-1">
-            <span className="bg-blue-500 text-white px-1 rounded-full">
-              {capitalizedProjectCategory}
+            <span >
+            {capitalizedProjectCategory && capitalizedProjectCategory !== "undefined" && (
+              <p className="bg-blue-500 text-white px-1 rounded-full">{capitalizedProjectCategory}</p>
+            )}
             </span>
           </p>
           <p
