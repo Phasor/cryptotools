@@ -25,13 +25,15 @@ export async function getAllProjects() {
 }
 
 export async function getProjectsByCategory(category) {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-projects-by-category?category=${category}`
-  );
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-projects-by-category?category=${category}`
+    );
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch data from server");
   }
-  return response.json();
 }
 
 export async function getCategoryDescription(category) {
