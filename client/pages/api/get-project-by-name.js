@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   // await dbConnect();
   if (req.method === "GET") {
     try {
-      const project = await Tool.find({ name: req.query.name });
+      const project = await Tool.find({ name: req.query.name }).populate("category");
       // check if project exists
       if (project.length === 0) {
         return res

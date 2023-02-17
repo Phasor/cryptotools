@@ -61,7 +61,7 @@ export default function Project({ data }) {
               </h1>
               <p className="my-2">
                 <span className="text-small px-2 bg-blue-500 text-white rounded-full">
-                  {projectyQuery.data?.data[0].category}
+                  {projectyQuery.data?.data[0].category.category}
                 </span>
               </p>
               <p className="my-2">
