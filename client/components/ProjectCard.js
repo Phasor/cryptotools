@@ -14,7 +14,7 @@ export default function ProjectCard({ project, isAdmin }) {
   return (
     <div className="relative h-[400px]">
       <div className=" flex flex-col items-center justify-center sm:max-w-[300px] shadow-lg rounded-lg bg-white hover:bg-blue-100 cursor-pointer transform hover:scale-105">
-        <div className="flex justify-center items-center p-4 h-[150px]">
+        <div className="flex justify-center items-center mt-5 h-[150px]">
           <Link
             key={project._id}
             href={`/project/${project.name.split(" ").join("")}`}
@@ -24,7 +24,7 @@ export default function ProjectCard({ project, isAdmin }) {
               alt={project.name}
               width={150}
               height={150}
-              className="object-cover rounded-full "
+              className="object-cover rounded-full p-2"
             />
           </Link>
         </div>
