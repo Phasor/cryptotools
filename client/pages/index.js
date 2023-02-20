@@ -56,7 +56,7 @@ export default function Home({ data }) {
         />
         <meta
           name="keywords"
-          content="crypto tools, hardware wallets, crypto trading bot, crypto exchanges list, cryptocurrency research, blockchain, bitcoin, ethereum"
+          content="crypto tools, hardware wallets, crypto trading bot, crypto exchanges list, crypto promo codes, cryptocurrency research, blockchain, bitcoin, ethereum"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

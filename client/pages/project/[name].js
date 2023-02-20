@@ -73,8 +73,8 @@ export default function Project({ data }) {
                 {projectyQuery.data?.data[0].longDescription}
               </p>
               <h2 className="font-semibold mt-4">Review</h2>
-              <p className="mt-2 mb-6 italic">
-                &quot;{projectyQuery.data?.data[0].review}&quot;
+              <p className="mt-2 mb-6 whitespace-pre-line">
+                {projectyQuery.data?.data[0].review}
               </p>
               <span className="font-semibold">
                 Our Rating:
