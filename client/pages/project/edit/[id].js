@@ -54,6 +54,7 @@ export default function EditProject() {
       image: projectQuery?.data?.data.image,
       website: projectQuery?.data?.data.website,
       review: projectQuery?.data?.data.review,
+      rating: projectQuery?.data?.data.rating,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectQuery.data]);
