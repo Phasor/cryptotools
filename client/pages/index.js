@@ -48,7 +48,7 @@ export default function Home({ data }) {
         crossorigin="anonymous"
       ></Script>
       <Head>
-        <title>CryptoToolKit</title>
+        <title>Crypto Toolkit</title>
         <meta
           name="description"
           content="Free crypto dashboards about each major coin so that you can do your own research and decide the best crypto to buy today."

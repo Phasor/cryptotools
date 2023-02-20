@@ -26,6 +26,7 @@ export default function Admin({ data }) {
     initialData: data,
   });
 
+  // Log in check
   useEffect(() => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const isLoggedIn = useAuth().then((loggedIn) => {
@@ -40,7 +41,7 @@ export default function Admin({ data }) {
   // Filter the products based on the search value
   useEffect(() => {
     setFilteredProducts(
-      projectQuery.data?.data.filter(
+      projectQuery.data?.data?.filter(
         (product) =>
           product.name.toLowerCase().includes(searchValue.toLowerCase()) ||
           product.longDescription
