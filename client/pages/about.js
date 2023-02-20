@@ -9,10 +9,10 @@ export default function About() {
   return (
     <div className="w-screen min-h-screen relative bg-[#F9F8F8]">
       <Head>
-        <title>Crypto Tools | About</title>
+        <title>Crypto Toolkit | About</title>
         <meta
           name="description"
-          content="Free crypto dashboards to help you find what crypto will boom this year. Cryptocurrency research made easy."
+          content="Mega list of the most useful crypto tools to help you get an edge in the crypto markets."
         />
         <meta
           name="keywords"
@@ -26,8 +26,7 @@ export default function About() {
         <div className="flex flex-col p-5 md:max-w-[60%] ">
           <h1 className="text-xl">About</h1>
           <p className="mt-2">
-            This site is a list of crypto tools to help you succeed in the crypto markets. From crypto portfolio trackers to the best crypto tax software, 
-            we have you covered.
+            This site is a list of the best crypto tools to help you get an edge in the crypto markets. We review crypto portfolio trackers, exchanges, nft platforms, research and data tools and more to help you find the best crypto tools. 
           </p>
           <p className="mt-2">
             Please feel free to{" "}

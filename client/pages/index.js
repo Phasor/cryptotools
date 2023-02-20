@@ -49,14 +49,14 @@ export default function Home({ data }) {
         crossorigin="anonymous"
       ></Script>
       <Head>
-        <title>Crypto Toolkit</title>
+        <title>Top Crypto Tools List | CryptoToolkit</title>
         <meta
           name="description"
-          content="Free crypto dashboards about each major coin so that you can do your own research and decide the best crypto to buy today."
+          content="Reviews of crypto research tools, portfolio trackers, podcast, tax calculators, on chain analytics, and more."
         />
         <meta
           name="keywords"
-          content="crypto dashboard, dashboard crypto, crypto data analytics, cryptocurrency research, blockchain, bitcoin, ethereum"
+          content="crypto tools, hardware wallets, crypto trading bot, crypto exchanges list, cryptocurrency research, blockchain, bitcoin, ethereum"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
