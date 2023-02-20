@@ -66,7 +66,7 @@ export default function EditProject() {
         const response = await fetch(`${BASE_URL}/api/get-all-categories`);
         const data = await response.json();
         setCategories(data.data); 
-        console.log(`Categories in edit > id: ${JSON.stringify(data.data)}`)
+        // console.log(`Categories in edit > id: ${JSON.stringify(data.data)}`)
       } catch (err) {
         console.log(err);
       }
@@ -221,9 +221,13 @@ export default function EditProject() {
               className="p-1 my-2 outline-none border rounded-md"
             >
               <option value="1">1</option>
+              <option value="1.5">1.5</option>
               <option value="2">2</option>
+              <option value="2.5">2.5</option>
               <option value="3">3</option>
+              <option value="3.5">3.5</option>
               <option value="4">4</option>
+              <option value="4.5">4.5</option>
               <option value="5">5</option>
             </select>
           </div>

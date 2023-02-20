@@ -45,7 +45,7 @@ export default function ProjectCard({ project, isAdmin }) {
           </p>
           <Rating
             className="text-yellow-500"
-            initialRating={parseInt(project.rating)}
+            initialRating={parseFloat(project.rating)}
             readonly
             fullSymbol="fa fa-star"
             emptySymbol="fa fa-star-o"
