@@ -12,9 +12,9 @@ export default function ProjectCard({ project, isAdmin }) {
     projectCategory[0]?.toUpperCase() + projectCategory?.slice(1);
 
   return (
-    <div className="relative max-h-[400px]">
+    <div className="relative h-[400px]">
       <div className=" flex flex-col items-center justify-center sm:max-w-[300px] shadow-lg rounded-lg bg-white hover:bg-blue-100 cursor-pointer transform hover:scale-105">
-        <div className="flex justify-center p-4">
+        <div className="flex justify-center items-center p-4 h-[150px]">
           <Link
             key={project._id}
             href={`/project/${project.name.split(" ").join("")}`}
@@ -22,9 +22,9 @@ export default function ProjectCard({ project, isAdmin }) {
             <Image
               src={project.image}
               alt={project.name}
-              width={200}
-              height={200}
-              className="object-cover w-[150px] h-[150px] rounded-full "
+              width={150}
+              height={150}
+              className="object-cover rounded-full "
             />
           </Link>
         </div>
