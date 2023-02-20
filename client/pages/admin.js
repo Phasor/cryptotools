@@ -40,6 +40,7 @@ export default function Admin({ data }) {
 
   // Filter the products based on the search value
   useEffect(() => {
+    if (projectQuery.data && projectQuery.data.data) {
     setFilteredProducts(
       projectQuery.data?.data?.filter(
         (product) =>
@@ -53,7 +54,7 @@ export default function Admin({ data }) {
           product.category.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
-  }, [searchValue, projectQuery.data]);
+  }}, [searchValue, projectQuery.data]);
 
   return (
     <>
