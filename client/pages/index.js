@@ -26,6 +26,7 @@ export default function Home({ data }) {
 
 // Filter the products based on the search value
   useEffect(() => {
+    if (projectQuery.data && projectQuery.data.data) {
     setFilteredProducts(
       projectQuery?.data?.data?.filter(
         (product) =>
@@ -39,7 +40,7 @@ export default function Home({ data }) {
           product.category?.category?.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
-  }, [searchValue, projectQuery.data.data]);
+  }}, [searchValue, projectQuery.data.data]);
 
   return (
     <div className="w-screen min-h-screen relative bg-[#F9F8F8] overflow-y-auto">
