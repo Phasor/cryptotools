@@ -12,9 +12,6 @@ export default function Hero() {
                 Crypto<span className="text-blue-500">Toolkit</span>
               </h1>
               <h3 className="text-2xl py-2">The best crypto tools</h3>
-              <p className="text-gray-500">
-                Get an edge in your research, and do your taxes...
-              </p>
             </div>
           </Link>
 
