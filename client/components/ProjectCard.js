@@ -12,9 +12,9 @@ export default function ProjectCard({ project, isAdmin }) {
     projectCategory[0]?.toUpperCase() + projectCategory?.slice(1);
 
   return (
-    <div className="relative h-[400px]">
-      <div className=" flex flex-col items-center justify-center sm:max-w-[300px] shadow-lg rounded-lg bg-white hover:bg-blue-100 cursor-pointer transform hover:scale-105">
-        <div className="flex justify-center items-center mt-5 h-[150px]">
+    <div className="relative">
+      <div className="h-[375px] flex flex-col items-center justify-center sm:max-w-[300px] shadow-lg rounded-lg bg-white hover:bg-blue-100 cursor-pointer transform hover:scale-105">
+        <div className="flex justify-center items-center h-[50%] w-full border border-b border-gray-100">
           <Link
             key={project._id}
             href={`/project/${project.name.split(" ").join("")}`}
@@ -24,33 +24,34 @@ export default function ProjectCard({ project, isAdmin }) {
               alt={project.name}
               width={150}
               height={150}
-              className="object-cover rounded-full p-2"
+              className="object-cover rounded-full"
             />
           </Link>
         </div>
-        <div className="flex flex-col items-start w-full p-4 overflow-hidden">
-          <h1 className="text-xl font-bold">{project.name}</h1>
-          <p className="text-xs my-1">
-            <span >
-            {capitalizedProjectCategory && capitalizedProjectCategory !== "undefined" && (
-              <p className="bg-blue-500 text-white px-1 rounded-full">{capitalizedProjectCategory}</p>
-            )}
-            </span>
-          </p>
-          <p
-            className="my-2"
-            style={{ minHeight: "50px", textOverflow: "ellipsis" }}
-          >
-            {project.shortDescription}
-          </p>
-          <Rating
-            className="text-yellow-500"
-            initialRating={parseFloat(project.rating)}
-            readonly
-            fullSymbol="fa fa-star"
-            emptySymbol="fa fa-star-o"
-            fractions={2}
-          />
+        <div className="flex flex-col items-start w-full h-[50%] p-3">
+          <div>
+            <h1 className="text-xl font-bold">{project.name}</h1>
+            <p className="text-xs my-1 inline-block">
+              <span >
+              {capitalizedProjectCategory && capitalizedProjectCategory !== "undefined" && (
+                <p className="bg-blue-500 text-white px-1 rounded-full">{capitalizedProjectCategory}</p>
+              )}
+              </span>
+            </p>
+          </div>
+          <div className="h-full flex flex-col justify-between">
+            <p className="my-2">
+              {project.shortDescription}
+            </p>
+            <Rating
+              className="text-yellow-500"
+              initialRating={parseFloat(project.rating)}
+              readonly
+              fullSymbol="fa fa-star"
+              emptySymbol="fa fa-star-o"
+              fractions={2}
+            />
+          </div>
         </div>
         {isAdmin && (
           <div>

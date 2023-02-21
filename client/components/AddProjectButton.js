@@ -12,7 +12,7 @@ export default function AddProjectButton() {
   const [formData, setFormData] = useState(
     { 
       active: false,
-      category: "",
+      category: "63f3cc84e78ac2fd8213a4a9",  //exchange
       name: "",
       image: "",
       website: "",
@@ -311,7 +311,6 @@ export default function AddProjectButton() {
                 type="checkbox"
                 checked={formData.active}
                 onChange={handleCheckbox}
-                required
               />
             </div>
             <button
