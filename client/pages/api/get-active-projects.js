@@ -9,7 +9,7 @@ export default async function handler(req, res) {
       const projects = await Tool.find({ active: true })
         .populate("category")
         .sort({ rating: -1 })
-        .collation({ locale: "en_US", numericOrdering: true });
+        // .collation({ locale: "en_US", numericOrdering: true });
       res.status(200).json({ success: true, data: projects });
     } catch (err) {
       res
