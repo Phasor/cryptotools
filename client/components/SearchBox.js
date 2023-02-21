@@ -5,7 +5,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 export default function SearchBox({ value, setSearchValue, isAdmin }) {
   return (
     <>
-      <div className="mx-auto flex justify-center max-w-6xl"> 
+      <div className="mx-auto flex justify-center max-w-6xl">
         <div
           className={`w-full mx-3 mb-5 flex items-center p-3 rounded-full bg-zinc-100 hover:bg-zinc-200 
         border-2 border-b-gray-200 ${isAdmin ? "mt-10" : "mt-0"}`}
@@ -24,7 +24,6 @@ export default function SearchBox({ value, setSearchValue, isAdmin }) {
           />
         </div>
       </div>
-  
     </>
   );
 }

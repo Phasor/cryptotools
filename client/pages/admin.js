@@ -41,20 +41,23 @@ export default function Admin({ data }) {
   // Filter the products based on the search value
   useEffect(() => {
     if (projectQuery.data && projectQuery.data.data) {
-    setFilteredProducts(
-      projectQuery.data?.data?.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-          product.longDescription
-            .toLowerCase()
-            .includes(searchValue.toLowerCase()) ||
-          product.shortDescription
-            .toLowerCase()
-            .includes(searchValue.toLowerCase()) ||
-          product.category?.category?.toLowerCase().includes(searchValue.toLowerCase())
-      )
-    );
-  }}, [searchValue, projectQuery.data]);
+      setFilteredProducts(
+        projectQuery.data?.data?.filter(
+          (product) =>
+            product.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+            product.longDescription
+              .toLowerCase()
+              .includes(searchValue.toLowerCase()) ||
+            product.shortDescription
+              .toLowerCase()
+              .includes(searchValue.toLowerCase()) ||
+            product.category?.category
+              ?.toLowerCase()
+              .includes(searchValue.toLowerCase())
+        )
+      );
+    }
+  }, [searchValue, projectQuery.data]);
 
   return (
     <>

@@ -25,7 +25,11 @@ function MyApp({ Component, pageProps }) {
         />
 
         {/* Google Analytics Script */}
-        <Script id="google-analytics1" async src="https://www.googletagmanager.com/gtag/js?id=G-XHW4FZR83P"></Script>
+        <Script
+          id="google-analytics1"
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-XHW4FZR83P"
+        ></Script>
         <Script id="google-analytics2">
           {`
             window.dataLayer = window.dataLayer || [];

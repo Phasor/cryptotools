@@ -32,17 +32,18 @@ export default function ProjectCard({ project, isAdmin }) {
           <div>
             <h1 className="text-xl font-bold">{project.name}</h1>
             <p className="text-xs my-1 inline-block">
-              <span >
-              {capitalizedProjectCategory && capitalizedProjectCategory !== "undefined" && (
-                <p className="bg-blue-500 text-white px-1 rounded-full">{capitalizedProjectCategory}</p>
-              )}
+              <span>
+                {capitalizedProjectCategory &&
+                  capitalizedProjectCategory !== "undefined" && (
+                    <p className="bg-blue-500 text-white px-1 rounded-full">
+                      {capitalizedProjectCategory}
+                    </p>
+                  )}
               </span>
             </p>
           </div>
           <div className="h-full flex flex-col justify-between">
-            <p className="my-2">
-              {project.shortDescription}
-            </p>
+            <p className="my-2">{project.shortDescription}</p>
             <Rating
               className="text-yellow-500"
               initialRating={parseFloat(project.rating)}

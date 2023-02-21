@@ -26,7 +26,10 @@ export default function About() {
         <div className="flex flex-col p-5 md:max-w-[60%] ">
           <h1 className="text-xl">About</h1>
           <p className="mt-2">
-            This site is a list of the best crypto tools to help you get an edge in the crypto markets. We review crypto portfolio trackers, exchanges, nft platforms, research and data tools and more to help you find the best crypto tools. 
+            This site is a list of the best crypto tools to help you get an edge
+            in the crypto markets. We review crypto portfolio trackers,
+            exchanges, nft platforms, research and data tools and more to help
+            you find the best crypto tools.
           </p>
           <p className="mt-2">
             Please feel free to{" "}

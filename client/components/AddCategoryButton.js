@@ -59,7 +59,7 @@ export default function AddProjectButton() {
     e.preventDefault();
     addCategoryMutation.mutate({
       category: formData.category,
-        description: formData.description,
+      description: formData.description,
     });
     setShowModal(false);
   };
@@ -92,7 +92,7 @@ export default function AddProjectButton() {
                 required
               />
             </div>
-            
+
             <div className="flex items-center space-x-2 justify-between">
               <label>Desc.</label>
               <textarea

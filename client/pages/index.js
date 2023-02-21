@@ -24,23 +24,26 @@ export default function Home({ data }) {
 
   // console.log(`projectQuery.data: ${projectQuery.data}`);
 
-// Filter the products based on the search value
+  // Filter the products based on the search value
   useEffect(() => {
     if (projectQuery.data && projectQuery.data.data) {
-    setFilteredProducts(
-      projectQuery?.data?.data?.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-          product.longDescription
-            .toLowerCase()
-            .includes(searchValue.toLowerCase()) ||
-          product.shortDescription
-            .toLowerCase()
-            .includes(searchValue.toLowerCase()) ||
-          product.category?.category?.toLowerCase().includes(searchValue.toLowerCase())
-      )
-    );
-  }}, [searchValue, projectQuery.data.data]);
+      setFilteredProducts(
+        projectQuery?.data?.data?.filter(
+          (product) =>
+            product.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+            product.longDescription
+              .toLowerCase()
+              .includes(searchValue.toLowerCase()) ||
+            product.shortDescription
+              .toLowerCase()
+              .includes(searchValue.toLowerCase()) ||
+            product.category?.category
+              ?.toLowerCase()
+              .includes(searchValue.toLowerCase())
+        )
+      );
+    }
+  }, [searchValue, projectQuery.data.data]);
 
   return (
     <div className="w-screen min-h-screen relative bg-[#F9F8F8] overflow-y-auto">
@@ -64,10 +67,10 @@ export default function Home({ data }) {
       <Hero />
       <EmailList />
       <SearchBox value={searchValue} setSearchValue={setSearchValue} />
-      <AdvancedSearch/>
+      <AdvancedSearch />
 
       {/* Project List */}
-      <div className="mx-auto flex justify-center max-w-6xl"> 
+      <div className="mx-auto flex justify-center max-w-6xl">
         <main className="w-full m-2 md:p-0 items-center mt-10 mb-20 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-10">
           {filteredProducts?.map((project) => (
             <Link

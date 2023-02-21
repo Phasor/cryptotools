@@ -66,7 +66,7 @@ export default function EditProject() {
       try {
         const response = await fetch(`${BASE_URL}/api/get-all-categories`);
         const data = await response.json();
-        setCategories(data.data); 
+        setCategories(data.data);
         // console.log(`Categories in edit > id: ${JSON.stringify(data.data)}`)
       } catch (err) {
         console.log(err);
@@ -125,7 +125,11 @@ export default function EditProject() {
     if (image) {
       // image has been changed, upload new one
       newImgURL = await UploadImage(image);
-      const updatedFormData = { ...formData, image: newImgURL, category:mongoose.Types.ObjectId(formData.category) };
+      const updatedFormData = {
+        ...formData,
+        image: newImgURL,
+        category: mongoose.Types.ObjectId(formData.category),
+      };
       EditProjectMutation.mutate({ formData: updatedFormData, id });
     } else {
       EditProjectMutation.mutate({ formData, id });
@@ -233,20 +237,20 @@ export default function EditProject() {
             </select>
           </div>
           <div className="flex items-center space-x-2 justify-between">
-              <label>Category</label>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                className="p-1 my-2 outline-none border rounded-md"
-                required
-              >
-                {categories.map((category) => (
-                  <option key={category._id} value={category._id}>
-                    {category.category}
-                  </option>
-                ))}
-              </select>
+            <label>Category</label>
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              className="p-1 my-2 outline-none border rounded-md"
+              required
+            >
+              {categories.map((category) => (
+                <option key={category._id} value={category._id}>
+                  {category.category}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="flex items-center space-x-2 justify-between my-3">

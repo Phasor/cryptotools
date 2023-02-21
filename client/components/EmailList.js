@@ -15,13 +15,16 @@ export default function EmailList() {
     const sanitizedEmail = DOMPurify.sanitize(email);
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/subscribe`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/subscribe`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
       const data = await res.json();
       if (data.success) {
         toast.success("You're on the list!");
@@ -35,13 +38,15 @@ export default function EmailList() {
   };
 
   return (
-    <div className="mx-auto flex justify-center max-w-6xl"> 
+    <div className="mx-auto flex justify-center max-w-6xl">
       <form
         onSubmit={handleSubmit}
         className="w-full m-4 mb-10 p-4  rounded-lg shadow-lg bg-yellow-500"
       >
         <p className="px-1 py-2 font-semi-bold text-md font-semibold">
-          Yes, notify me of new crypto tools and send me <span className="text-white"> exclusive crypto offers </span> and discounts:
+          Yes, notify me of new crypto tools and send me{" "}
+          <span className="text-white"> exclusive crypto offers </span> and
+          discounts:
         </p>
         <div className="space-x-4 mb-2 flex items-center justify-center">
           <FontAwesomeIcon icon={faEnvelope} className="h-14 w-14 text-black" />

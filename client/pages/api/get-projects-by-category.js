@@ -5,9 +5,11 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
       // find the Category object ID of the category we are searching for
-      const category = await Category.findOne({category: req.query.category})
-      const categoryObjId = category._id
-      const projects = await Tool.find({ category: categoryObjId }).populate("category");
+      const category = await Category.findOne({ category: req.query.category });
+      const categoryObjId = category._id;
+      const projects = await Tool.find({ category: categoryObjId }).populate(
+        "category"
+      );
 
       // check if project exists
       if (projects.length === 0) {

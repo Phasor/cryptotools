@@ -10,7 +10,11 @@ const ToolSchema = new mongoose.Schema({
   review: { type: String, required: false },
   active: { type: Boolean, required: true, default: false },
   category: { type: Schema.Types.ObjectId, ref: "Category" },
-  rating: { type: String, required: true, enum: ["1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5"] },
+  rating: {
+    type: String,
+    required: true,
+    enum: ["1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5"],
+  },
 });
 
 // check the model has not already been defined before recreating it, otherwise next.js tries to overwrite the model and ann error throws

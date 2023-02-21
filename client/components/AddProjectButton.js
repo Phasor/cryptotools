@@ -9,18 +9,17 @@ import mongoose from "mongoose";
 export default function AddProjectButton() {
   const [showModal, setShowModal] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [formData, setFormData] = useState(
-    { 
-      active: false,
-      category: "63f3cc84e78ac2fd8213a4a9",  //exchange
-      name: "",
-      image: "",
-      website: "",
-      shortDescription: "",
-      longDescription: "",
-      rating: 0,
-      review: "",
-     });
+  const [formData, setFormData] = useState({
+    active: false,
+    category: "63f3cc84e78ac2fd8213a4a9", //exchange
+    name: "",
+    image: "",
+    website: "",
+    shortDescription: "",
+    longDescription: "",
+    rating: 0,
+    review: "",
+  });
   const [image, setImage] = useState(null);
   const [imgPreview, setImgPreview] = useState(null);
   const [errors, setErrors] = useState(null);
@@ -33,7 +32,7 @@ export default function AddProjectButton() {
       try {
         const response = await fetch(`${BASE_URL}/api/get-all-categories`);
         const data = await response.json();
-        setCategories(data.data); 
+        setCategories(data.data);
         // console.log(`Categories: ${JSON.stringify(data.data)}`)
       } catch (err) {
         console.log(err);
@@ -42,12 +41,10 @@ export default function AddProjectButton() {
     getCategories();
   }, []);
 
-
   const addProject = async (data) => {
     // console.log(`Form data: ${JSON.stringify(data)}`)
     if (localStorage.getItem("token")) {
       try {
-        
         const token = localStorage.getItem("token");
         const response = await fetch("/api/add-project", {
           method: "POST",
@@ -75,18 +72,17 @@ export default function AddProjectButton() {
         toast.success("Project added!");
 
         // reset form data
-        setFormData(
-          { 
-            active: false,
-            category: "",
-            name: "",
-            image: "",
-            website: "",
-            shortDescription: "",
-            longDescription: "",
-            rating: 0,
-            review: "",
-           });
+        setFormData({
+          active: false,
+          category: "",
+          name: "",
+          image: "",
+          website: "",
+          shortDescription: "",
+          longDescription: "",
+          rating: 0,
+          review: "",
+        });
       }
     },
     onError: (error) => {
