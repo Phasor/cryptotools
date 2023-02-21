@@ -51,7 +51,7 @@ export default function Admin({ data }) {
           product.shortDescription
             .toLowerCase()
             .includes(searchValue.toLowerCase()) ||
-          product.category.toLowerCase().includes(searchValue.toLowerCase())
+          product.category?.category?.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
   }}, [searchValue, projectQuery.data]);
