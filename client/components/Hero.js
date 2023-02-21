@@ -15,7 +15,7 @@ export default function Hero() {
             </div>
           </Link>
 
-          <div className="hidden lg:max-w-[50%] lg:flex lg:mr-20 lg:mt-[175px]">
+          <div className="hidden lg:max-w-[50%] lg:flex lg:mr-20 lg:mt-[176px]">
             <Image
               src="/ethcase.png"
               alt="picture of graphs"
