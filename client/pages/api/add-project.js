@@ -20,6 +20,7 @@ export default async function handler(req, res) {
     try {
       // sanitize and trim the data
       const name = xss(req.body.name.trim());
+      const displayName = xss(req.body.displayName.trim());
       const image = xss(req.body.image.trim());
       const website = xss(req.body.website.trim());
       const shortDescription = xss(req.body.shortDescription.trim());
@@ -32,6 +33,7 @@ export default async function handler(req, res) {
       // create a new Tool
       const tool = new Tool({
         name,
+        displayName,
         image,
         website,
         shortDescription,
