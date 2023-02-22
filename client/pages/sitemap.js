@@ -34,7 +34,7 @@ export async function getServerSideProps({ res }) {
   // We make an API call to gather the URLs for our site
   const response = await fetch(`${EXTERNAL_DATA_URL}/api/get-active-projects`);
   const projects = await response.json()
-  console.log(projects);
+//   console.log(projects);
 
   // We generate the XML sitemap with the projects data
   const sitemap = generateSiteMap(projects);
