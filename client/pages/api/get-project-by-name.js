@@ -1,7 +1,6 @@
 const Tool = require("../../models/Tool");
 
 export default async function handler(req, res) {
-  await dbConnect();
   if (req.method === "GET") {
     try {
       const project = await Tool.find({ name: req.query.name }).populate(

@@ -30,7 +30,7 @@ export default function ProjectCard({ project, isAdmin }) {
         </div>
         <div className="flex flex-col items-start w-full h-[50%] p-3">
           <div>
-            <h1 className="text-xl font-bold">{project.name}</h1>
+            <h1 className="text-xl font-bold">{project.displayName}</h1>
             <p className="text-xs my-1 inline-block">
               <span>
                 {capitalizedProjectCategory &&

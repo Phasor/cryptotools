@@ -13,6 +13,7 @@ export default function AddProjectButton() {
     active: false,
     category: "63f3cc84e78ac2fd8213a4a9", //exchange
     name: "",
+    displayName: "",
     image: "",
     website: "",
     shortDescription: "",
@@ -76,6 +77,7 @@ export default function AddProjectButton() {
           active: false,
           category: "",
           name: "",
+          displayName: "",
           image: "",
           website: "",
           shortDescription: "",
@@ -147,6 +149,7 @@ export default function AddProjectButton() {
     }
     addProjectMutation.mutate({
       name: formData.name,
+      displayName: formData.displayName,
       image: imgURL,
       website: formData.website,
       shortDescription: formData.shortDescription,
@@ -181,10 +184,22 @@ export default function AddProjectButton() {
               <label>Project Name</label>
               <input
                 type="text"
-                placeholder="Cool Project"
+                placeholder="Start each new word with a capital letter &quot;Trail of Bits&quot;"
                 className="p-1 my-2 outline-none border rounded-md ml-2 w-[80%]"
                 name="name"
                 value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="flex items-center space-x-2 justify-between">
+              <label>Display Name</label>
+              <input
+                type="text"
+                placeholder="Cool Project"
+                className="p-1 my-2 outline-none border rounded-md ml-2 w-[80%]"
+                name="displayName"
+                value={formData.displayName}
                 onChange={handleChange}
                 required
               />

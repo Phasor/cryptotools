@@ -23,6 +23,9 @@ export default async function handler(req, res) {
       const name = req.body.formData.name
         ? xss(req.body.formData.name.trim())
         : "";
+      const displayName = req.body.formData.displayName
+        ? xss(req.body.formData.displayName.trim())
+        : "";
       const image = req.body.formData.image
         ? xss(req.body.formData.image.trim())
         : "";
@@ -52,6 +55,7 @@ export default async function handler(req, res) {
         toolId,
         {
           name,
+          displayName,
           image,
           website,
           shortDescription,

@@ -32,10 +32,10 @@ export default function Project({ data }) {
         crossorigin="anonymous"
       ></Script>
       <Head>
-        <title>{projectyQuery.data?.data[0]?.name}</title>
+        <title>{projectyQuery.data?.data[0]?.displayName}</title>
         <meta
           name="description"
-          content={`An overview of ${projectyQuery.data?.data[0]?.name} crypto project.`}
+          content={`An overview of ${projectyQuery.data?.data[0]?.displayName} crypto project.`}
         />
         <meta
           name="keywords"
@@ -50,14 +50,14 @@ export default function Project({ data }) {
           <>
             <Image
               src={projectyQuery.data?.data[0]?.image}
-              alt={projectyQuery.data?.data[0]?.name}
+              alt={projectyQuery.data?.data[0]?.displayName}
               width={300}
               height={300}
               className="object-cover my-4 md:my-2 w-[150px] md:w-[300px] rounded-full"
             />
             <div className="w-full flex flex-col border rounded-lg shadow-lg p-4 sm:min-w-[50%]">
               <h1 className="font-bold text-3xl">
-                {projectyQuery.data?.data[0].name}
+                {projectyQuery.data?.data[0].displayName}
               </h1>
               <p className="my-2">
                 <span className="text-small px-2 bg-blue-500 text-white rounded-full">

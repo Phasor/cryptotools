@@ -47,6 +47,7 @@ export default function EditProject() {
     setFormData({
       ...formData,
       name: projectQuery?.data?.data.name,
+      displayName: projectQuery?.data?.data.displayName,
       shortDescription: projectQuery?.data?.data.shortDescription,
       longDescription: projectQuery?.data?.data.longDescription,
       category: projectQuery?.data?.data.category,
@@ -168,8 +169,20 @@ export default function EditProject() {
             <input
               type="text"
               value={formData.name}
+              placeholder="Each new word should start with a captial letter e.g. &quot;Trail Of Bits&quot;"
               className="p-1 my-2 outline-none border rounded-md ml-2 w-[80%]"
               name="name"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="flex items-center space-x-2 justify-between">
+            <label>Display Name</label>
+            <input
+              type="text"
+              value={formData.displayName}
+              className="p-1 my-2 outline-none border rounded-md ml-2 w-[80%]"
+              name="displayName"
               onChange={handleChange}
               required
             />
