@@ -38,8 +38,9 @@ export async function getProjectsByCategory(category) {
 }
 
 export async function getCategoryDescription(category) {
+  const spacedCategory = category.replace(/([A-Z])/g, ' $1').trim();
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-category-by-name?category=${category}`
+    `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-category-by-name?category=${spacedCategory}`
   );
   if (!response.ok) {
     throw new Error("Network response was not ok");
