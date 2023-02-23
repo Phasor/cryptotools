@@ -34,7 +34,7 @@ export default function AdvancedSearch() {
               categories.map((category, index) => (
                 <Link
                   key={index}
-                  href={`/category/${category.category}`}
+                  href={`/category/${category.category.split(" ").join("")}`}
                   className="text-blue-500 hover:text-blue-700 underline text-sm"
                 >
                   {category.category.charAt(0).toUpperCase() +

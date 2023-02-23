@@ -25,9 +25,10 @@ export async function getAllProjects() {
 }
 
 export async function getProjectsByCategory(category) {
+  const spacedCategory = category.replace(/([A-Z])/g, ' $1').trim();
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-projects-by-category?category=${category}`
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-projects-by-category?category=${spacedCategory}`
     );
     return response.json();
   } catch (error) {
