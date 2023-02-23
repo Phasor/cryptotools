@@ -1,30 +1,5 @@
 const EXTERNAL_DATA_URL = process.env.NEXT_PUBLIC_BASE_API_URL
 
-// function generateSiteMap(projects) {
-//     return `<?xml version="1.0" encoding="UTF-8"?>
-//       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-//         <!--We manually set the two URLs we know already-->
-//         <url>
-//           <loc>https://www.cryptotoolkit.xyz/</loc>
-//         </url>
-//         <url>
-//           <loc>https://www.cryptotoolkit.xyz/about</loc>
-//         </url>
-//         ${
-//           projects.data
-//             ? projects.data.map(({ name }) => {
-//                 return `
-//                   <url>
-//                     <loc>${`${EXTERNAL_DATA_URL}/project/${name.split(" ").join("")}`}</loc>
-//                   </url>
-//                 `;
-//               }).join('')
-//             : ''
-//         }
-//       </urlset>
-//     `;
-//   }
-
 function generateSiteMap(projects, categories) {
   const urls = projects.data.concat(categories.data).map(({ name, category }) => {
     if (name) {
@@ -46,7 +21,8 @@ function generateSiteMap(projects, categories) {
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <!--We manually set the two URLs we know already-->
       <url>
-        <loc>https://www.cryptotoolkit.xyz/</loc>
+        <loc>https://www.cryptotoolkit.xyz</loc>
+        <priority>1.00</priority>
       </url>
       <url>
         <loc>https://www.cryptotoolkit.xyz/about</loc>
