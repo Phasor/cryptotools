@@ -73,7 +73,7 @@ export async function getProjectByName(name) {
         // project not found
         // need to add spaces between words e.g. "DuneAnalytics" => "Dune Analytics"
         const updatedName = name.split(/(?=[A-Z])/).join(" ");
-        // console.log("name updated to ", updatedName);
+        console.log("name updated to ", updatedName);
 
         const updatedRes = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-project-by-name?name=${updatedName}`
@@ -91,7 +91,7 @@ export async function getProjectByName(name) {
 
     return res.json();
   } catch (err) {
-    throw new Error("Something went wrong, in catch block");
+    throw new Error(`Something went wrong, in catch block: ${err.message}`);
   }
 }
 

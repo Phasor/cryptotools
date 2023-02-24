@@ -1,6 +1,9 @@
-const Tool = require("../../models/Tool");
+import dbConnect from "../../utils/dbConnect";
+import Tool from "../../models/Tool";
+import Category from "../../models/Category";
 
 export default async function handler(req, res) {
+  await dbConnect();
   if (req.method === "GET") {
     try {
       const project = await Tool.find({ name: req.query.name }).populate(
@@ -8,6 +11,7 @@ export default async function handler(req, res) {
       );
       // check if project exists
       if (project.length === 0) {
+        console.log("Project not found");
         return res
           .status(404)
           .json({ success: false, message: "Project not found" });
@@ -19,5 +23,4 @@ export default async function handler(req, res) {
   } else {
     res.status(405).json({ success: false, message: "Invalid request method" });
   }
-  res.end();
 }
