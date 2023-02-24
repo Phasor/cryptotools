@@ -38,7 +38,7 @@ export default function Project() {
       ></Script>
       <Head>
       {categoryQuery?.data?.data?.map((category) => (
-        <title>Crypto {category.category} List | CryptoToolHub</title>
+        <title key={category._id}>Crypto {category.category} List | CryptoToolHub</title>
       ))}
         <meta
           name="description"
