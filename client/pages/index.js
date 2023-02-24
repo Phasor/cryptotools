@@ -52,7 +52,7 @@ export default function Home({ data }) {
         crossorigin="anonymous"
       ></Script>
       <Head>
-        <title>Top Crypto Tools List | CryptoToolkit</title>
+        <title>Top Crypto Tools List | CryptoToolHub</title>
         <meta
           name="description"
           content="Reviews of crypto research tools, portfolio trackers, podcast, tax calculators, on chain analytics, and more."

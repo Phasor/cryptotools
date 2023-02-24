@@ -21,11 +21,11 @@ function generateSiteMap(projects, categories) {
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <!--We manually set the two URLs we know already-->
       <url>
-        <loc>https://www.cryptotoolkit.xyz</loc>
+        <loc>https://www.cryptotoolhub.com</loc>
         <priority>1.00</priority>
       </url>
       <url>
-        <loc>https://www.cryptotoolkit.xyz/about</loc>
+        <loc>https://www.cryptotoolhub.com/about</loc>
       </url>
       ${urls}
     </urlset>

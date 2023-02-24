@@ -9,7 +9,7 @@ export default function About() {
   return (
     <div className="w-screen min-h-screen relative bg-[#F9F8F8]">
       <Head>
-        <title>Crypto Toolkit | About</title>
+        <title>CryptoToolHub | About</title>
         <meta
           name="description"
           content="Mega list of the most useful crypto tools to help you get an edge in the crypto markets."

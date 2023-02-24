@@ -9,7 +9,7 @@ export default function Hero() {
         <Link href="/">
           <div className="p-5 lg:min-w-[50%] lg:mt-[200px] flex flex-col">
             <h1 className="mt-10 md:mt-2 text-5xl md:text-7xl py-2 font-bold whitespace-nowrap ">
-              Crypto<span className="text-blue-500">Toolkit</span>
+              Crypto<span className="text-blue-500">Tool</span>Hub
             </h1>
             <h3 className="text-2xl py-2">The best crypto tools</h3>
           </div>

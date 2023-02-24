@@ -37,7 +37,9 @@ export default function Project() {
         crossorigin="anonymous"
       ></Script>
       <Head>
-        <title>CryptoToolKit</title>
+      {categoryQuery?.data?.data?.map((category) => (
+        <title>Crypto {category.category} List | CryptoToolHub</title>
+      ))}
         <meta
           name="description"
           content="Free crypto dashboards about each major coin so that you can do your own research and decide the best crypto to buy today."
@@ -56,6 +58,7 @@ export default function Project() {
         <>
           {categoryQuery?.data?.data?.map((category) => (
             <div className="mx-auto max-w-6xl" key={category._id}>
+              <h1 className="m-2 font-semibold text-lg">Crypto {category.category} List</h1>
               <p className="m-2">{category.description}</p>
             </div>
           ))}
