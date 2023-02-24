@@ -1,7 +1,9 @@
+import dbConnect from "../../utils/dbConnect";
 const Tool = require("../../models/Tool");
 const Category = require("../../models/Category");
 
 export default async function handler(req, res) {
+  await dbConnect();
   if (req.method === "GET") {
     try {
       // find the Category object ID of the category we are searching for

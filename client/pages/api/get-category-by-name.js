@@ -1,6 +1,8 @@
+import dbConnect from "../../utils/dbConnect";
 const Category = require("../../models/Category");
 
 export default async function handler(req, res) {
+  await dbConnect();
   if (req.method === "GET") {
     try {
       const category = await Category.find({ category: req.query.category });
