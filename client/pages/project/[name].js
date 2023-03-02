@@ -80,7 +80,7 @@ export default function Project({ data }) {
                 Our Rating:
                 <Rating
                   className="text-yellow-500 ml-2"
-                  initialRating={parseInt(projectyQuery.data?.data[0].rating)}
+                  initialRating={parseFloat(projectyQuery.data?.data[0].rating)}
                   readonly
                   fullSymbol="fa fa-star"
                   emptySymbol="fa fa-star-o"
